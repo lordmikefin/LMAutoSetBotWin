@@ -138,6 +138,14 @@ else
 fi
 
 
+echo ""
+APP_PIP="pip3"
+PIP_VERSION=$(lm_get_app_version ${APP_PIP})  || lm_failure
+if [ -z "${PIP_VERSION}" ] ; then
+	echo "'${APP_PIP}' is not installed !"
+else
+	echo "'${APP_PIP}' is installed."
+fi
 
 
 
@@ -170,6 +178,22 @@ if [ -z "${PY_VERSION}" ] ; then
 	case "${INPUT}" in
 		"YES" )
 			sudo apt-get install python3
+			;;
+		"NO" )
+			echo "Ok then. Bye."
+			exit 1
+			;;
+		"FAILED" | * )
+			lm_failure_message
+			;;
+	esac
+fi
+
+if [ -z "${PIP_VERSION}" ] ; then
+	unset INPUT
+	lm_read_to_INPUT "Do you want to install the 'python3-pip'?"
+	case "${INPUT}" in
+		"YES" )
 			sudo apt-get install python3-pip
 			;;
 		"NO" )

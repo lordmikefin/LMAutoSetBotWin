@@ -18,7 +18,7 @@
 
 
 unset CURRENT_SCRIPT_VER CURRENT_SCRIPT_DATE
-CURRENT_SCRIPT_VER="0.0.1"
+CURRENT_SCRIPT_VER="0.0.2"
 CURRENT_SCRIPT_DATE="2019-07-09"
 echo "CURRENT_SCRIPT_VER: ${CURRENT_SCRIPT_VER} (${CURRENT_SCRIPT_DATE})"
 
@@ -41,7 +41,7 @@ source ${IMPORT_FUNCTIONS}
 if [ ${LM_FUNCTIONS_LOADED} == false ]; then
 	>&2 echo "${BASH_SOURCE[0]}: line ${LINENO}: Something went wrong while loading functions."
 	exit 1
-elif [ ${LM_FUNCTIONS_VER} != "1.1.0" ]; then
+elif [ ${LM_FUNCTIONS_VER} != "1.2.0" ]; then
 	lm_functions_incorrect_version
 	if [ "${INPUT}" == "FAILED" ]; then
 		lm_failure
@@ -112,10 +112,12 @@ fi
 
 
 echo ""
-GIT_VERSION=$(lm_get_git_version)  || lm_failure
+#GIT_VERSION=$(lm_get_git_version)  || lm_failure
+APP="git"
+GIT_VERSION=$(lm_get_app_version ${APP})  || lm_failure
 echo ${GIT_VERSION}
 if [ -z "${GIT_VERSION}" ] ; then
-	echo "'git' is not installed !"
+	echo "'${APP}' is not installed !"
 fi
 
 

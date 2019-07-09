@@ -139,7 +139,7 @@ fi
 
 
 echo ""
-APP_PIP="pip33"
+APP_PIP="pip3"
 PIP_VERSION=$(lm_get_app_version ${APP_PIP})  || lm_failure
 if [ -z "${PIP_VERSION}" ] ; then
 	echo "'${APP_PIP}' is not installed !"

@@ -139,7 +139,7 @@ fi
 
 
 echo ""
-APP_PIP="pip3"
+APP_PIP="pip33"
 PIP_VERSION=$(lm_get_app_version ${APP_PIP})  || lm_failure
 if [ -z "${PIP_VERSION}" ] ; then
 	echo "'${APP_PIP}' is not installed !"
@@ -153,6 +153,15 @@ fi
 #exit 1 # 127
 
 
+
+lm_incomplete_message () {
+	>&2 echo ""
+	>&2 echo "All applications suggested by this script should be installed"
+    >&2 echo "before you continue to real script (Python)."
+	>&2 echo ""
+}
+
+
 if [ -z "${GIT_VERSION}" ] ; then
 	#echo "'${APP_GIT}' is not installed !"
 	unset INPUT
@@ -163,6 +172,7 @@ if [ -z "${GIT_VERSION}" ] ; then
 			;;
 		"NO" )
 			echo "Ok then. Bye."
+			lm_incomplete_message
 			exit 1
 			;;
 		"FAILED" | * )
@@ -181,6 +191,7 @@ if [ -z "${PY_VERSION}" ] ; then
 			;;
 		"NO" )
 			echo "Ok then. Bye."
+			lm_incomplete_message
 			exit 1
 			;;
 		"FAILED" | * )
@@ -198,6 +209,7 @@ if [ -z "${PIP_VERSION}" ] ; then
 			;;
 		"NO" )
 			echo "Ok then. Bye."
+			lm_incomplete_message
 			exit 1
 			;;
 		"FAILED" | * )
@@ -215,7 +227,9 @@ fi
 
 
 
-
+echo ""
+echo "Now you continue to real script (Python)."
+echo "   TODO: Add guide."
 echo ""
 echo "End of script '${CURRENT_SCRIPT}'"
 

@@ -114,7 +114,9 @@ fi
 echo ""
 GIT_VERSION=$(lm_get_git_version)  || lm_failure
 echo ${GIT_VERSION}
-
+if [ -z "${GIT_VERSION}" ] ; then
+	echo "'git' is not installed !"
+fi
 
 
 

@@ -145,6 +145,48 @@ fi
 #exit 1 # 127
 
 
+if [ -z "${GIT_VERSION}" ] ; then
+	#echo "'${APP_GIT}' is not installed !"
+	unset INPUT
+	lm_read_to_INPUT "Do you want to install the 'git'?"
+	case "${INPUT}" in
+		"YES" )
+			sudo apt-get install git
+			;;
+		"NO" )
+			echo "Ok then. Bye."
+			exit 1
+			;;
+		"FAILED" | * )
+			lm_failure_message
+			;;
+	esac
+fi
+
+if [ -z "${PY_VERSION}" ] ; then
+	#echo "'${APP_PY}' is not installed !"
+	unset INPUT
+	lm_read_to_INPUT "Do you want to install the 'python3'?"
+	case "${INPUT}" in
+		"YES" )
+			sudo apt-get install python3
+			sudo apt-get install python3-pip
+			;;
+		"NO" )
+			echo "Ok then. Bye."
+			exit 1
+			;;
+		"FAILED" | * )
+			lm_failure_message
+			;;
+	esac
+fi
+
+
+
+#echo "This script is in test mode :)  Aborting." >&2
+#exit 1 # 127
+
 
 
 

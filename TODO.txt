@@ -1,0 +1,7 @@
+
+(2019-08-26)
+
+TODO: Create initialization Batch file to download and install 'git' and 'python'.
+
+Look sample code from project 'kvm-gpu-guide' /guest/winodws/init.bat
+

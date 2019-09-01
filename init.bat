@@ -18,6 +18,9 @@
 ::  - Git
 ::  - Python
 
+set CURRENT_SCRIPT_VER="0.0.1"
+set CURRENT_SCRIPT_DATE="2019-09-01"
+set CURRENT_SCRIPT=init.bat
 
 :: TODO: Create directory for Installer and install path.
 ::   C:\LM_ToyBox\temp
@@ -40,3 +43,5 @@
 ::   https://www.python.org/ftp/python/3.7.4/python-3.7.4-amd64.exe
 
 
+echo.
+echo End of script '%CURRENT_SCRIPT%'

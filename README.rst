@@ -11,7 +11,7 @@ This project contains tools to install and setup all application as you like the
 Quick installation quide.
 This will get needed stuff under folder C:\\LM_ToyBox\\
 
-Download this project master.zip
+Download this project master.zip_
 
 .. _master.zip: https://github.com/lordmikefin/LMAutoSetBotWin/archive/master.zip
 
@@ -27,8 +27,8 @@ Extract and run file "init.bat"
  mkdir C:\LM_ToyBox\temp
  cd C:\LM_ToyBox\temp
  
- PowerShell -Command "& {$client = new-object System.Net.WebClient; $client.DownloadFile('https://github.com/lordmikefin/LMAutoSetBotWin/archive/master.zip','.\master.zip')}"
- PowerShell -Command "Expand-Archive '.\master.zip' '.\LMAutoSetBotWin\'"
+ PowerShell -Command "& {$client = new-object System.Net.WebClient; $client.DownloadFile('https://github.com/lordmikefin/LMAutoSetBotWin/archive/master.zip','.\LMAutoSetBotWin-master.zip')}"
+ PowerShell -Command "Expand-Archive '.\LMAutoSetBotWin-master.zip' '.\'"
  
  cd C:\LM_ToyBox\temp\LMAutoSetBotWin\
  init.bat

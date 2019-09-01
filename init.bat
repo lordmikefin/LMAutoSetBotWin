@@ -7,10 +7,10 @@
 ::   MIT License
 :: 
 :: License is available online:
-::   https://github.com/lordmikefin/kvm-gpu-guide/blob/master/LICENSE.rst
+::   https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/LICENSE
 :: 
 :: Latest version of this script file:
-::   https://github.com/lordmikefin/kvm-gpu-guide/blob/master/init.bat
+::   https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/init.bat
 
 :: init.bat
 :: This script will install software for my other scripts :)

@@ -23,7 +23,9 @@ SET CURRENT_SCRIPT_DATE=2019-09-01
 SET CURRENT_SCRIPT=init.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 
-:: TODO: Create directory for Installer and install path.
+
+
+:: Create directory for Installer and install path.
 ::   C:\LM_ToyBox\temp
 ::   C:\LM_ToyBox\apps
 ::   C:\LM_ToyBox\apps\Git
@@ -104,6 +106,17 @@ echo With this permission no one can execute unsigened scrpit.
 echo Windows will as you to give permission for me to make changes to this device.
 pause
 PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -ArgumentList '-Command Set-ExecutionPolicy Restricted'}"
+
+
+:: TODO: Install Git
+::%PATH_APP_GIT%
+::%FILE_GIT%
+echo " $ call %PATH_APP_GIT%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="%PATH_TOY_BOX%git.log""
+::call %PATH_APP_GIT%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="git.log"
+
+:: TODO: Install Python
+::%PATH_APP_PY37%
+::%FILE_PY37%
 
 
 echo.

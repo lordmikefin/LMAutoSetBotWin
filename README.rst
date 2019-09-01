@@ -27,7 +27,7 @@ Extract and run file "init.bat"
  mkdir C:\LM_ToyBox\temp
  cd C:\LM_ToyBox\temp
  
- PowerShell -Command "& {$client = new-object System.Net.WebClient; $client.DownloadFile("https://github.com/lordmikefin/LMAutoSetBotWin/archive/master.zip",".\master.zip")}"
+ PowerShell -Command "& {$client = new-object System.Net.WebClient; $client.DownloadFile('https://github.com/lordmikefin/LMAutoSetBotWin/archive/master.zip','.\master.zip')}"
  PowerShell -Command "Expand-Archive '.\master.zip' '.\LMAutoSetBotWin\'"
  
  cd C:\LM_ToyBox\temp\LMAutoSetBotWin\

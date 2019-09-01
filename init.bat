@@ -21,13 +21,19 @@
 SET CURRENT_SCRIPT_VER=0.0.1
 SET CURRENT_SCRIPT_DATE=2019-09-01
 SET CURRENT_SCRIPT=init.bat
+echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 
 :: TODO: Create directory for Installer and install path.
 ::   C:\LM_ToyBox\temp
 ::   C:\LM_ToyBox\apps
 ::   C:\LM_ToyBox\apps\Git
 ::   C:\LM_ToyBox\apps\Python\Python37
-
+SET PATH_TOY_BOX=C:\LM_ToyBox\
+SET PATH_INSTALLERS=%PATH_TOY_BOX%temp
+SET PATH_APPS=%PATH_TOY_BOX%apps
+SET PATH_APP_GIT=%PATH_APPS%\Git
+SET PATH_APP_PY37=%PATH_APPS%\Python37
+echo PATH_APP_PY37: %PATH_APP_PY37%
 
 
 :: TODO: Download with PowerShell

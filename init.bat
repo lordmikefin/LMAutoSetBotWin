@@ -56,7 +56,7 @@ SET FILE_PY37=python-3.7.4-amd64.exe
 SET URL_PY37=https://www.python.org/ftp/python/3.7.4/%FILE_PY37%
 ::echo URL_PY37: %URL_PY37%
 
-:: TODO: Download with PowerShell
+:: NOTE: Download with PowerShell
 ::   https://superuser.com/questions/25538/how-to-download-files-from-command-line-in-windows-like-wget-or-curl
 ::$client = new-object System.Net.WebClient
 ::$client.DownloadFile("http://www.xyz.net/file.txt","C:\tmp\file.txt")

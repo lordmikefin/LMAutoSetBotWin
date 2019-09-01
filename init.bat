@@ -61,6 +61,8 @@ SET URL_PY37=https://www.python.org/ftp/python/3.7.4/%FILE_PY37%
 ::$client = new-object System.Net.WebClient
 ::$client.DownloadFile("http://www.xyz.net/file.txt","C:\tmp\file.txt")
 
+
+
 :: NOTE: PS commands can be only runned in PS
 ::   https://www.pdq.com/blog/writing-your-first-powershell-script/
 
@@ -73,11 +75,35 @@ SET URL_PY37=https://www.python.org/ftp/python/3.7.4/%FILE_PY37%
 
 :: NOTE: Run PS as admin
 ::   https://www.top-password.com/blog/tag/open-windows-powershell-from-command-prompt/
+::   https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/start-process?view=powershell-6
 ::Start-Process powershell -Verb runAs
-PowerShell -Command "& {Write-Host "Hello, World!"}"
+::PowerShell -Command "& {Write-Host "Hello, World!"}"
 ::PowerShell -Command "& {Set-ExecutionPolicy RemoteSigned}"
-PowerShell -Command "& {Start-Process PowerShell -Verb runAs}"
-::PowerShell -File init.ps1
+::PowerShell -Command "& {Start-Process PowerShell -Verb RunAs}"
+::PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -ArgumentList "-File","init.ps1"}"
+::PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -ArgumentList '-Command','HELLO'}"
+::PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -ArgumentList '-Command pause'}"
+::PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -ArgumentList '-Command Write-Host Hello; pause'}"
+::PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -ArgumentList '-Command Set-ExecutionPolicy RemoteSigned; pause'}"
+echo.
+echo Next I will change PowerShell ExecutionPolicy into RemoteSigned.
+echo With this permission I can execute my unsigened scrpit.
+echo Windows will as you to give permission for me to make changes to this device.
+pause
+PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -Wait -ArgumentList '-Command Set-ExecutionPolicy RemoteSigned'}"
+
+echo.
+echo Now I will run my script 'init.ps1'.
+pause
+PowerShell -File init.ps1
+
+:: Set ExecutionPolicy back to Restricted
+echo.
+echo Next I will change PowerShell ExecutionPolicy back to Restricted.
+echo With this permission no one can execute unsigened scrpit.
+echo Windows will as you to give permission for me to make changes to this device.
+pause
+PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -ArgumentList '-Command Set-ExecutionPolicy Restricted'}"
 
 
 echo.

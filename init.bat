@@ -18,8 +18,8 @@
 ::  - Git
 ::  - Python
 
-SET CURRENT_SCRIPT_VER=0.0.1
-SET CURRENT_SCRIPT_DATE=2019-09-01
+SET CURRENT_SCRIPT_VER=0.0.2
+SET CURRENT_SCRIPT_DATE=2019-09-02
 SET CURRENT_SCRIPT=init.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 
@@ -108,11 +108,13 @@ pause
 PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -ArgumentList '-Command Set-ExecutionPolicy Restricted'}"
 
 
-:: TODO: Install Git
+:: Install Git
 ::%PATH_APP_GIT%
 ::%FILE_GIT%
-echo " $ call %PATH_APP_GIT%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="%PATH_TOY_BOX%git.log""
-::call %PATH_APP_GIT%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="git.log"
+::%PATH_INSTALLERS%
+echo " $ call %PATH_INSTALLERS%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="%PATH_TOY_BOX%git.log""
+call %PATH_INSTALLERS%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="%PATH_TOY_BOX%git.log"
+
 
 :: TODO: Install Python
 ::%PATH_APP_PY37%

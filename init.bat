@@ -48,19 +48,24 @@ mkdir %PATH_APP_PY37%
 ::   
 SET FILE_GIT=Git-2.23.0-64-bit.exe
 SET URL_GIT=https://github.com/git-for-windows/git/releases/download/v2.23.0.windows.1/%FILE_GIT%
-echo URL_GIT: %URL_GIT%
+::echo URL_GIT: %URL_GIT%
 
 :: Download Python into temp folder
 ::   https://www.python.org/downloads/windows/
 SET FILE_PY37=python-3.7.4-amd64.exe
 SET URL_PY37=https://www.python.org/ftp/python/3.7.4/%FILE_PY37%
-echo URL_PY37: %URL_PY37%
+::echo URL_PY37: %URL_PY37%
 
 :: TODO: Download with PowerShell
 ::   https://superuser.com/questions/25538/how-to-download-files-from-command-line-in-windows-like-wget-or-curl
 ::$client = new-object System.Net.WebClient
 ::$client.DownloadFile("http://www.xyz.net/file.txt","C:\tmp\file.txt")
 
+:: NOTE: PS commands can be only runned in PS
+::   https://www.pdq.com/blog/writing-your-first-powershell-script/
+
+:: NOTE: Running PS script will throw permission error.
+powershell -File init.ps1
 
 
 echo.

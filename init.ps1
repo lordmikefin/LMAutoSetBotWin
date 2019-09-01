@@ -41,6 +41,12 @@ Write-Host "Current_script_ver: ${Current_script_ver} (${Current_script_date})"
 #$client = new-object System.Net.WebClient
 #$client.DownloadFile("http://www.xyz.net/file.txt","C:\tmp\file.txt")
 
+
+
+# TODO: Before downloading check if file already exists.
+#       Do not download again if we have the file!
+
+
 # Download Git into temp folder
 $url = "${Env:URL_GIT}"
 $file = "${Env:PATH_INSTALLERS}\${Env:FILE_GIT}"

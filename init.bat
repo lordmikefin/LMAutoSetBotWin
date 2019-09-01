@@ -65,16 +65,19 @@ SET URL_PY37=https://www.python.org/ftp/python/3.7.4/%FILE_PY37%
 ::   https://www.pdq.com/blog/writing-your-first-powershell-script/
 
 :: NOTE: Running PS script will throw permission error.
+:: Restricted – Scripts won’t run. Period. (Default setting)
 :: In order to change the execution policy, we will need to reopen PowerShell as an Administrator 
 :: (the command will fail otherwise) and run the following command:
 ::Set-ExecutionPolicy RemoteSigned
+::Set-ExecutionPolicy Restricted
 
 :: NOTE: Run PS as admin
 ::   https://www.top-password.com/blog/tag/open-windows-powershell-from-command-prompt/
 ::Start-Process powershell -Verb runAs
-powershell -Command {Start-Process powershell -Verb runAs}
-powershell -Command {Start-Process powershell -Verb runAs -File init.ps1}
-powershell -File init.ps1
+PowerShell -Command "& {Write-Host "Hello, World!"}"
+::PowerShell -Command "& {Set-ExecutionPolicy RemoteSigned}"
+PowerShell -Command "& {Start-Process PowerShell -Verb runAs}"
+::PowerShell -File init.ps1
 
 
 echo.

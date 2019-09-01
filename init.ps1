@@ -1,1 +1,2 @@
-echo TEST
+
+Write-Host "Hello, World!"

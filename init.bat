@@ -112,13 +112,19 @@ PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -Argument
 ::%PATH_APP_GIT%
 ::%FILE_GIT%
 ::%PATH_INSTALLERS%
+echo.
+echo Install Git
 echo " $ call %PATH_INSTALLERS%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="%PATH_TOY_BOX%git.log""
 call %PATH_INSTALLERS%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="%PATH_TOY_BOX%git.log"
 
 
-:: TODO: Install Python
+:: Install Python
 ::%PATH_APP_PY37%
 ::%FILE_PY37%
+:: python-3.7.0-amd64 /quiet InstallAllUsers=1 TargetDir=D:\apps\python\python37\ PrependPath=1
+echo.
+echo Install Python
+echo " $ call %PATH_INSTALLERS%\%FILE_PY37% /quiet InstallAllUsers=1 TargetDir=%PATH_APP_PY37%\ PrependPath=1"
 
 
 echo.

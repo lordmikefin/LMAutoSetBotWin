@@ -109,23 +109,38 @@ PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -Argument
 
 
 :: Install Git
-::%PATH_APP_GIT%
-::%FILE_GIT%
-::%PATH_INSTALLERS%
-echo.
-echo Install Git
-echo " $ call %PATH_INSTALLERS%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="%PATH_TOY_BOX%git.log""
-call %PATH_INSTALLERS%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="%PATH_TOY_BOX%git.log"
+call %PATH_APP_GIT%\bin\git.exe --version
+::if %errorlevel% neq 0 exit /b %errorlevel%
+:: Install only if not found.
+if %errorlevel% neq 0 (
+	:: Got error. Git is not yet installed.
+	echo.
+	echo Install Git
+	:: TODO: This path is hard coded in git.inf file. Can we pass this as parameter?
+	echo " $ call %PATH_INSTALLERS%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="%PATH_TOY_BOX%git.log""
+	call %PATH_INSTALLERS%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="%PATH_TOY_BOX%git.log"
+) else (
+	echo.
+	echo Git is already installed.
+)
 
+
+:: NOTE: Installer will just "repair" old installation if it is installed to other location!
+:: TODO: Should we remove old installation and install again? Or something *sigh*
 
 :: Install Python
-::%PATH_APP_PY37%
-::%FILE_PY37%
-:: python-3.7.0-amd64 /quiet InstallAllUsers=1 TargetDir=D:\apps\python\python37\ PrependPath=1
-echo.
-echo Install Python
-echo " $ call %PATH_INSTALLERS%\%FILE_PY37% /quiet InstallAllUsers=1 TargetDir=%PATH_APP_PY37%\ PrependPath=1"
-
+call %PATH_APP_PY37%\python.exe --version
+if %errorlevel% neq 0 (
+	:: Got error. Git is not yet installed.
+	echo.
+	echo Install Python
+	echo " $ call %PATH_INSTALLERS%\%FILE_PY37% /quiet InstallAllUsers=1 TargetDir=%PATH_APP_PY37%\ PrependPath=1"
+	call %PATH_INSTALLERS%\%FILE_PY37% /quiet InstallAllUsers=1 TargetDir=%PATH_APP_PY37%\ PrependPath=1
+) else (
+	echo.
+	echo Git is already installed.
+)
+	
 
 echo.
 echo End of script '%CURRENT_SCRIPT%'

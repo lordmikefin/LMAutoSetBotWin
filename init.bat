@@ -140,6 +140,12 @@ if %errorlevel% neq 0 (
 	echo.
 	echo Git is already installed.
 )
+
+
+:: TODO: How to update PATH variable within the console.
+::       Python is added into environment variable PATH.
+::       But console where this script is runned will still use the old PATH.
+::       And the 'setup_python_venv.bat' script will complain about missing path :(
 	
 
 echo.

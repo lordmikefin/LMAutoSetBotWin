@@ -15,6 +15,14 @@
 :: This script will setup Python virtual environment for my scripts :)
 
 
+:: TODO: How to update PATH variable within the console.
+::       Python is added into environment variable PATH by 'init.bat' script.
+::       But console where that script is runned will still use the old PATH.
+::       And the this script will complain about missing path :(
+
+
+
+
 SET CURRENT_SCRIPT=setup_python_venv.bat
 SET CURRENT_SCRIPT_VER=0.0.2
 SET CURRENT_SCRIPT_DATE=2019-09-02

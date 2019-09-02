@@ -16,19 +16,31 @@
 
 
 SET CURRENT_SCRIPT=setup_python_venv.bat
-SET CURRENT_SCRIPT_VER=0.0.1
+SET CURRENT_SCRIPT_VER=0.0.2
 SET CURRENT_SCRIPT_DATE=2019-09-02
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 echo.
 
-python --version
+:: TODO: These are copied from 'init.bar' script
+:: Define path.
+SET PATH_TOY_BOX=C:\LM_ToyBox\
+SET PATH_INSTALLERS=%PATH_TOY_BOX%temp
+SET PATH_APPS=%PATH_TOY_BOX%apps
+SET PATH_APP_GIT=%PATH_APPS%\Git
+SET PATH_APP_PY37=%PATH_APPS%\Python37
+
+SET APP_PY37=%PATH_APP_PY37%\python
+SET APP_PIP37=%PATH_APP_PY37%\pip
+::python --version
+CALL %APP_PY37% --version
 echo.
 if %errorlevel% neq 0 exit /b %errorlevel%
 
 
 echo Installing root environment (Python) modules.
 echo.
-call pip install -U -r root_environment_requirements_win.txt
+::call pip install -U -r root_environment_requirements_win.txt
+call %APP_PIP37% install -U -r root_environment_requirements_win.txt
 echo.
 echo.
 if %errorlevel% neq 0 exit /b %errorlevel%
@@ -37,8 +49,9 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 echo List of 'Root' environment modules
 echo  $ pip list --format=columns
 echo.
-call pip list --format=columns
 ::pip list 
+::call pip list --format=columns
+call %APP_PIP37% list --format=columns
 echo.
 echo.
 if %errorlevel% neq 0 exit /b %errorlevel%
@@ -46,7 +59,7 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 
 :: TODO: list all virtual environments
 
-LMAutoSetBotWin
+
 echo.
 echo I will try to use virtual environment 'venv-LMAutoSetBotWin'.
 echo All my python scripts will use this environment.
@@ -89,10 +102,10 @@ echo SUCCESS: %SUCCESS%
 if %SUCCESS% neq 1 ( 
 	echo errorlevel: %errorlevel%
 	echo I will create a new virtual environment 'venv-LMAutoSetBotWin'
-	echo  $ mkvirtualenv --python=C:\Python\Python37\python.exe venv-LMAutoSetBotWin
+	echo  $ mkvirtualenv --python=%APP_PIP37% venv-LMAutoSetBotWin
 	echo.
 	
-	call mkvirtualenv --python=D:\apps\python\python37\python.exe venv-LMAutoSetBotWin
+	call mkvirtualenv --python=%APP_PIP37% venv-LMAutoSetBotWin
 	:: Batch will not catch the error within if statement?!?!?! WTF!
 	::if %errorlevel% neq 0 ( 
 	::	echo errorlevel: %errorlevel%
@@ -107,8 +120,9 @@ echo errorlevel: %errorlevel%
 if %errorlevel% neq 0 ( 
 	echo errorlevel: %errorlevel%
 	echo.
-	echo Python 3.7 should be installed into D:\apps\python\python37\
-	echo https://www.python.org/ftp/python/3.7.0/python-3.7.0-amd64.exe
+	echo Python 3.7 should be installed into %PATH_APP_PY37%
+	echo   https://www.python.org/downloads/windows/
+	echo   https://www.python.org/ftp/python/3.7.4/python-3.7.4-amd64.exe
 	echo.
 	echo Please run init.bat first. It should install Python in my way.
 	echo.

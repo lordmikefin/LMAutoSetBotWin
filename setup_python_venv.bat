@@ -30,7 +30,7 @@ SET PATH_APP_GIT=%PATH_APPS%\Git
 SET PATH_APP_PY37=%PATH_APPS%\Python37
 
 SET APP_PY37=%PATH_APP_PY37%\python
-SET APP_PIP37=%PATH_APP_PY37%\pip
+SET APP_PIP37=%PATH_APP_PY37%\Scripts\pip
 ::python --version
 CALL %APP_PY37% --version
 echo.

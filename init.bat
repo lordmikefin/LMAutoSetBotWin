@@ -150,5 +150,16 @@ if %errorlevel% neq 0 (
 :: NOTE: 'C:\LM_ToyBox\apps\Python37\Scripts\mkvirtualenv ' script will throw error:
 ::         "'python.exe' is not recognized as an internal or external command"
 
+:: Fake add paths into PATH  ;)
+:: NOTE: This is added into PATH by Git
+:: C:\LM_ToyBox\apps\Git\cmd
+PATH=%PATH_APP_GIT%\cmd\;%PATH%
+
+:: NOTE: This is added into PATH by Python
+:: C:\LM_ToyBox\apps\Python37\
+:: C:\LM_ToyBox\apps\Python37\Scripts\
+PATH=%PATH_APP_PY37%\;%PATH_APP_PY37%\Scripts\;%PATH%
+
+
 echo.
 echo End of script '%CURRENT_SCRIPT%'

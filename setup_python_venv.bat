@@ -19,7 +19,8 @@
 ::       Python is added into environment variable PATH by 'init.bat' script.
 ::       But console where that script is runned will still use the old PATH.
 ::       And the this script will complain about missing path :(
-
+:: 
+:: NOTE: For now 'init.bat' will add paths into local PATH variable!
 
 
 
@@ -37,7 +38,7 @@ SET PATH_APPS=%PATH_TOY_BOX%apps
 SET PATH_APP_GIT=%PATH_APPS%\Git
 SET PATH_APP_PY37=%PATH_APPS%\Python37
 
-SET APP_PY37=%PATH_APP_PY37%\python
+SET APP_PY37=%PATH_APP_PY37%\python.exe
 SET APP_PIP37=%PATH_APP_PY37%\Scripts\pip
 SET APP_MKVENV=%PATH_APP_PY37%\Scripts\mkvirtualenv
 ::python --version
@@ -49,7 +50,6 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 echo.
 echo Make sure we are using the lates pip version.
 echo  $ CALL %APP_PY37% -m pip install --upgrade pip
-::python -m pip install --upgrade pip
 CALL %APP_PY37% -m pip install --upgrade pip
 
 
@@ -119,10 +119,10 @@ echo SUCCESS: %SUCCESS%
 if %SUCCESS% neq 1 ( 
 	echo errorlevel: %errorlevel%
 	echo I will create a new virtual environment 'venv-LMAutoSetBotWin'
-	echo  $ call %APP_MKVENV% --python=%APP_PIP37% venv-LMAutoSetBotWin
+	echo  $ call %APP_MKVENV% --python=%APP_PY37% venv-LMAutoSetBotWin
 	echo.
 	
-	call %APP_MKVENV% --python=%APP_PIP37% venv-LMAutoSetBotWin
+	call %APP_MKVENV% --python=%APP_PY37% venv-LMAutoSetBotWin
 	:: Batch will not catch the error within if statement?!?!?! WTF!
 	::if %errorlevel% neq 0 ( 
 	::	echo errorlevel: %errorlevel%
@@ -154,6 +154,13 @@ echo.
 echo Current virtual environment:
 echo %VIRTUAL_ENV%
 echo. 
+
+
+:: Make sure we are using the lates pip version.
+echo.
+echo Make sure we are using the lates pip version.
+echo  $ CALL %APP_PY37% -m pip install --upgrade pip
+CALL %APP_PY37% -m pip install --upgrade pip
 
 
 echo. 

@@ -39,16 +39,25 @@ SET PATH_APP_PY37=%PATH_APPS%\Python37
 
 SET APP_PY37=%PATH_APP_PY37%\python
 SET APP_PIP37=%PATH_APP_PY37%\Scripts\pip
+SET APP_MKVENV=%PATH_APP_PY37%\Scripts\mkvirtualenv
 ::python --version
 CALL %APP_PY37% --version
 echo.
 if %errorlevel% neq 0 exit /b %errorlevel%
 
+:: Make sure we are using the lates pip version.
+echo.
+echo Make sure we are using the lates pip version.
+echo  $ CALL %APP_PY37% -m pip install --upgrade pip
+::python -m pip install --upgrade pip
+CALL %APP_PY37% -m pip install --upgrade pip
 
+
+echo.
 echo Installing root environment (Python) modules.
 echo.
-::call pip install -U -r root_environment_requirements_win.txt
-call %APP_PIP37% install -U -r root_environment_requirements_win.txt
+::CALL pip install -U -r root_environment_requirements_win.txt
+CALL %APP_PIP37% install -U -r root_environment_requirements_win.txt
 echo.
 echo.
 if %errorlevel% neq 0 exit /b %errorlevel%
@@ -110,10 +119,10 @@ echo SUCCESS: %SUCCESS%
 if %SUCCESS% neq 1 ( 
 	echo errorlevel: %errorlevel%
 	echo I will create a new virtual environment 'venv-LMAutoSetBotWin'
-	echo  $ mkvirtualenv --python=%APP_PIP37% venv-LMAutoSetBotWin
+	echo  $ call %APP_MKVENV% --python=%APP_PIP37% venv-LMAutoSetBotWin
 	echo.
 	
-	call mkvirtualenv --python=%APP_PIP37% venv-LMAutoSetBotWin
+	call %APP_MKVENV% --python=%APP_PIP37% venv-LMAutoSetBotWin
 	:: Batch will not catch the error within if statement?!?!?! WTF!
 	::if %errorlevel% neq 0 ( 
 	::	echo errorlevel: %errorlevel%

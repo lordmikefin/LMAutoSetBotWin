@@ -146,7 +146,9 @@ if %errorlevel% neq 0 (
 ::       Python is added into environment variable PATH.
 ::       But console where this script is runned will still use the old PATH.
 ::       And the 'setup_python_venv.bat' script will complain about missing path :(
-	
+::
+:: NOTE: 'C:\LM_ToyBox\apps\Python37\Scripts\mkvirtualenv ' script will throw error:
+::         "'python.exe' is not recognized as an internal or external command"
 
 echo.
 echo End of script '%CURRENT_SCRIPT%'

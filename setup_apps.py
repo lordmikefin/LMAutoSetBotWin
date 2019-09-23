@@ -66,10 +66,33 @@ if __name__ == '__main__':
 #print('PATH : ' + str(os.environ.get('PATH')))
 print('VIRTUAL_ENV : ' + str(os.environ.get('VIRTUAL_ENV')))
 print('')
-
-
 print('Python version: ' + str(sys.version))
 print('')
 print('sys.prefix : ' + str(sys.prefix))
 print('')
+
+
+
+
+# http://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html
+#os.system('lsvirtualenv')
+
+#https://docs.python.org/3/tutorial/venv.html
+#py_home = '/var/www/venv-lm-scripts/env'
+#activate_this = py_home + '/bin/activate_this.py'
+py_home = 'C:/Users/lordmike/Envs/venv-LMAutoSetBotWin'
+activate_this = py_home + '/Scripts/activate_this.py'
+
+with open(activate_this) as file_:
+    exec(file_.read(), dict(__file__=activate_this))
+
+print('VIRTUAL_ENV : ' + str(os.environ.get('VIRTUAL_ENV')))
+print('')
+print('Python version: ' + str(sys.version))
+print('')
+print('sys.prefix : ' + str(sys.prefix))
+print('')
+
+
+
 

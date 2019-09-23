@@ -58,6 +58,11 @@ if __name__ == '__main__':
     #print(args.myFilenameVariable)
 
 
+
+# TODO: Create functions from these test codes :)
+
+
+
 #print('PATH : ' + str(os.environ.get('PATH')))
 print('VIRTUAL_ENV : ' + str(os.environ.get('VIRTUAL_ENV')))
 print('')

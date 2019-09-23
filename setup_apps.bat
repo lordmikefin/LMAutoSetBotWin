@@ -23,9 +23,66 @@ SET CURRENT_SCRIPT_DATE=2019-09-23
 SET CURRENT_SCRIPT=setup_apps.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 
-:: TODO: Activate python virtual environment 'venv-LMAutoSetBotWin'.
+:: Is python installed?
+python --version
+echo.
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+:: Activate python virtual environment 'venv-LMAutoSetBotWin'.
+echo.
+echo I will try to use virtual environment 'venv-LMAutoSetBotWin'.
+echo All my python scripts will use this environment.
+echo.
+::call %USERPROFILE%\Envs\venv-LMAutoSetBotWin\Scripts\activate.bat
+call workon venv-LMAutoSetBotWin
+SET SUCCESS=0
+if %errorlevel% neq 0 ( 
+	SET SUCCESS=0
+	
+	echo.
+	echo Virtual environment 'venv-LMAutoSetBotWin' not found.
+	echo.
+	echo Run 'setup_python_venv.bat' first.
+	echo It will initialize every thing for you.
+	echo.
+	pause
+	call exit /b %errorlevel%
+	
+) else ( 
+	SET SUCCESS=1
+	echo.
+	echo Now workon 'venv-LMAutoSetBotWin'
+	echo.
+)
+
+
+:: http://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html
+echo. 
+echo Current virtual environment:
+echo %VIRTUAL_ENV%
+echo. 
+
+
+
 
 :: TODO: Run the python script :)
+
+
+
+:: Deactivate python venv
+echo.
+echo Exit from virtual environment 'venv-LMAutoSetBotWin'.
+echo  $ deactivate
+echo.
+::deactivate
+::call %USERPROFILE%\Envs\venv-LMAutoSetBotWin\Scripts\deactivate.bat
+call deactivate
+if %errorlevel% neq 0 (
+	pause
+	exit /b %errorlevel%
+)
+echo.
+
 
 echo.
 echo End of script '%CURRENT_SCRIPT%'

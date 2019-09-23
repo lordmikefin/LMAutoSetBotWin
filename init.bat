@@ -164,5 +164,8 @@ PATH=%PATH_APP_PY37%\;%PATH_APP_PY37%\Scripts\;%PATH%
 :: Create Python virtual environment 'venv-LMAutoSetBotWin'
 CALL setup_python_venv.bat
 
+:: Launch python script. Will install applications.
+CALL setup_apps.bat
+
 echo.
 echo End of script '%CURRENT_SCRIPT%'

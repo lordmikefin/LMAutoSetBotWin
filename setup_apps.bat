@@ -65,7 +65,16 @@ echo.
 
 
 
-:: TODO: Run the python script :)
+:: Run the python script
+echo.
+echo Run script setup_apps.py
+echo.
+call python setup_apps.py
+echo.
+if %errorlevel% neq 0 (
+	pause
+	exit /b %errorlevel%
+)
 
 
 

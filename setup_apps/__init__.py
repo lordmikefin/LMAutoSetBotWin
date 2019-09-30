@@ -36,7 +36,7 @@ SET PATH_APP_PY37=%PATH_APPS%\Python37
 
 # TODO: Remove this venv testing.
 # Testing venv
-import babel
+#import babel
 
 
 # https://docs.python.org/3.7/howto/logging.html

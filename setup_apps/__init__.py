@@ -75,6 +75,7 @@ def connect_samba_share():
 	""" Connect samba share. """
 	# TODO: Test if drive exists.
 	
+	# TODO: Get samba share address from config.
 	#command = 'net use W: \\192.168.122.1\sambashare\windows'
 	command = 'net use ' + DRIVE_INSTALLER + ' \\192.168.122.1\sambashare\windows'
 	res = int(os.system(command))

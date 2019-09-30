@@ -1,22 +1,22 @@
 # -*- coding: UTF-8 -*-
 """
-    setup_apps
-    ~~~~~~~~~~
+	setup_apps
+	~~~~~~~~~~
 
-    Module for installing windows applictions.
+	Module for installing windows applictions.
 
-    License of this script file:
-       MIT License
+	License of this script file:
+	   MIT License
 
-    License is available online:
-      https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/LICENSE
+	License is available online:
+	  https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/LICENSE
 
-    Latest version of this script file:
-      https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/setup_apps/__init__.py
+	Latest version of this script file:
+	  https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/setup_apps/__init__.py
 
 
-    :copyright: (c) 2019, Mikko Niemelä a.k.a. Lord Mike (lordmike@iki.fi)
-    :license: MIT License
+	:copyright: (c) 2019, Mikko Niemelä a.k.a. Lord Mike (lordmike@iki.fi)
+	:license: MIT License
 """
 
 '''
@@ -42,6 +42,9 @@ SET PATH_APP_PY37=%PATH_APPS%\Python37
 # https://docs.python.org/3.7/howto/logging.html
 import logging
 
+import sys
+import os
+
 # Listing initialiazion (init.bat) phase paths.
 # TODO: Are these needed?
 INIT_PATH_TOY_BOX = 'C:\\LM_ToyBox\\'
@@ -57,13 +60,35 @@ INIT_PATH_APP_PY37 = INIT_PATH_APPS + '\\Python37'
 PATH_ROOT = 'D:\\'
 PATH_TOY_BOX = PATH_ROOT + 'LM_ToyBox\\'
 #PATH_INSTALLERS = PATH_TOY_BOX + 'temp'
-PATH_INSTALLERS = PATH_TOY_BOX + 'download'
+#PATH_INSTALLERS = PATH_TOY_BOX + 'download'
+DRIVE_INSTALLER = 'W:'
+PATH_INSTALLERS = DRIVE_INSTALLER + '\\'
 #PATH_APPS = PATH_TOY_BOX + 'apps'
 PATH_APPS = PATH_ROOT + 'apps'
 
 PATH_APP_GIT = PATH_APPS + '\\Git'
 PATH_APP_PY37 = PATH_APPS + '\\Python37'
 PATH_APP_NPP = PATH_APPS + '\\Notepad++'
+
+
+def connect_samba_share():
+	""" Connect samba share. """
+	# TODO: Test if drive exists.
+	
+	#command = 'net use W: \\192.168.122.1\sambashare\windows'
+	command = 'net use ' + DRIVE_INSTALLER + ' \\192.168.122.1\sambashare\windows'
+	res = int(os.system(command))
+	print('')
+	if res > 0:
+		print('Samba connection  FAILED.')
+		#sys.exit(1)
+		return False
+	else:
+		print('Samba share connected.')
+		return True
+
+
+connect_samba_share()
 
 
 # TODO: Import at top of this script.

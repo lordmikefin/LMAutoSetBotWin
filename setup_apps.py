@@ -27,7 +27,7 @@
 #__docformat__ = 'reStructuredText'
 
 __license__ = "MIT License"
-__version__ = "0.0.3"
+__version__ = "0.0.4"
 __revision__ = "setup_apps.py  v" + __version__ + " (2019-09-30)"
 
 import sys
@@ -37,9 +37,9 @@ import os
 def print_python_enviroment_info():
 	""" Print OS and system information into the console. """
 	#print('PATH : ' + str(os.environ.get('PATH')))
-	print('VIRTUAL_ENV	: ' + str(os.environ.get('VIRTUAL_ENV')))
+	print('VIRTUAL_ENV    : ' + str(os.environ.get('VIRTUAL_ENV')))
 	print('Python version : ' + str(sys.version))
-	print('sys.prefix	 : ' + str(sys.prefix))
+	print('sys.prefix     : ' + str(sys.prefix))
 	print('')
 
 
@@ -55,6 +55,7 @@ if __name__ == '__main__':
 	print(__license__)
 	print(__revision__)
 	print(__version__)
+	print('')
 
 	from argparse import ArgumentParser
 	parser = ArgumentParser(description=__doc__)
@@ -89,12 +90,7 @@ activate_this = py_home + '/Scripts/activate_this.py'
 with open(activate_this) as file_:
 	exec(file_.read(), dict(__file__=activate_this))
 
-print('VIRTUAL_ENV : ' + str(os.environ.get('VIRTUAL_ENV')))
-print('')
-print('Python version: ' + str(sys.version))
-print('')
-print('sys.prefix : ' + str(sys.prefix))
-print('')
+print_python_enviroment_info()
 
 
 

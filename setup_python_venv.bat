@@ -30,7 +30,7 @@ SET CURRENT_SCRIPT_DATE=2019-09-30
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 echo.
 
-:: TODO: These are copied from 'init.bar' script
+:: TODO: These are copied from 'init.bat' script
 :: Define path.
 SET PATH_TOY_BOX=C:\LM_ToyBox\
 SET PATH_VENV=%PATH_TOY_BOX%venv

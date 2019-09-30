@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
-    setup_apps
-    ~~~~~~~~~~
+    npp.py
+    ~~~~~~
 
     Install Notepad++
 
@@ -19,6 +19,13 @@
     :license: MIT License
 """
 
+from . import PATH_APP_NPP
+
 # TODO: Download Notepad++ installer
 
 # TODO: Install Notepad++
+
+print('Test comment from "npp.py"')
+
+print('Value of variable "PATH_APP_NPP": ' + str(PATH_APP_NPP))
+

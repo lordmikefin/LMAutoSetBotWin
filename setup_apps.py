@@ -27,8 +27,8 @@
 #__docformat__ = 'reStructuredText'
 
 __license__ = "MIT License"
-__version__ = "0.0.1"
-__revision__ = "setup_apps.py  v" + __version__ + " (2019-09-23)"
+__version__ = "0.0.2"
+__revision__ = "setup_apps.py  v" + __version__ + " (2019-09-30)"
 
 import sys
 import os
@@ -94,5 +94,7 @@ print('sys.prefix : ' + str(sys.prefix))
 print('')
 
 
+
+import setup_apps
 
 

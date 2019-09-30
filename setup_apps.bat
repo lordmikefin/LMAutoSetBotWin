@@ -72,6 +72,15 @@ echo.
 call python setup_apps.py
 echo.
 if %errorlevel% neq 0 (
+	:: Deactivate python venv
+	echo.
+	echo Exit from virtual environment 'venv-LMAutoSetBotWin'.
+	echo  $ deactivate
+	echo.
+	::deactivate
+	::call %USERPROFILE%\Envs\venv-LMAutoSetBotWin\Scripts\deactivate.bat
+	call deactivate
+	
 	pause
 	exit /b %errorlevel%
 )

@@ -127,6 +127,8 @@ if %SUCCESS% neq 1 (
 	:: TODO: Set venv into LM_toy_box folder. Now it is set under user folder.
 	::%PATH_VENV%
 	
+	:: By default 'mkvirtualenv' will create venv under %USERPROFILE%
+	::   'C:/Users/lordmike/Envs/venv-LMAutoSetBotWin'
 	call %APP_MKVENV% --python=%APP_PY37% venv-LMAutoSetBotWin
 	:: Batch will not catch the error within if statement?!?!?! WTF!
 	::if %errorlevel% neq 0 ( 

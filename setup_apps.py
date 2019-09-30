@@ -51,7 +51,8 @@ def activate_virtual_environment():
 	#https://docs.python.org/3/tutorial/venv.html
 	#py_home = '/var/www/venv-lm-scripts/env'
 	#activate_this = py_home + '/bin/activate_this.py'
-	py_home = 'C:/Users/lordmike/Envs/venv-LMAutoSetBotWin'
+	#py_home = 'C:/Users/lordmike/Envs/venv-LMAutoSetBotWin'
+	py_home = os.environ.get('USERPROFILE') + '/Envs/venv-LMAutoSetBotWin'
 	activate_this = py_home + '/Scripts/activate_this.py'
 
 	with open(activate_this) as file_:

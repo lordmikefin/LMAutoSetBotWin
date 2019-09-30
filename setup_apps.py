@@ -1,22 +1,22 @@
 # -*- coding: UTF-8 -*-
 """
-    setup_apps.py
-    ~~~~~~~~~~~~~
+	setup_apps.py
+	~~~~~~~~~~~~~
 
-    This script will install all apps.
+	This script will install all apps.
 
-    License of this script file:
-       MIT License
+	License of this script file:
+	   MIT License
 
-    License is available online:
-      https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/LICENSE
+	License is available online:
+	  https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/LICENSE
 
-    Latest version of this script file:
-      https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/setup_apps.py
+	Latest version of this script file:
+	  https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/setup_apps.py
 
 
-    :copyright: (c) 2019, Mikko Niemelä a.k.a. Lord Mike (lordmike@iki.fi)
-    :license: MIT License
+	:copyright: (c) 2019, Mikko Niemelä a.k.a. Lord Mike (lordmike@iki.fi)
+	:license: MIT License
 
 """
 
@@ -27,49 +27,52 @@
 #__docformat__ = 'reStructuredText'
 
 __license__ = "MIT License"
-__version__ = "0.0.2"
+__version__ = "0.0.3"
 __revision__ = "setup_apps.py  v" + __version__ + " (2019-09-30)"
 
 import sys
 import os
 
+
+def print_python_enviroment_info():
+	""" Print OS and system information into the console. """
+	#print('PATH : ' + str(os.environ.get('PATH')))
+	print('VIRTUAL_ENV	: ' + str(os.environ.get('VIRTUAL_ENV')))
+	print('Python version : ' + str(sys.version))
+	print('sys.prefix	 : ' + str(sys.prefix))
+	print('')
+
+
 # https://stackoverflow.com/questions/7791574/how-can-i-print-a-python-files-docstring-when-executing-it
 
 if __name__ == '__main__':
-    #print('main')
-    #print(__doc__)
-    #print(__docformat__)
-    #import doctest
-    #print(str(doctest.testmod()))
+	#print('main')
+	#print(__doc__)
+	#print(__docformat__)
+	#import doctest
+	#print(str(doctest.testmod()))
 
-    print(__license__)
-    print(__revision__)
-    print(__version__)
+	print(__license__)
+	print(__revision__)
+	print(__version__)
 
-    from argparse import ArgumentParser
-    parser = ArgumentParser(description=__doc__)
-    # TODO: Add your arguments here
-    '''
-    parser.add_argument("-f", "--file", dest="myFilenameVariable",
-                        required=True,
-                        help="write report to FILE", metavar="FILE")
-    '''
-    args = parser.parse_args()
-    #print(args.myFilenameVariable)
+	from argparse import ArgumentParser
+	parser = ArgumentParser(description=__doc__)
+	# TODO: Add your arguments here
+	'''
+	parser.add_argument("-f", "--file", dest="myFilenameVariable",
+						required=True,
+						help="write report to FILE", metavar="FILE")
+	'''
+	args = parser.parse_args()
+	#print(args.myFilenameVariable)
 
+	print_python_enviroment_info()
 
 
 # TODO: Create functions from these test codes :)
 
 
-
-#print('PATH : ' + str(os.environ.get('PATH')))
-print('VIRTUAL_ENV : ' + str(os.environ.get('VIRTUAL_ENV')))
-print('')
-print('Python version: ' + str(sys.version))
-print('')
-print('sys.prefix : ' + str(sys.prefix))
-print('')
 
 
 
@@ -84,7 +87,7 @@ py_home = 'C:/Users/lordmike/Envs/venv-LMAutoSetBotWin'
 activate_this = py_home + '/Scripts/activate_this.py'
 
 with open(activate_this) as file_:
-    exec(file_.read(), dict(__file__=activate_this))
+	exec(file_.read(), dict(__file__=activate_this))
 
 print('VIRTUAL_ENV : ' + str(os.environ.get('VIRTUAL_ENV')))
 print('')

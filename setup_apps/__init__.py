@@ -34,6 +34,8 @@ SET PATH_APP_GIT=%PATH_APPS%\Git
 SET PATH_APP_PY37=%PATH_APPS%\Python37
 '''
 
+# https://docs.python.org/3.7/howto/logging.html
+import logging
 
 # Listing initialiazion (init.bat) phase paths.
 # TODO: Are these needed?
@@ -59,5 +61,7 @@ PATH_APP_PY37 = PATH_APPS + '\\Python37'
 PATH_APP_NPP = PATH_APPS + '\\Notepad++'
 
 
+# TODO: Import at top of this script.
+# TODO: Activat 'npp' with function call !
 from . import npp
 

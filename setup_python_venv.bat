@@ -25,14 +25,15 @@
 
 
 SET CURRENT_SCRIPT=setup_python_venv.bat
-SET CURRENT_SCRIPT_VER=0.0.3
-SET CURRENT_SCRIPT_DATE=2019-09-02
+SET CURRENT_SCRIPT_VER=0.0.4
+SET CURRENT_SCRIPT_DATE=2019-09-30
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 echo.
 
 :: TODO: These are copied from 'init.bar' script
 :: Define path.
 SET PATH_TOY_BOX=C:\LM_ToyBox\
+SET PATH_VENV=%PATH_TOY_BOX%venv
 SET PATH_INSTALLERS=%PATH_TOY_BOX%temp
 SET PATH_APPS=%PATH_TOY_BOX%apps
 SET PATH_APP_GIT=%PATH_APPS%\Git
@@ -82,6 +83,7 @@ echo I will try to use virtual environment 'venv-LMAutoSetBotWin'.
 echo All my python scripts will use this environment.
 echo.
 ::call %USERPROFILE%\Envs\venv-LMAutoSetBotWin\Scripts\activate.bat
+::%PATH_VENV%
 call workon venv-LMAutoSetBotWin
 SET SUCCESS=0
 if %errorlevel% neq 0 ( 
@@ -123,6 +125,7 @@ if %SUCCESS% neq 1 (
 	echo.
 	
 	:: TODO: Set venv into LM_toy_box folder. Now it is set under user folder.
+	::%PATH_VENV%
 	
 	call %APP_MKVENV% --python=%APP_PY37% venv-LMAutoSetBotWin
 	:: Batch will not catch the error within if statement?!?!?! WTF!

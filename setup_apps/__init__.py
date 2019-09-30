@@ -34,6 +34,11 @@ SET PATH_APP_GIT=%PATH_APPS%\Git
 SET PATH_APP_PY37=%PATH_APPS%\Python37
 '''
 
+# TODO: Remove this venv testing.
+# Testing venv
+import Babel
+
+
 # https://docs.python.org/3.7/howto/logging.html
 import logging
 

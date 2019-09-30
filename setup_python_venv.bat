@@ -178,7 +178,18 @@ echo.
 call pip3 install -U -r requirements.txt
 echo.
 echo.
-if %errorlevel% neq 0 exit /b %errorlevel%
+if %errorlevel% neq 0 (
+	echo.
+	echo Exit from virtual environment 'venv-LMAutoSetBotWin'.
+	echo  $ deactivate
+	echo.
+	::deactivate
+	::call %USERPROFILE%\Envs\venv-LMAutoSetBotWin\Scripts\deactivate.bat
+	call deactivate
+	
+	pause
+	exit /b %errorlevel%
+)
 
 echo.
 echo List all outdated modules.

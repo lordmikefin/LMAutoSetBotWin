@@ -38,9 +38,7 @@ def is_installed_npp():
 	return True
 
 
-def install_npp():
-	# Install notepad++
-
+def download_npp():
 	# TODO: Check if we already have the installer
 	# \\192.168.122.1\sambashare\windows\npp.7.5.8.Installer.x64
 	# By now \\192.168.122.1\sambashare\windows\ should be bind to W: drive
@@ -49,6 +47,9 @@ def install_npp():
 	# TODO: download file from web
 	#   Verify downloaded file is what we were downloading.
 
+
+def install_npp():
+	# Install notepad++
 	installer_file = "npp.7.5.8.Installer.x64"
 	#installer_path = "W:/"
 	installer_path = PATH_INSTALLERS

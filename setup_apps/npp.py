@@ -26,7 +26,8 @@ import os
 
 def is_installed_npp():
 	# TODO: This will open help windows. Is there better way to test ?
-	command = str(PATH_APP_NPP) + '\\notepad++ --help'
+	#command = str(PATH_APP_NPP) + '\\notepad++ --help'
+	command = str(PATH_APP_NPP) + '\\notepad++ -quickPrint'
 	print(str(command))
 	res = int(os.system(command))
 	if res > 0:
@@ -95,10 +96,10 @@ print('Value of variable "PATH_APP_NPP": ' + str(PATH_APP_NPP))
 print('Value of variable "PATH_INSTALLERS": ' + str(PATH_INSTALLERS))
 
 
-#if not is_installed_npp():
-#	install_npp()
+if not is_installed_npp():
+	install_npp()
 
 # TODO: Disable 'security warning' and UAC
-install_npp()
+#install_npp()
 
 

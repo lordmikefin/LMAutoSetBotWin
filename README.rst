@@ -15,7 +15,10 @@ Download this project master.zip_
 
 .. _master.zip: https://github.com/lordmikefin/LMAutoSetBotWin/archive/master.zip
 
-Extract and run file "init.bat"
+Extract and run file "init.bat".
+
+Here is command line instructions to run the Bot :)
+NOTE: UAC will be disabled. You should enable UAC at end.
 
 .. code-block:: batch
 
@@ -31,4 +34,10 @@ Extract and run file "init.bat"
  PowerShell -Command "Expand-Archive '.\LMAutoSetBotWin-master.zip' '.\'"
  
  cd C:\LM_ToyBox\temp\LMAutoSetBotWin-master\
+ UAC-Disable.bat
+ :: Reboot !
+ 
  init.bat
+ 
+ UAC-Enable.bat
+ :: Reboot !

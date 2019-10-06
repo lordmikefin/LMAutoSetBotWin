@@ -41,11 +41,20 @@ pause
 
 :: Disable the UAC
 :: C:\Windows\System32\cmd.exe /k %windir%\System32\reg.exe ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
-%REC_APP% ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
 ::%CMD_APP% /k %REC_APP% ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
+%REC_APP% ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f 
+::echo errorlevel %errorlevel%
+if %errorlevel% neq 0 (
+	:: Got error. Maybe Access is denied.
+	echo Run this script as administrator
+	:: TODO: how to do this from command line?
+	echo   https://www.howtogeek.com/194041/how-to-open-the-command-prompt-as-administrator-in-windows-8.1/
+)
+
 
 echo.
 echo After you enable or disable UAC, you will have to reboot your computer for the changes to take effect.
 
 echo.
 echo End of script '%CURRENT_SCRIPT%'
+pause

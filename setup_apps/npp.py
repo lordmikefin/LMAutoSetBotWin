@@ -76,6 +76,7 @@ def install_npp():
 	res = int(os.system(command))
 	print('')
 	if res > 0:
+		# TODO: Installer may not throw error ?
 		print('notepad++ installation FAILED.')
 		#sys.exit(1)
 		return False

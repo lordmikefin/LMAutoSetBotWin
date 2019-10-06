@@ -35,14 +35,19 @@ echo   https://www.howtogeek.com/howto/windows-vista/disable-user-account-contro
 
 :: Ask permission
 echo.
-echo Do you want to disable the UAC.
+echo Do you want to disable the UAC. Will open PowerShell to do this.
 echo   Interupt with Ctrl + c
 pause
 
 :: Disable the UAC
 :: C:\Windows\System32\cmd.exe /k %windir%\System32\reg.exe ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
 ::%CMD_APP% /k %REC_APP% ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f
-%REC_APP% ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f 
+SET COM=%REC_APP% ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 0 /f 
+:: %COM%
+:: Open PowerShell as Administrator
+::PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -Wait -ArgumentList '-Command %COM%'}"
+PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -Wait -ArgumentList '-Command %COM% ; pause'}"
+
 ::echo errorlevel %errorlevel%
 if %errorlevel% neq 0 (
 	:: Got error. Maybe Access is denied.

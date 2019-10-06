@@ -1,4 +1,9 @@
 
+(2019-10-06)
+
+TODO: Disable all power settings. Some of them will crash the KVM ?!
+
+
 (2019-08-26)
 
 TODO: Create initialization Batch file to download and install 'git' and 'python'.

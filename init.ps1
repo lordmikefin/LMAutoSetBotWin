@@ -55,9 +55,9 @@ $file_size = (Get-Item $file).length
 Write-Host "Download Git into temp folder"
 Write-Host "url: ${url}"
 Write-Host "file: ${file}"
-#Write-Host "file size: ${file_size}"
+Write-Host "file size: ${file_size}"
 #file size: 47701816
-if (47701816) {
+if ( ${file_size} -eq 47701816) {
 	Write-Host "File already exist."
 } else {
 	$client.DownloadFile("${url}","${file}")
@@ -73,7 +73,7 @@ $file_size = ${file_item}.length
 Write-Host "Download Git into temp folder"
 Write-Host "url: ${url}"
 Write-Host "file: ${file}"
-#Write-Host "file size: ${file_size}"
+Write-Host "file size: ${file_size}"
 #file size: 26680368
 if ( ${file_size} -eq 26680368 ) {
 	Write-Host "File already exist."

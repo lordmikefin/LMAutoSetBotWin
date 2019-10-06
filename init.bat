@@ -135,6 +135,7 @@ if %errorlevel% neq 0 (
 	echo.
 	echo Install Python
 	echo " $ call %PATH_INSTALLERS%\%FILE_PY37% /quiet InstallAllUsers=1 TargetDir=%PATH_APP_PY37%\ PrependPath=1"
+	:: TODO: 'quiet' mode does not install Python if installer ask to select 'install', 'repair', etc.
 	call %PATH_INSTALLERS%\%FILE_PY37% /quiet InstallAllUsers=1 TargetDir=%PATH_APP_PY37%\ PrependPath=1
 ) else (
 	echo.

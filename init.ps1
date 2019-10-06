@@ -17,8 +17,8 @@
 #  - Git
 #  - Python
 
-$Current_script_ver="0.0.1"
-$Current_script_date="2019-09-01"
+$Current_script_ver="0.0.2"
+$Current_script_date="2019-10-06"
 $Current_script="init.ps1"
 #echo Current_script_ver: ${Current_script_ver} (${Current_script_date})
 Write-Host "Current_script_ver: ${Current_script_ver} (${Current_script_date})"

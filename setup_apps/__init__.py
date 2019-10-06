@@ -19,6 +19,11 @@
 	:license: MIT License
 """
 
+__license__ = "MIT License"
+__version__ = "0.0.2"
+__revision__ = "setup_apps (module)  v" + __version__ + " (2019-10-06)"
+
+
 '''
 These lines are copied from init.bat (2019-09-30)
 

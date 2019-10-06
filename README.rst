@@ -18,6 +18,7 @@ Download this project master.zip_
 Extract and run file "init.bat".
 
 Here is command line instructions to run the Bot :)
+
 NOTE: UAC will be disabled. You should enable UAC at end.
 
 .. code-block:: batch
@@ -37,7 +38,9 @@ NOTE: UAC will be disabled. You should enable UAC at end.
  UAC-Disable.bat
  :: Reboot !
  
+ cd C:\LM_ToyBox\temp\LMAutoSetBotWin-master\
  init.bat
  
+ cd C:\LM_ToyBox\temp\LMAutoSetBotWin-master\
  UAC-Enable.bat
  :: Reboot !

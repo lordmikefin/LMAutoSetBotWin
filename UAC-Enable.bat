@@ -43,6 +43,8 @@ pause
 :: C:\Windows\System32\cmd.exe /k %windir%\System32\reg.exe ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 1 /f
 %REC_APP% ADD HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System /v EnableLUA /t REG_DWORD /d 1 /f
 if %errorlevel% neq 0 (
+	:: NOTE: When UAC is disabled, then there is no need to have admin access!
+	
 	:: Got error. Maybe Access is denied.
 	echo Run this script as administrator
 	:: TODO: how to do this from command line?

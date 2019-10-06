@@ -21,8 +21,12 @@
 
 from . import PATH_APP_NPP, PATH_INSTALLERS
 
+import urllib.request
 import os
 
+
+_installer_file_fullname = ''
+_file_name = ''
 
 def is_installed_npp():
 	# TODO: This will open help windows. Is there better way to test ?
@@ -38,38 +42,62 @@ def is_installed_npp():
 	return True
 
 
-def download_npp():
+def is_download_npp():
 	# TODO: Check if we already have the installer
 	# \\192.168.122.1\sambashare\windows\npp.7.5.8.Installer.x64
 	# By now \\192.168.122.1\sambashare\windows\ should be bind to W: drive
+	print(str(_installer_file_fullname))
 
+	# https://stackabuse.com/python-check-if-a-file-or-directory-exists/
+	return os.path.isfile(_installer_file_fullname)
+
+
+def download_npp():
 	# https://stackoverflow.com/questions/7243750/download-file-from-web-in-python-3
 	# TODO: download file from web
 	#   Verify downloaded file is what we were downloading.
 
+	# https://notepad-plus-plus.org/downloads/
+	# https://notepad-plus-plus.org/downloads/v7.7.1/
+	# http://download.notepad-plus-plus.org/repository/7.x/7.7.1/npp.7.7.1.Installer.exe
+	print('Download notepad++ installer.')
+	
+	if _file_name:
+		url = 'http://download.notepad-plus-plus.org/repository/7.x/7.7.1/' + str(_file_name)
+		# Download the file from `url` and save it locally under `file_name`
+		file_name, headers = urllib.request.urlretrieve(url, _installer_file_fullname)
+		print('file_name : ' + str(file_name))
+		print('headers   : ' + str(headers))
+
+
+def install_file_npp():
+	global _installer_file_fullname
+	global _file_name
+
+	#installer_file = "npp.7.5.8.Installer.x64"
+	installer_file = "npp.7.7.1.Installer.exe"
+	_file_name = installer_file
+
+	#installer_path = "W:/"
+	installer_path = PATH_INSTALLERS
+	_installer_file_fullname = str(installer_path) + str(installer_file)
+
+	print(str(_installer_file_fullname))
 
 def install_npp():
 	# Install notepad++
-	installer_file = "npp.7.5.8.Installer.x64"
-	#installer_path = "W:/"
-	installer_path = PATH_INSTALLERS
-	installer_file_fullname = str(installer_path) + str(installer_file)
-
-	print(str(installer_file_fullname))
+	#install_file_npp()
 
 	# https://stackoverflow.com/questions/14894993/running-windows-shell-commands-with-python
-
 
 	# https://notepad-plus-plus.org/download
 	# TODO: download file from web
 	#   Verify downloaded file is what we were downloading.
 
-
 	# https://stackoverflow.com/questions/42792305/trying-to-set-up-a-deployment-package-for-silent-uninstall-of-notepad-and-inst#
 	# https://www.itninja.com/software/open-source-1/notepad-2/5-1399
 
-
-	command = str(str(installer_file_fullname) + ' /S /D=' + str(PATH_APP_NPP) + ' ')
+	command = str(str(_installer_file_fullname) + ' /S /D=' + str(PATH_APP_NPP) + ' ')
 	print('Start notepad++ installer.')
 	print(command)
 	print('')
@@ -96,6 +124,10 @@ print('Test comment from "npp.py"')
 print('Value of variable "PATH_APP_NPP": ' + str(PATH_APP_NPP))
 print('Value of variable "PATH_INSTALLERS": ' + str(PATH_INSTALLERS))
 
+
+install_file_npp()
+if not is_download_npp():
+	download_npp()
 
 if not is_installed_npp():
 	install_npp()

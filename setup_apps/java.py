@@ -29,7 +29,8 @@ _installer_file_fullname = ''
 _file_name = ''
 
 def is_installed_jre():
-	False
+    # TODO: How to test if JRE is installed?
+    False
 
 
 def is_download_jre():
@@ -78,8 +79,24 @@ def install_jre():
     https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html
     https://download.oracle.com/otn/java/jdk/8u221-b11/230deb18db3e4014bb8e3e8324f81b43/jre-8u221-windows-x64.exe
     '''
+    # TODO: Install silently
     # TODO: Can I change java installation path?
-    pass
+    command = str(str(_installer_file_fullname))
+    print('Start OracleJRE installer.')
+    print(command)
+    print('')
+    print(' Installing ... wait ... wait ... ')
+    print('')
+    res = int(os.system(command))
+    print('')
+    if res > 0:
+        # TODO: Installer may not throw error ?
+        print('OracleJRE installation FAILED.')
+        #sys.exit(1)
+        return False
+    else:
+        print('OracleJRE installation done.')
+        return True
 
 
 def is_installed_jdk():
@@ -112,3 +129,9 @@ print('Value of variable "PATH_INSTALLERS": ' + str(PATH_INSTALLERS))
 define_file_jre()
 if not is_download_jre():
 	download_jre()
+
+if not is_installed_jre():
+	install_jre()
+
+# TODO: Do we need to update environment variables? PATH?
+

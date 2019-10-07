@@ -24,11 +24,26 @@ from . import PATH_APP_PYDEV, PATH_INSTALLERS
 import os
 
 
-def is_installed_java():
+def is_installed_jre():
 	False
 
 	
-def install_java():
+def install_jre():
+	'''
+	TODO: download and install Java:  OracleJRE
+	Oracle
+	https://www.oracle.com/technetwork/java/index.html
+
+    https://stackoverflow.com/questions/51403071/create-jre-from-openjdk-windows
+    '''
+    pass
+
+
+def is_installed_jdk():
+	False
+
+	
+def install_jdk():
 	'''
 	TODO: download and install Java:  OpenJDK or OracleJDK
 	Oracle

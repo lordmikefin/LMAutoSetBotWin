@@ -72,7 +72,7 @@ def download_npp():
 		util.download(url, _installer_file_fullname)
 
 
-def install_file_npp():
+def define_file_npp():
 	global _installer_file_fullname
 	global _file_name
 
@@ -89,7 +89,7 @@ def install_file_npp():
 
 def install_npp():
 	# Install notepad++
-	#install_file_npp()
+	#define_file_npp()
 
 	# https://stackoverflow.com/questions/14894993/running-windows-shell-commands-with-python
 
@@ -128,7 +128,7 @@ print('Value of variable "PATH_APP_NPP": ' + str(PATH_APP_NPP))
 print('Value of variable "PATH_INSTALLERS": ' + str(PATH_INSTALLERS))
 
 
-install_file_npp()
+define_file_npp()
 if not is_download_npp():
 	download_npp()
 

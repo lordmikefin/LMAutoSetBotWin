@@ -19,7 +19,8 @@
 	:license: MIT License
 """
 
-from . import PATH_APP_PYDEV, PATH_INSTALLERS
+from . import PATH_INSTALLERS
+from . import util
 
 import os
 
@@ -30,15 +31,54 @@ _file_name = ''
 def is_installed_jre():
 	False
 
-	
+
+def is_download_jre():
+	# Check if we already have the installer
+	print(str(_installer_file_fullname))
+	return os.path.isfile(_installer_file_fullname)
+
+
+def download_jre():
+    # Download file from web
+    # TODO: Verify downloaded file is what we were downloading.
+
+    print('Download Java JRE installer.')
+
+    if _file_name:
+        url = 'https://download.oracle.com/otn/java/jdk/8u221-b11/230deb18db3e4014bb8e3e8324f81b43/' + str(_file_name)
+        # Download the file from `url` and save it locally under `file_name`
+        #util.download(url, _installer_file_fullname)
+        print('')
+        print('Can not auto download Oracle JRE !!!')
+        print('Download "' + str(_file_name) + '" manually into folder: ' + str(_installer_file_fullname))
+        print('  https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html')
+
+
+def define_file_jre():
+	global _installer_file_fullname
+	global _file_name
+
+	installer_file = "jre-8u221-windows-x64.exe"
+	_file_name = installer_file
+
+	installer_path = PATH_INSTALLERS
+	_installer_file_fullname = str(installer_path) + str(installer_file)
+
+	print(str(_installer_file_fullname))
+
+
 def install_jre():
-	'''
-	TODO: download and install Java:  OracleJRE
-	Oracle
-	https://www.oracle.com/technetwork/java/index.html
+    '''
+    TODO: download and install Java:  OracleJRE
+    Oracle
+    https://www.oracle.com/technetwork/java/index.html
 
     https://stackoverflow.com/questions/51403071/create-jre-from-openjdk-windows
+
+    https://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html
+    https://download.oracle.com/otn/java/jdk/8u221-b11/230deb18db3e4014bb8e3e8324f81b43/jre-8u221-windows-x64.exe
     '''
+    # TODO: Can I change java installation path?
     pass
 
 
@@ -62,3 +102,13 @@ def install_jdk():
 	https://download.java.net/java/GA/jdk13/5b8a42f3905b406298b72d750b6919f6/33/GPL/openjdk-13_windows-x64_bin.zip.sha256
 	'''
 	pass
+
+print('')
+print('Test comment from "npp.py"')
+
+#print('Value of variable "PATH_APP_NPP": ' + str(PATH_APP_NPP))
+print('Value of variable "PATH_INSTALLERS": ' + str(PATH_INSTALLERS))
+
+define_file_jre()
+if not is_download_jre():
+	download_jre()

@@ -101,4 +101,5 @@ connect_samba_share()
 # TODO: Import at top of this script.
 # TODO: Activat 'npp' with function call !
 from . import npp
+from . import java
 

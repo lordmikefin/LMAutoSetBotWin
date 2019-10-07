@@ -20,8 +20,9 @@
 """
 
 from . import PATH_APP_NPP, PATH_INSTALLERS
+from . import util
 
-import urllib.request
+
 import os
 
 
@@ -64,10 +65,11 @@ def download_npp():
 	
 	if _file_name:
 		url = 'http://download.notepad-plus-plus.org/repository/7.x/7.7.1/' + str(_file_name)
-		# Download the file from `url` and save it locally under `file_name`
-		file_name, headers = urllib.request.urlretrieve(url, _installer_file_fullname)
-		print('file_name : ' + str(file_name))
-		print('headers   : ' + str(headers))
+		## Download the file from `url` and save it locally under `file_name`
+		#file_name, headers = urllib.request.urlretrieve(url, _installer_file_fullname)
+		#print('file_name : ' + str(file_name))
+		#print('headers   : ' + str(headers))
+		util.download(url, _installer_file_fullname)
 
 
 def install_file_npp():
@@ -75,7 +77,8 @@ def install_file_npp():
 	global _file_name
 
 	#installer_file = "npp.7.5.8.Installer.x64"
-	installer_file = "npp.7.7.1.Installer.exe"
+	#installer_file = "npp.7.7.1.Installer.exe"
+	installer_file = "npp.7.7.1.Installer.x64.exe"
 	_file_name = installer_file
 
 	#installer_path = "W:/"

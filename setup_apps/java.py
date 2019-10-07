@@ -29,8 +29,18 @@ _installer_file_fullname = ''
 _file_name = ''
 
 def is_installed_jre():
-    # TODO: How to test if JRE is installed?
-    False
+    # Test if JRE is installed.
+    #java -version
+    #command = str(PATH_APP_NPP) + 'java -version'
+    command = 'java -version'
+    print(str(command))
+    res = int(os.system(command))
+    if res > 0:
+        print('OracleJRE NOT installed.')
+        return False
+
+    print('OracleJRE already installed.')
+    return True
 
 
 def is_download_jre():
@@ -43,7 +53,7 @@ def download_jre():
     # Download file from web
     # TODO: Verify downloaded file is what we were downloading.
 
-    print('Download Java JRE installer.')
+    print('Download Java OracleJRE installer.')
 
     if _file_name:
         url = 'https://download.oracle.com/otn/java/jdk/8u221-b11/230deb18db3e4014bb8e3e8324f81b43/' + str(_file_name)
@@ -120,6 +130,25 @@ def install_jdk():
 	'''
 	pass
 
+def update_env_var_path():
+    # TODO: Do we need to update environment variables? PATH?
+    # C:\Program Files (x86)\Common Files\Oracle\Java\javapath;
+    _javapath = 'C:\\Program Files (x86)\\Common Files\\Oracle\\Java\\javapath'
+    #PATH=%PATH_APP_PY37%\;%PATH_APP_PY37%\Scripts\;%PATH%
+    
+    _path = str(os.environ.get('PATH'))
+    print('')
+    print('PATH : ' + _path)
+    '''
+    command = str('PATH=' + str(_javapath) + ';%PATH%')
+    print(command)
+    res = int(os.system(command))
+    print('result : ' + str(res))
+    '''
+    os.environ['PATH'] = str(_javapath) + ';' + _path
+    print('PATH : ' + str(os.environ.get('PATH')))
+
+
 print('')
 print('Test comment from "npp.py"')
 
@@ -131,7 +160,6 @@ if not is_download_jre():
 	download_jre()
 
 if not is_installed_jre():
-	install_jre()
-
-# TODO: Do we need to update environment variables? PATH?
+    if install_jre():
+        update_env_var_path()
 

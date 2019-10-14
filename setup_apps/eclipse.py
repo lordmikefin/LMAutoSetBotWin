@@ -35,7 +35,10 @@ _file_name = ''
 
 def is_installed():
     # TODO: Test if Eclipse is installed.
-    False
+
+    # For now just check if exec file exists.
+    # D:\apps\eclipse\pydev\2019-09\eclipse
+    return util.is_file(str(PATH_APP_PYDEV) + '\\2019-09\\eclipse\\eclipse.exe')
 
 
 def is_download():
@@ -143,4 +146,13 @@ if not is_download():
 if not is_installed():
     if install():
         pass
+
+if not is_installed():
+    # TODO: How we should handle error?
+    print('')
+    print('Eclipse was not installed!?')
+    print('I will now exit with error :(')
+    util.pause()
+    sys.exit(1)
+
 

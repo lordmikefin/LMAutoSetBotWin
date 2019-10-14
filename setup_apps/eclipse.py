@@ -87,6 +87,10 @@ def install():
     # TODO: Is there way to define installation path.
     # TODO: Eclipse should have separate instance for Python development.
 
+    # Installer from the command line
+    #   https://www.eclipse.org/forums/index.php/t/1091113/
+    #   https://www.eclipse.org/forums/index.php/t/1086000/
+
     #command = str(str(_installer_file_fullname) + ' /S /D=' + str(PATH_APP_NPP) + ' ')
     command = str(str(_installer_file_fullname))
     print('Start Eclipse installer.')
@@ -95,6 +99,10 @@ def install():
     print(' Installing ... wait ... wait ... ')
     print('')
     res = int(os.system(command))
+    # TODO: How to halt command line until installation is completed?
+    print('Eclipse installer will not halt command line :(')
+    print('Please let me know when installation is completed.')
+    util.pause()
     print('')
     if res > 0:
         # TODO: Installer may not throw error ?

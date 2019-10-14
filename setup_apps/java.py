@@ -152,6 +152,7 @@ def update_env_var_path():
 print('')
 print('Test comment from "java.py"')
 
+# TODO: Can default installation be changed?  (C:\Program Files\Java\jre1.8.0_221)
 #print('Value of variable "PATH_APP_NPP": ' + str(PATH_APP_NPP))
 print('Value of variable "PATH_INSTALLERS": ' + str(PATH_INSTALLERS))
 

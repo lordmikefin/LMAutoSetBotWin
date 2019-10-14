@@ -20,6 +20,7 @@
 """
 
 from . import PATH_APP_ECLIPSE, PATH_INSTALLERS
+from . import util
 
 import os
 
@@ -35,22 +36,51 @@ _file_name = ''
 def is_installed():
 	False
 
+
 def is_download():
 	# Check if we already have the installer
 	print(str(_installer_file_fullname))
 	return os.path.isfile(_installer_file_fullname)
 
-	
-def install():
+
+def download():
 	'''
 	TODO: download and install Eclipse
 	https://www.eclipse.org/downloads/
 	https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2019-09/R/eclipse-inst-win64.exe
 	https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2019-09/R/eclipse-inst-win64.exe&mirror_id=1099
 	'''
+	print('Download Eclipse installer.')
+	
+	if _file_name:
+		url = 'https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2019-09/R/' + str(_file_name) + '&mirror_id=1099'
+		# Download the file from `url` and save it locally under `file_name`
+		util.download(url, _installer_file_fullname)
+
+
+def define_file():
+	global _installer_file_fullname
+	global _file_name
+
+	installer_file = "eclipse-inst-win64.exe"
+	_file_name = installer_file
+
+	installer_path = PATH_INSTALLERS
+	_installer_file_fullname = str(installer_path) + str(installer_file)
+
+	print(str(_installer_file_fullname))
+
+
+def install():
 	pass
 
 print('')
 print('Test comment from "eclipse.py"')
 
+print('Value of variable "PATH_APP_ECLIPSE": ' + str(PATH_APP_ECLIPSE))
+print('Value of variable "PATH_INSTALLERS": ' + str(PATH_INSTALLERS))
 
+
+define_file()
+if not is_download():
+	download()

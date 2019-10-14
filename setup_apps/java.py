@@ -150,7 +150,7 @@ def update_env_var_path():
 
 
 print('')
-print('Test comment from "npp.py"')
+print('Test comment from "java.py"')
 
 #print('Value of variable "PATH_APP_NPP": ' + str(PATH_APP_NPP))
 print('Value of variable "PATH_INSTALLERS": ' + str(PATH_INSTALLERS))

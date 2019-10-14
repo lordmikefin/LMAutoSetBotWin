@@ -12,7 +12,7 @@
 	  https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/LICENSE
 
 	Latest version of this script file:
-	  https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/setup_apps/pydev.py
+	  https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/setup_apps/java.py
 
 
 	:copyright: (c) 2019, Mikko Niemelä a.k.a. Lord Mike (lordmike@iki.fi)

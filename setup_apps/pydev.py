@@ -28,22 +28,9 @@ _installer_file_fullname = ''
 _file_name = ''
 
 
-# TODO: 'PyDev' is depended on Java.
+# TODO: 'PyDev' is depended on Eclipse.
 # TODO: Define/test dependencies <-> when config file is used to define what will be installed.	
 
-
-def is_installed_eclipse():
-	False
-
-	
-def install_eclipse():
-	'''
-	TODO: download and install Eclipse
-	https://www.eclipse.org/downloads/
-	https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2019-09/R/eclipse-inst-win64.exe
-	https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2019-09/R/eclipse-inst-win64.exe&mirror_id=1099
-	'''
-	pass
 
 
 def is_installed_pydev():

@@ -74,6 +74,7 @@ PATH_APPS = PATH_ROOT + 'apps'
 PATH_APP_GIT = PATH_APPS + '\\Git'
 PATH_APP_PY37 = PATH_APPS + '\\Python37'
 PATH_APP_NPP = PATH_APPS + '\\Notepad++'
+PATH_APP_ECLIPSE = PATH_APPS + '\\eclipse'
 PATH_APP_PYDEV = PATH_APPS + '\\eclipse\\pydev'
 
 
@@ -102,4 +103,5 @@ connect_samba_share()
 # TODO: Activat 'npp' with function call !
 from . import npp
 from . import java
+from . import eclipse
 

@@ -20,6 +20,7 @@
 """
 
 import os
+import sys
 import urllib.request
 
 
@@ -46,4 +47,11 @@ def is_file(file: str) -> bool:
     Is given string pointing to file.
     '''
     return os.path.isfile(file)
+
+
+def unzip(zip_file: str, dst: str):
+    print('Unzip the file')
+    command = 'PowerShell -Command "Expand-Archive \'' + str(zip_file) + '\' \'' + str(dst) + '\'"'
+    res = int(os.system(command))
+    # TODO: How to handle possible errors?
 

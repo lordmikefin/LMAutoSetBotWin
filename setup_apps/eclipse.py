@@ -38,7 +38,8 @@ def is_installed():
 
     # For now just check if exec file exists.
     # D:\apps\eclipse\pydev\2019-09\eclipse
-    return util.is_file(str(PATH_APP_PYDEV) + '\\2019-09\\eclipse\\eclipse.exe')
+    #return util.is_file(str(PATH_APP_PYDEV) + '\\2019-09\\eclipse\\eclipse.exe')
+    return util.is_file(str(PATH_APP_PYDEV) + '\\eclipse\\eclipse.exe')
 
 
 def is_download():
@@ -49,6 +50,12 @@ def is_download():
 
 def download():
     '''
+    # TODO: Is there offline installer?
+    # https://www.eclipse.org/downloads/packages/
+    https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2019-09/R/eclipse-javascript-2019-09-R-win32-x86_64.zip
+    https://www.eclipse.org/downloads/download.php?file=/technology/epp/downloads/release/2019-09/R/eclipse-javascript-2019-09-R-win32-x86_64.zip&mirror_id=1156
+    https://ftp.acc.umu.se/mirror/eclipse.org/technology/epp/downloads/release/2019-09/R/eclipse-javascript-2019-09-R-win32-x86_64.zip
+
     TODO: download and install Eclipse
     https://www.eclipse.org/downloads/
     https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2019-09/R/eclipse-inst-win64.exe
@@ -58,9 +65,11 @@ def download():
     
     if _file_name:
         #url = 'https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2019-09/R/' + str(_file_name) + '&mirror_id=1099'
-        url = 'https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2019-09/R/' + str(_file_name)
+        #url = 'https://www.eclipse.org/downloads/download.php?file=/oomph/epp/2019-09/R/' + str(_file_name)
+        url = 'https://ftp.acc.umu.se/mirror/eclipse.org/technology/epp/downloads/release/2019-09/R/' + str(_file_name)
         # Download the file from `url` and save it locally under `file_name`
-        #util.download(url, _installer_file_fullname)
+        util.download(url, _installer_file_fullname)
+        '''
         print('')
         print('I can not download the file :(')
         print('You need to manually download it into destination: ' + str(_installer_file_fullname))
@@ -69,13 +78,15 @@ def download():
         print('Continue when downloaded.')
         # TODO: Who installer can be downloaded? Use "Robot Framework"?
         util.pause()
+        '''
 
 
 def define_file():
     global _installer_file_fullname
     global _file_name
 
-    installer_file = "eclipse-inst-win64.exe"
+    #installer_file = "eclipse-inst-win64.exe"
+    installer_file = "eclipse-javascript-2019-09-R-win32-x86_64.zip"
     _file_name = installer_file
 
     installer_path = PATH_INSTALLERS
@@ -86,6 +97,7 @@ def define_file():
 
 def install():
     # TODO: Is there offline installer?
+    # https://www.eclipse.org/downloads/packages/
 
     # PATH_APP_PYDEV
     # PATH_APP_ECLIPSE
@@ -103,14 +115,19 @@ def install():
 
     #command = str(str(_installer_file_fullname))
     #command = str(str(_installer_file_fullname) + ' -vmargs -Doomph.setup.install.root=' + str(PATH_APP_PYDEV))
-    command = str(str(_installer_file_fullname) + ' -vm "C:\Program Files\Java\jre1.8.0_221" EclipsePyDevConfiguration.setup -vmargs -Doomph.setup.install.root=' + str(PATH_APP_PYDEV))
+    #command = str(str(_installer_file_fullname) + ' -vm "C:\Program Files\Java\jre1.8.0_221" EclipsePyDevConfiguration.setup -vmargs -Doomph.setup.install.root=' + str(PATH_APP_PYDEV))
     print('Start Eclipse installer.')
-    print(command)
+    #print(command)
     print('')
     print(' Installing ... wait ... wait ... ')
     print('')
-    res = int(os.system(command))
+    #res = int(os.system(command))
     # TODO: How to halt command line until installation is completed?
+
+    util.unzip(str(_installer_file_fullname), str(PATH_APP_PYDEV))
+    return True # TODO: return error?
+
+    '''
     print('Eclipse installer will not halt command line :(')
     print('Please let me know when installation is completed.')
     util.pause()
@@ -123,6 +140,7 @@ def install():
     else:
         print('Eclipse installation done.')
         return True
+    '''
 
 print('')
 print('Test comment from "eclipse.py"')

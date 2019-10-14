@@ -22,6 +22,8 @@
 from . import PATH_APP_ECLIPSE, PATH_INSTALLERS, PATH_APP_PYDEV
 from . import util
 
+import os
+import sys
 
 _installer_file_fullname = ''
 _file_name = ''

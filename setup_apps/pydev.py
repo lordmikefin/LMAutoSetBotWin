@@ -27,41 +27,9 @@ import os
 _installer_file_fullname = ''
 _file_name = ''
 
-def is_installed_jre():
-	False
 
-	
-def install_jre():
-	'''
-	TODO: download and install Java:  OracleJRE
-	Oracle
-	https://www.oracle.com/technetwork/java/index.html
-
-    https://stackoverflow.com/questions/51403071/create-jre-from-openjdk-windows
-    '''
-    pass
-
-
-def is_installed_jdk():
-	False
-
-	
-def install_jdk():
-	'''
-	TODO: download and install Java:  OpenJDK or OracleJDK
-	Oracle
-	https://www.oracle.com/technetwork/java/index.html
-
-	OpenJDK
-	https://openjdk.java.net/
-	https://openjdk.java.net/install/
-	https://jdk.java.net/13/
-	ZIP
-	https://download.java.net/java/GA/jdk13/5b8a42f3905b406298b72d750b6919f6/33/GPL/openjdk-13_windows-x64_bin.zip
-	SHA256
-	https://download.java.net/java/GA/jdk13/5b8a42f3905b406298b72d750b6919f6/33/GPL/openjdk-13_windows-x64_bin.zip.sha256
-	'''
-	pass
+# TODO: 'PyDev' is depended on Java.
+# TODO: Define/test dependencies <-> when config file is used to define what will be installed.	
 
 
 def is_installed_eclipse():

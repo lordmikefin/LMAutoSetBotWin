@@ -19,7 +19,7 @@
     :license: MIT License
 """
 
-from . import PATH_APP_ECLIPSE, PATH_INSTALLERS
+from . import PATH_APP_ECLIPSE, PATH_INSTALLERS, PATH_APP_PYDEV
 from . import util
 
 
@@ -32,6 +32,7 @@ _file_name = ''
 
 
 def is_installed():
+    # TODO: Test if Eclipse is installed.
     False
 
 
@@ -79,7 +80,28 @@ def define_file():
 
 
 def install():
-    pass
+    # PATH_APP_PYDEV
+    # PATH_APP_ECLIPSE
+    # TODO: Is there way to define installation path.
+    # TODO: Eclipse should have separate instance for Python development.
+
+    #command = str(str(_installer_file_fullname) + ' /S /D=' + str(PATH_APP_NPP) + ' ')
+    command = str(str(_installer_file_fullname))
+	print('Start Eclipse installer.')
+	print(command)
+	print('')
+	print(' Installing ... wait ... wait ... ')
+	print('')
+	res = int(os.system(command))
+	print('')
+	if res > 0:
+		# TODO: Installer may not throw error ?
+		print('Eclipse installation FAILED.')
+		#sys.exit(1)
+		return False
+	else:
+		print('Eclipse installation done.')
+		return True
 
 print('')
 print('Test comment from "eclipse.py"')
@@ -99,3 +121,8 @@ if not is_download():
     print('I will now exit with error :(')
     util.pause()
     sys.exit(1)
+
+if not is_installed():
+    if install():
+        pass
+

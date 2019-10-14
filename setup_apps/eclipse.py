@@ -87,21 +87,21 @@ def install():
 
     #command = str(str(_installer_file_fullname) + ' /S /D=' + str(PATH_APP_NPP) + ' ')
     command = str(str(_installer_file_fullname))
-	print('Start Eclipse installer.')
-	print(command)
-	print('')
-	print(' Installing ... wait ... wait ... ')
-	print('')
-	res = int(os.system(command))
-	print('')
-	if res > 0:
-		# TODO: Installer may not throw error ?
-		print('Eclipse installation FAILED.')
-		#sys.exit(1)
-		return False
-	else:
-		print('Eclipse installation done.')
-		return True
+    print('Start Eclipse installer.')
+    print(command)
+    print('')
+    print(' Installing ... wait ... wait ... ')
+    print('')
+    res = int(os.system(command))
+    print('')
+    if res > 0:
+        # TODO: Installer may not throw error ?
+        print('Eclipse installation FAILED.')
+        #sys.exit(1)
+        return False
+    else:
+        print('Eclipse installation done.')
+        return True
 
 print('')
 print('Test comment from "eclipse.py"')

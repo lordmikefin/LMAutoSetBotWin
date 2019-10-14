@@ -82,6 +82,8 @@ def define_file():
 
 
 def install():
+    # TODO: Is there offline installer?
+
     # PATH_APP_PYDEV
     # PATH_APP_ECLIPSE
     # TODO: Is there way to define installation path.
@@ -90,9 +92,15 @@ def install():
     # Installer from the command line
     #   https://www.eclipse.org/forums/index.php/t/1091113/
     #   https://www.eclipse.org/forums/index.php/t/1086000/
+    #   https://www.eclipse.org/forums/index.php/t/1073078/
+    #   https://wiki.eclipse.org/Eclipse_Oomph_Authoring#Automation_and_Specialization_with_Configurations
 
-    #command = str(str(_installer_file_fullname) + ' /S /D=' + str(PATH_APP_NPP) + ' ')
-    command = str(str(_installer_file_fullname))
+    # eclipse-inst-win64.exe -vm c:\apps\jdk8 configuration.setup -vmargs -Doomph.setup.install.root=C:\directory
+    # EclipseCurrentConfiguration.setup
+
+    #command = str(str(_installer_file_fullname))
+    #command = str(str(_installer_file_fullname) + ' -vmargs -Doomph.setup.install.root=' + str(PATH_APP_PYDEV))
+    command = str(str(_installer_file_fullname) + ' -vm "C:\Program Files\Java\jre1.8.0_221" EclipsePyDevConfiguration.setup -vmargs -Doomph.setup.install.root=' + str(PATH_APP_PYDEV))
     print('Start Eclipse installer.')
     print(command)
     print('')

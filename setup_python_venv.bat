@@ -166,8 +166,11 @@ echo.
 :: Make sure we are using the lates pip version.
 echo.
 echo Make sure we are using the lates pip version.
-echo  $ CALL %APP_PY37% -m pip install --upgrade pip
-CALL %APP_PY37% -m pip install --upgrade pip
+:: NOTE: there is just venv python.exe in path now. Use it.
+::echo  $ CALL %APP_PY37% -m pip install --upgrade pip
+::CALL %APP_PY37% -m pip install --upgrade pip
+echo  $ CALL python -m pip install --upgrade pip
+CALL python -m pip install --upgrade pip
 
 
 echo. 

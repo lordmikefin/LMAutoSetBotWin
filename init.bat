@@ -18,8 +18,8 @@
 ::  - Git
 ::  - Python
 
-SET CURRENT_SCRIPT_VER=0.0.3
-SET CURRENT_SCRIPT_DATE=2019-10-06
+SET CURRENT_SCRIPT_VER=0.0.4
+SET CURRENT_SCRIPT_DATE=2019-11-18
 SET CURRENT_SCRIPT=init.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 
@@ -43,6 +43,14 @@ mkdir %PATH_APPS%
 mkdir %PATH_APP_GIT%
 mkdir %PATH_APP_PY37%
 ::dir %PATH_INSTALLERS%
+
+
+
+:: disable windows update service
+echo.
+echo When you need the Update service call  Win-Update-Enable.bat
+CALL Win-Update-Disable.bat
+
 
 
 :: Download Git into temp folder

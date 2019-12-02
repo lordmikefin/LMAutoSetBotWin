@@ -128,7 +128,11 @@ def install():
     #res = int(os.system(command))
     # TODO: How to halt command line until installation is completed?
 
+    # NOTE: This is "offline installer" ;)
     util.unzip(str(_installer_file_fullname), str(PATH_APP_PYDEV))
+    
+    # TODO: Change the default workspace folder (eclipse.ini)
+    # -Dosgi.instance.area.default=@user.home/eclipse-workspace
     
     # NOTE: Shortcut is not created, because installer is not used.
     # TODO: Create shortcut for eclipse into Start Menu

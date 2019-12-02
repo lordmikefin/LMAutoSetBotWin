@@ -125,6 +125,11 @@ def install():
     # TODO: How to halt command line until installation is completed?
 
     util.unzip(str(_installer_file_fullname), str(PATH_APP_PYDEV))
+    
+    # NOTE: Shortcut is not created, because installer is not used.
+    # TODO: Create shortcut for eclipse
+    #D:\apps\eclipse\pydev\eclipse\eclipse.exe
+    
     return True # TODO: return error?
 
     '''

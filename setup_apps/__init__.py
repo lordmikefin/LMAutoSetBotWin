@@ -104,4 +104,5 @@ connect_samba_share()
 from . import npp
 from . import java
 from . import eclipse
+from . import pydev
 

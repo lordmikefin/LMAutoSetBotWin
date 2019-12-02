@@ -20,6 +20,7 @@
 """
 
 from . import PATH_APP_PYDEV, PATH_INSTALLERS
+from . import util
 
 import os
 

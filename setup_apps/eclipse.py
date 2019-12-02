@@ -28,6 +28,7 @@ import sys
 _installer_file_fullname = ''
 _file_name = ''
 
+_exe_file = ''
 
 # TODO: 'Eclipse' is depended on Java.
 # TODO: Define/test dependencies <-> when config file is used to define what will be installed.    
@@ -39,7 +40,8 @@ def is_installed():
     # For now just check if exec file exists.
     # D:\apps\eclipse\pydev\2019-09\eclipse
     #return util.is_file(str(PATH_APP_PYDEV) + '\\2019-09\\eclipse\\eclipse.exe')
-    return util.is_file(str(PATH_APP_PYDEV) + '\\eclipse\\eclipse.exe')
+    #return util.is_file(str(PATH_APP_PYDEV) + '\\eclipse\\eclipse.exe')
+    return util.is_file(_exe_file)
 
 
 def is_download():
@@ -84,6 +86,7 @@ def download():
 def define_file():
     global _installer_file_fullname
     global _file_name
+    global _exe_file
 
     #installer_file = "eclipse-inst-win64.exe"
     installer_file = "eclipse-javascript-2019-09-R-win32-x86_64.zip"
@@ -92,6 +95,7 @@ def define_file():
     installer_path = PATH_INSTALLERS
     _installer_file_fullname = str(installer_path) + str(installer_file)
 
+    _exe_file = str(PATH_APP_PYDEV) + '\\eclipse\\eclipse.exe'
     print(str(_installer_file_fullname))
 
 
@@ -127,8 +131,11 @@ def install():
     util.unzip(str(_installer_file_fullname), str(PATH_APP_PYDEV))
     
     # NOTE: Shortcut is not created, because installer is not used.
-    # TODO: Create shortcut for eclipse
-    #D:\apps\eclipse\pydev\eclipse\eclipse.exe
+    # TODO: Create shortcut for eclipse into Start Menu
+    
+    # Create link into Desktop.
+    dst_link_file = os.environ.get('USERPROFILE') + '\\Desktop\\Eclipse pydev.lnk'
+    util.shortcut(exe_file=_exe_file, dst_link_file=dst_link_file, ico='')
     
     return True # TODO: return error?
 
@@ -177,5 +184,3 @@ if not is_installed():
     print('I will now exit with error :(')
     util.pause()
     sys.exit(1)
-
-

@@ -26,11 +26,21 @@ import urllib.request
 PWS='powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile'
 
 def download(url: str, dst: str):
-    # Download the file from `url` and save it locally under `file_name`
-    file_name, headers = urllib.request.urlretrieve(url, dst)
+    '''
+    Download the file from `url` and save it locally under `file_name`
+
+    Python:
+    https://docs.python.org/3.4/library/urllib.request.html?highlight=urllib#urllib.request.urlretrieve
+
+    Bash:
+    https://sourceforge.net/p/forge/documentation/Downloading%20files%20via%20the%20command%20line/
+    '''
+    file_name, headers = urllib.request.urlretrieve(url, filename=dst)
     print('file_name : ' + str(file_name))
     print('headers   : ' + str(headers))
 
+    #command = ''
+    #res = int(os.system(command))
     # TODO: How to show the progress?
 
 

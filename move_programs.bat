@@ -21,7 +21,7 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.1
+SET CURRENT_SCRIPT_VER=0.0.2
 SET CURRENT_SCRIPT_DATE=2019-12-09
 SET CURRENT_SCRIPT=move_programs.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
@@ -64,7 +64,7 @@ del /F /S /Q "C:\Program Files"
 rmdir /S /Q "C:\Program Files"
 
 :: Link   "C:\Program Files"
-mklink /J mklink /J "Program Files" "D:\Program Files\"
+mklink /J "Program Files" "D:\Program Files\"
 
 
 :: Copy   "C:\Program Files (x86)"
@@ -75,7 +75,7 @@ del /F /S /Q "C:\Program Files (x86)"
 rmdir /S /Q "C:\Program Files (x86)"
 
 :: Link   "C:\Program Files (x86)"
-mklink /J mklink /J "Program Files (x86)" "D:\Program Files (x86)\"
+mklink /J "Program Files (x86)" "D:\Program Files (x86)\"
 
 
 :: Copy   "C:\ProgramData"
@@ -86,7 +86,7 @@ del /F /S /Q "C:\ProgramData"
 rmdir /S /Q "C:\ProgramData"
 
 :: Link   "C:\ProgramData"
-mklink /J mklink /J "ProgramData" "D:\ProgramData\"
+mklink /J "ProgramData" "D:\ProgramData\"
 
 
 :: Copy   "C:\Users"
@@ -97,7 +97,7 @@ del /F /S /Q "C:\Users"
 rmdir /S /Q "C:\Users"
 
 :: Link   "C:\Users"
-mklink /J mklink /J "Users" "D:\Users\"
+mklink /J "Users" "D:\Users\"
 
 
 echo.

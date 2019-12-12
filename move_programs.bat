@@ -18,11 +18,12 @@
 
 :: WARNING: This script might broke Windows!
 
+:: NOTE: <JUNCTION> can not be copied. They cause error.
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.2
-SET CURRENT_SCRIPT_DATE=2019-12-09
+SET CURRENT_SCRIPT_VER=0.0.3
+SET CURRENT_SCRIPT_DATE=2019-12-12
 SET CURRENT_SCRIPT=move_programs.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 
@@ -52,52 +53,138 @@ pause
 :: TODO: Parameterise the destination
 
 
-C:
-cd \
+:: C:
+:: cd \
 
 
 :: Copy   "C:\Program Files"
 xcopy /E /H "C:\Program Files" "D:\Program Files\"
+if %errorlevel% neq 0 (
+	echo.
+	echo ERROR: will exit
+	pause
+	call exit /b %errorlevel%
+)
 
-:: Delete "C:\Program Files"
+:: Delete files "C:\Program Files"
 del /F /S /Q "C:\Program Files"
+if %errorlevel% neq 0 (
+	echo.
+	echo ERROR: will exit
+	pause
+	call exit /b %errorlevel%
+)
+:: Delete folders "C:\Program Files"
 rmdir /S /Q "C:\Program Files"
+if %errorlevel% neq 0 (
+	echo.
+	echo ERROR: will exit
+	pause
+	call exit /b %errorlevel%
+)
 
 :: Link   "C:\Program Files"
-mklink /J "Program Files" "D:\Program Files\"
+mklink /J "C:\Program Files" "D:\Program Files\"
+if %errorlevel% neq 0 (
+	echo.
+	echo ERROR: will exit
+	pause
+	call exit /b %errorlevel%
+)
 
 
 :: Copy   "C:\Program Files (x86)"
 xcopy /E /H "C:\Program Files (x86)" "D:\Program Files (x86)\"
+if %errorlevel% neq 0 (
+	echo.
+	echo ERROR: will exit
+	pause
+	call exit /b %errorlevel%
+)
 
-:: Delete "C:\Program Files (x86)"
+:: Delete files "C:\Program Files (x86)"
 del /F /S /Q "C:\Program Files (x86)"
+if %errorlevel% neq 0 (
+	echo.
+	echo ERROR: will exit
+	pause
+	call exit /b %errorlevel%
+)
+
+:: Delete folders "C:\Program Files (x86)"
 rmdir /S /Q "C:\Program Files (x86)"
+if %errorlevel% neq 0 (
+	echo.
+	echo ERROR: will exit
+	pause
+	call exit /b %errorlevel%
+)
 
 :: Link   "C:\Program Files (x86)"
-mklink /J "Program Files (x86)" "D:\Program Files (x86)\"
+mklink /J "C:\Program Files (x86)" "D:\Program Files (x86)\"
+if %errorlevel% neq 0 (
+	echo.
+	echo ERROR: will exit
+	pause
+	call exit /b %errorlevel%
+)
 
-
+:: NOTE: exclude <JUNCTION> folder and recreate.
 :: Copy   "C:\ProgramData"
-xcopy /E /H "C:\ProgramData" "D:\ProgramData\"
+xcopy /E /H "C:\ProgramData" "D:\ProgramData\" /EXCLUDE:exclude_pro_data.txt
+if %errorlevel% neq 0 (
+	echo.
+	echo ERROR: will exit
+	pause
+	call exit /b %errorlevel%
+)
 
-:: Delete "C:\ProgramData"
+
+echo.
+echo TODO: recreate excluded junction folders
+pause
+call exit /b 4
+
+
+:: Delete files "C:\ProgramData"
 del /F /S /Q "C:\ProgramData"
+if %errorlevel% neq 0 (
+	echo.
+	echo ERROR: will exit
+	pause
+	call exit /b %errorlevel%
+)
+
+:: Delete folders "C:\ProgramData"
 rmdir /S /Q "C:\ProgramData"
+if %errorlevel% neq 0 (
+	echo.
+	echo ERROR: will exit
+	pause
+	call exit /b %errorlevel%
+)
 
 :: Link   "C:\ProgramData"
-mklink /J "ProgramData" "D:\ProgramData\"
+mklink /J "C:\ProgramData" "D:\ProgramData\"
+if %errorlevel% neq 0 (
+	echo.
+	echo ERROR: will exit
+	pause
+	call exit /b %errorlevel%
+)
 
 
+:: NOTE: Users has multiple <JUNCTION> folders (too many). Skip this one.
+:: NOTE: 'sysprep' can be used to move Users.
 :: Copy   "C:\Users"
-xcopy /E /H "C:\Users" "D:\Users\"
+::xcopy /E /H "C:\Users" "D:\Users\"
 
 :: Delete "C:\Users"
-del /F /S /Q "C:\Users"
-rmdir /S /Q "C:\Users"
+::del /F /S /Q "C:\Users"
+::rmdir /S /Q "C:\Users"
 
 :: Link   "C:\Users"
-mklink /J "Users" "D:\Users\"
+::mklink /J "Users" "D:\Users\"
 
 
 echo.

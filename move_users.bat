@@ -69,6 +69,7 @@ IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 ::
 :: When this is needed???
 net stop wmpnetworksvc
+pause
 ::if %errorlevel% neq 0 (
 ::	echo.
 ::	echo ERROR: will exit

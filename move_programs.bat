@@ -144,6 +144,11 @@ if %errorlevel% neq 0 (
 	call exit /b %errorlevel%
 )
 
+::<JUNCTION>     Application Data [C:\ProgramData]
+::<JUNCTION>     Desktop [C:\Users\Public\Desktop]
+::<JUNCTION>     Documents [C:\Users\Public\Documents]
+::<JUNCTION>     Start Menu [C:\ProgramData\Microsoft\Windows\Start Menu]
+::<JUNCTION>     Templates [C:\ProgramData\Microsoft\Windows\Templates]
 
 echo.
 echo TODO: recreate excluded junction folders
@@ -177,6 +182,30 @@ if %errorlevel% neq 0 (
 	pause
 	call exit /b %errorlevel%
 )
+
+:: Recreate junction folders
+::<JUNCTION>     Application Data [C:\ProgramData]
+::<JUNCTION>     Desktop [C:\Users\Public\Desktop]
+::<JUNCTION>     Documents [C:\Users\Public\Documents]
+::<JUNCTION>     Start Menu [C:\ProgramData\Microsoft\Windows\Start Menu]
+::<JUNCTION>     Templates [C:\ProgramData\Microsoft\Windows\Templates]
+
+mklink /J "C:\ProgramData\Application Data" "C:\ProgramData"
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+mklink /J "C:\ProgramData\Desktop" "C:\Users\Public\Desktop"
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+mklink /J "C:\ProgramData\Documents" "C:\Users\Public\Documents"
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+mklink /J "C:\ProgramData\Start Menu" "C:\ProgramData\Microsoft\Windows\Start Menu"
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+mklink /J "C:\ProgramData\Templates" "C:\ProgramData\Microsoft\Windows\Templates"
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+
 
 
 :: NOTE: Users has multiple <JUNCTION> folders (too many). Skip this one.

@@ -45,8 +45,13 @@ echo  - "Command Prompt"
 echo.
 echo Read more:
 echo   https://www.digitalcitizen.life/4-ways-boot-safe-mode-windows-10
-pause
-
+::pause
+echo.
+echo WARNING: This script might broke Windows!
+:PROMPT
+::SET /P AREYOUSURE=Are you sure (Y/[N])?
+SET /P AREYOUSURE=Do you wanna continue (Y/[N])?
+IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 
 :: TODO: verify destinati0n drive
 :: TODO: verify destination folder should not exist
@@ -187,6 +192,7 @@ if %errorlevel% neq 0 (
 ::mklink /J "Users" "D:\Users\"
 
 
+:END
 echo.
 echo End of script '%CURRENT_SCRIPT%'
 pause

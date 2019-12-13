@@ -77,6 +77,35 @@ pause
 ::	call exit /b %errorlevel%
 ::)
 
+echo.
+echo.
+echo This sort of works. Well this works.
+echo.
+echo Sysprep will force you to create a new user.
+echo New user works perfectly \o/
+echo.
+echo BUT damn it. Old users looks funky.
+echo There is no <Junction> folder ???
+echo.
+echo.
+echo.
+echo.
+pause
+SET /P AREYOUSURE=Do you wanna continue (Y/[N])?
+IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
+
+
+:: <JUNCTION>     Application Data [D:\Users\temp\AppData\Roaming]
+:: <JUNCTION>     Cookies [D:\Users\temp\AppData\Local\Microsoft\Windows\INetCookies]
+:: <JUNCTION>     Local Settings [D:\Users\temp\AppData\Local]
+:: <JUNCTION>     My Documents [D:\Users\temp\Documents]
+:: <JUNCTION>     NetHood [D:\Users\temp\AppData\Roaming\Microsoft\Windows\Network Shortcuts]
+:: <JUNCTION>     PrintHood [D:\Users\temp\AppData\Roaming\Microsoft\Windows\Printer Shortcuts]
+:: <JUNCTION>     Recent [D:\Users\temp\AppData\Roaming\Microsoft\Windows\Recent]
+:: <JUNCTION>     SendTo [D:\Users\temp\AppData\Roaming\Microsoft\Windows\SendTo]
+:: <JUNCTION>     Start Menu [D:\Users\temp\AppData\Roaming\Microsoft\Windows\Start Menu]
+:: <JUNCTION>     Templates [D:\Users\temp\AppData\Roaming\Microsoft\Windows\Templates]
+
 
 :: Sysprep the windows
 %windir%\system32\sysprep\sysprep.exe /oobe /reboot /unattend:move_users_unattend.xml

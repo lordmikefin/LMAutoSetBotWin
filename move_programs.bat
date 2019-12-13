@@ -38,7 +38,8 @@ echo Before you run this script make sure you are in "Safe Mode"
 echo Windows system folders can not be moved in normal state.
 echo.
 echo Short how to:
-echo  - "Shift + Shut down"
+::echo  - "Shift + Shut down"
+echo  - "Shift + Restart"
 echo  - "Troubleshoot"
 echo  - "Advanced options"
 echo  - "Command Prompt"

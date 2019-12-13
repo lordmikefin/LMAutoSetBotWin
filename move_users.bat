@@ -62,15 +62,19 @@ IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 :: C:
 :: cd \
 
-
 :: ensure that WMP Network Sharing Service is stopped
+::
+:: NOTE(2019-12-13): got error:
+::   The Windows Media Player Network Sharing Service service is not started.
+::
+:: When this is needed???
 net stop wmpnetworksvc
-if %errorlevel% neq 0 (
-	echo.
-	echo ERROR: will exit
-	pause
-	call exit /b %errorlevel%
-)
+::if %errorlevel% neq 0 (
+::	echo.
+::	echo ERROR: will exit
+::	pause
+::	call exit /b %errorlevel%
+::)
 
 
 :: Sysprep the windows

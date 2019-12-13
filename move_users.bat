@@ -28,7 +28,7 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.1
+SET CURRENT_SCRIPT_VER=0.0.2
 SET CURRENT_SCRIPT_DATE=2019-12-13
 SET CURRENT_SCRIPT=move_programs.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
@@ -50,6 +50,17 @@ echo.
 echo WARNING: This script might broke Windows!
 :PROMPT
 ::SET /P AREYOUSURE=Are you sure (Y/[N])?
+SET /P AREYOUSURE=Do you wanna continue (Y/[N])?
+IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
+
+
+echo.
+echo.
+echo Do not use this it just really fucks things :(
+echo TODO: Create way to move + recreate junction folders :(
+echo.
+echo.
+
 SET /P AREYOUSURE=Do you wanna continue (Y/[N])?
 IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 

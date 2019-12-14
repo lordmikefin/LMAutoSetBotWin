@@ -162,16 +162,18 @@ FOR /D  %%G IN (D:\Users\*) DO (
 	
 	IF /I NOT "%%G"=="D:\Users\All Users" (
 		IF /I NOT "%%G"=="D:\Users\Default User" (
-			mklink /J "%%G\Application Data" "%%G\AppData\Roaming"
-			mklink /J "%%G\Cookies" "%%G\AppData\Local\Microsoft\Windows\INetCookies"
-			mklink /J "%%G\Local Settings" "%%G\AppData\Local"
-			mklink /J "%%G\My Documents" "%%G\Documents"
-			mklink /J "%%G\NetHood" "%%G\AppData\Roaming\Microsoft\Windows\Network Shortcuts"
-			mklink /J "%%G\PrintHood" "%%G\AppData\Roaming\Microsoft\Windows\Printer Shortcuts"
-			mklink /J "%%G\Recent" "%%G\AppData\Roaming\Microsoft\Windows\Recent"
-			mklink /J "%%G\Recent" "%%G\AppData\Roaming\Microsoft\Windows\SendTo"
-			mklink /J "%%G\SendTo" "%%G\AppData\Roaming\Microsoft\Windows\SendTo"
-			mklink /J "%%G\Templates" "%%G\AppData\Roaming\Microsoft\Windows\Templates"
+			IF /I NOT "%%G"=="D:\Users\Public" (
+				mklink /J "%%G\Application Data" "%%G\AppData\Roaming"
+				mklink /J "%%G\Cookies" "%%G\AppData\Local\Microsoft\Windows\INetCookies"
+				mklink /J "%%G\Local Settings" "%%G\AppData\Local"
+				mklink /J "%%G\My Documents" "%%G\Documents"
+				mklink /J "%%G\NetHood" "%%G\AppData\Roaming\Microsoft\Windows\Network Shortcuts"
+				mklink /J "%%G\PrintHood" "%%G\AppData\Roaming\Microsoft\Windows\Printer Shortcuts"
+				mklink /J "%%G\Recent" "%%G\AppData\Roaming\Microsoft\Windows\Recent"
+				mklink /J "%%G\Recent" "%%G\AppData\Roaming\Microsoft\Windows\SendTo"
+				mklink /J "%%G\SendTo" "%%G\AppData\Roaming\Microsoft\Windows\SendTo"
+				mklink /J "%%G\Templates" "%%G\AppData\Roaming\Microsoft\Windows\Templates"
+			)
 		)
 	)
 )

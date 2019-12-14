@@ -152,6 +152,7 @@ if %errorlevel% neq 0 (
 
 :: Recreate junction folders for each User
 ::   https://ss64.com/nt/for_d.html
+:: Exclude 'All Users' and 'Default User'
 ::FOR /D [/r] %%parameter IN (folder_set) DO command
 ::FOR /D  %%G IN (D:\Users\*) DO echo Found %%G
 FOR /D  %%G IN (D:\Users\*) DO (
@@ -159,18 +160,36 @@ FOR /D  %%G IN (D:\Users\*) DO (
 	echo Creating junction folders
 	echo.
 	
-	mklink /J "%%G\Application Data" "%%G\AppData\Roaming"
-	mklink /J "%%G\Cookies" "%%G\AppData\Local\Microsoft\Windows\INetCookies"
-	mklink /J "%%G\Local Settings" "%%G\AppData\Local"
-	mklink /J "%%G\My Documents" "%%G\Documents"
-	mklink /J "%%G\NetHood" "%%G\AppData\Roaming\Microsoft\Windows\Network Shortcuts"
-	mklink /J "%%G\PrintHood" "%%G\AppData\Roaming\Microsoft\Windows\Printer Shortcuts"
-	mklink /J "%%G\Recent" "%%G\AppData\Roaming\Microsoft\Windows\Recent"
-	mklink /J "%%G\Recent" "%%G\AppData\Roaming\Microsoft\Windows\SendTo"
-	mklink /J "%%G\SendTo" "%%G\AppData\Roaming\Microsoft\Windows\SendTo"
-	mklink /J "%%G\Templates" "%%G\AppData\Roaming\Microsoft\Windows\Templates"
+	IF /I NOT "%%G"=="D:\Users\All Users" (
+		IF /I NOT "%%G"=="D:\Users\Default User" (
+			mklink /J "%%G\Application Data" "%%G\AppData\Roaming"
+			mklink /J "%%G\Cookies" "%%G\AppData\Local\Microsoft\Windows\INetCookies"
+			mklink /J "%%G\Local Settings" "%%G\AppData\Local"
+			mklink /J "%%G\My Documents" "%%G\Documents"
+			mklink /J "%%G\NetHood" "%%G\AppData\Roaming\Microsoft\Windows\Network Shortcuts"
+			mklink /J "%%G\PrintHood" "%%G\AppData\Roaming\Microsoft\Windows\Printer Shortcuts"
+			mklink /J "%%G\Recent" "%%G\AppData\Roaming\Microsoft\Windows\Recent"
+			mklink /J "%%G\Recent" "%%G\AppData\Roaming\Microsoft\Windows\SendTo"
+			mklink /J "%%G\SendTo" "%%G\AppData\Roaming\Microsoft\Windows\SendTo"
+			mklink /J "%%G\Templates" "%%G\AppData\Roaming\Microsoft\Windows\Templates"
+		)
+	)
 )
 ::if %errorlevel% neq 0 exit /b %errorlevel%
+
+:: 'Default' is not found by for loop
+:: Recreate junction folders into Default
+mklink /J "D:\Users\Default\Application Data" "D:\Users\Default\AppData\Roaming"
+mklink /J "D:\Users\Default\Cookies" "D:\Users\Default\AppData\Local\Microsoft\Windows\INetCookies"
+mklink /J "D:\Users\Default\Local Settings" "D:\Users\Default\AppData\Local"
+mklink /J "D:\Users\Default\My Documents" "D:\Users\Default\Documents"
+mklink /J "D:\Users\Default\NetHood" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\Network Shortcuts"
+mklink /J "D:\Users\Default\PrintHood" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\Printer Shortcuts"
+mklink /J "D:\Users\Default\Recent" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\Recent"
+mklink /J "D:\Users\Default\Recent" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo"
+mklink /J "D:\Users\Default\SendTo" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo"
+mklink /J "D:\Users\Default\Templates" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\Templates"
+
 
 
 :: Users folder

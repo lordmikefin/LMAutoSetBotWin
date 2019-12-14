@@ -22,7 +22,7 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.3
+SET CURRENT_SCRIPT_VER=0.0.4
 SET CURRENT_SCRIPT_DATE=2019-12-14
 SET CURRENT_SCRIPT=move_users.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
@@ -203,6 +203,20 @@ if %errorlevel% neq 0 exit /b %errorlevel%
 mklink /J "C:\Users\Default User" "C:\Users\Default"
 if %errorlevel% neq 0 exit /b %errorlevel%
 
+
+
+:: Recreate some junktion folders. It seems that move broke Junktions. :(
+rmdir "C:\Documents and Settings"
+mklink /J "C:\Documents and Settings" "C:\Users"
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+rmdir "C:\ProgramData\Desktop"
+mklink /J "C:\ProgramData\Desktop" "C:\Users\Public\Desktop"
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+rmdir "C:\ProgramData\Documents"
+mklink /J "C:\ProgramData\Documents" "C:\Users\Public\Documents"
+if %errorlevel% neq 0 exit /b %errorlevel%
 
 
 :END

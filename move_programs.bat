@@ -22,8 +22,8 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.4
-SET CURRENT_SCRIPT_DATE=2019-12-13
+SET CURRENT_SCRIPT_VER=0.0.5
+SET CURRENT_SCRIPT_DATE=2019-12-14
 SET CURRENT_SCRIPT=move_programs.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 
@@ -154,7 +154,7 @@ if %errorlevel% neq 0 (
 echo.
 echo TODO: recreate excluded junction folders
 pause
-call exit /b 4
+::call exit /b 4
 
 
 :: Delete files "C:\ProgramData"

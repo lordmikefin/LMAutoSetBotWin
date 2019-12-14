@@ -1,0 +1,141 @@
+::C:\Windows\SysWOW64\cmd.exe
+@echo off
+
+:: Copyright (c) 2019, Mikko Niemelä a.k.a. Lord Mike (lordmike@iki.fi)
+:: 
+:: License of this script file:
+::   MIT License
+:: 
+:: License is available online:
+::   https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/LICENSE
+:: 
+:: Latest version of this script file:
+::   https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/move_users.bat
+
+:: move_users.bat
+:: This script will move windows Users folder to drive D.
+
+
+:: WARNING: This script might broke Windows!
+
+:: NOTE: <JUNCTION> can not be copied. They cause error.
+
+
+
+SET CURRENT_SCRIPT_VER=0.0.1
+SET CURRENT_SCRIPT_DATE=2019-12-14
+SET CURRENT_SCRIPT=move_users.bat
+echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
+
+:: https://www.systoolsgroup.com/how-to/move-program-files-folder-to-another-drive/
+:: https://www.ubackup.com/backup-restore/move-program-files-to-another-drive-windows-10.html
+
+
+:: NOTE: This script will work only in "Safe Mode with Command Prompt"
+:: https://www.digitalcitizen.life/4-ways-boot-safe-mode-windows-10
+echo.
+echo Before you run this script make sure you are in "Safe Mode"
+echo Windows system folders can not be moved in normal state.
+echo.
+echo Short how to:
+::echo  - "Shift + Shut down"
+echo  - "Shift + Restart"
+echo  - "Troubleshoot"
+echo  - "Advanced options"
+echo  - "Command Prompt"
+echo.
+echo Read more:
+echo   https://www.digitalcitizen.life/4-ways-boot-safe-mode-windows-10
+::pause
+echo.
+echo WARNING: This script might broke Windows!
+:PROMPT
+::SET /P AREYOUSURE=Are you sure (Y/[N])?
+SET /P AREYOUSURE=Do you wanna continue (Y/[N])?
+IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
+
+:: TODO: verify destinati0n drive
+:: TODO: verify destination folder should not exist
+:: TODO: Parameterise the destination
+
+
+:: C:
+:: cd \
+
+
+
+:: TODO: Use 'robocopy' instead of 'xcopy'
+::   https://ss64.com/nt/robocopy.html
+
+
+:: NOTE: Each user has multiple <JUNCTION> folders.
+:: NOTE: 'sysprep' can be used to move Users. But it seems to break old users :(
+:: Copy   "C:\Users"
+::xcopy /E /H "C:\Users" "D:\Users\" /EXCLUDE:move_users_exclude.txt
+ROBOCOPY "C:\Users" "D:\Users\" /E /COPYALL /sl /XJ
+:: /E       : Copy Subfolders, including Empty Subfolders.
+:: /COPYALL : Copy ALL file info (equivalent to /COPY:DATSOU)
+:: /sl      : Copy file symbolic links instead of the target [see notes below].
+:: /XJ : eXclude Junction points from source. (included by default).
+if %errorlevel% neq 0 (
+	echo.
+	echo ERROR: will exit
+	pause
+	call exit /b %errorlevel%
+)
+
+:: Delete "C:\Users" files
+::del /F /S /Q "C:\Users"
+if %errorlevel% neq 0 (
+	echo.
+	echo ERROR: will exit
+	pause
+	call exit /b %errorlevel%
+)
+
+:: Delete "C:\Users" folders
+::rmdir /S /Q "C:\Users"
+if %errorlevel% neq 0 (
+	echo.
+	echo ERROR: will exit
+	pause
+	call exit /b %errorlevel%
+)
+
+:: Link   "C:\Users"
+::mklink /J "c:\Users" "D:\Users\"
+if %errorlevel% neq 0 (
+	echo.
+	echo ERROR: will exit
+	pause
+	call exit /b %errorlevel%
+)
+
+
+:: Users folder
+::<SYMLINKD>     All Users [C:\ProgramData]
+::<JUNCTION>     Default User [C:\Users\Default]
+
+:: Each user folder (example 'temp' user)
+:: <JUNCTION>     Application Data [D:\Users\temp\AppData\Roaming]
+:: <JUNCTION>     Cookies [D:\Users\temp\AppData\Local\Microsoft\Windows\INetCookies]
+:: <JUNCTION>     Local Settings [D:\Users\temp\AppData\Local]
+:: <JUNCTION>     My Documents [D:\Users\temp\Documents]
+:: <JUNCTION>     NetHood [D:\Users\temp\AppData\Roaming\Microsoft\Windows\Network Shortcuts]
+:: <JUNCTION>     PrintHood [D:\Users\temp\AppData\Roaming\Microsoft\Windows\Printer Shortcuts]
+:: <JUNCTION>     Recent [D:\Users\temp\AppData\Roaming\Microsoft\Windows\Recent]
+:: <JUNCTION>     SendTo [D:\Users\temp\AppData\Roaming\Microsoft\Windows\SendTo]
+:: <JUNCTION>     Start Menu [D:\Users\temp\AppData\Roaming\Microsoft\Windows\Start Menu]
+:: <JUNCTION>     Templates [D:\Users\temp\AppData\Roaming\Microsoft\Windows\Templates]
+
+
+:: Recreate junction folders
+::mklink /J "C:\ProgramData\Templates" "C:\ProgramData\Microsoft\Windows\Templates"
+::if %errorlevel% neq 0 exit /b %errorlevel%
+
+
+:END
+echo.
+echo End of script '%CURRENT_SCRIPT%'
+pause
+

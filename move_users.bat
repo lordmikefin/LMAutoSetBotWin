@@ -160,6 +160,22 @@ if %errorlevel% neq 0 (
 ::   https://ss64.com/nt/for_d.html
 ::FOR /D [/r] %%parameter IN (folder_set) DO command
 ::FOR /D  %%G IN (D:\Users\*) DO echo Found %%G
+FOR /D  %%G IN (D:\Users\*) DO (
+	:: echo Found %%G
+	::mklink /J "%%G\XXX" "%%G\XXX"
+	mklink /J "%%G\Application Data" "%%G\AppData\Roaming"
+	mklink /J "%%G\Cookies" "%%G\AppData\Local\Microsoft\Windows\INetCookies"
+	mklink /J "%%G\Local Settings" "%%G\AppData\Local"
+	mklink /J "%%G\My Documents" "%%G\Documents"
+	mklink /J "%%G\NetHood" "%%G\AppData\Roaming\Microsoft\Windows\Network Shortcuts"
+	mklink /J "%%G\PrintHood" "%%G\AppData\Roaming\Microsoft\Windows\Printer Shortcuts"
+	mklink /J "%%G\Recent" "%%G\AppData\Roaming\Microsoft\Windows\Recent"
+	mklink /J "%%G\Recent" "%%G\AppData\Roaming\Microsoft\Windows\SendTo"
+	mklink /J "%%G\SendTo" "%%G\AppData\Roaming\Microsoft\Windows\SendTo"
+	mklink /J "%%G\Templates" "%%G\AppData\Roaming\Microsoft\Windows\Templates"
+	::if %errorlevel% neq 0 exit /b %errorlevel%
+)
+
 
 :END
 echo.

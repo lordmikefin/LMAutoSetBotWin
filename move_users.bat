@@ -22,7 +22,7 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.1
+SET CURRENT_SCRIPT_VER=0.0.2
 SET CURRENT_SCRIPT_DATE=2019-12-14
 SET CURRENT_SCRIPT=move_users.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
@@ -63,6 +63,21 @@ IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 :: cd \
 
 
+:: NOTE(2019-12-14): got error [1920 (0x00000780)] while copying file (robocopy)
+:: C:\Users\lordmike\AppData\Local\Microsoft\WindowsApps\GameBarElevatedFT_Alias.exe
+::  The file cannot be accessed by the system.
+::  WTF !?!?!?!
+::
+:: this file is security context files for UWP app ???
+::   https://stackoverflow.com/questions/58296925/what-is-zero-byte-executable-files-in-windows
+
+:: NOTE: Now copy errors are "ignored" by /R:1 /W:1
+:: It seems that file still copied !?!?!?!?
+
+:: TODO: log copy process
+:: TODO: Is there way to copy files which causes error [1920]
+
+
 
 :: TODO: Use 'robocopy' instead of 'xcopy'
 ::   https://ss64.com/nt/robocopy.html
@@ -72,16 +87,24 @@ IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 :: NOTE: 'sysprep' can be used to move Users. But it seems to break old users :(
 :: Copy   "C:\Users"
 ::xcopy /E /H "C:\Users" "D:\Users\" /EXCLUDE:move_users_exclude.txt
-ROBOCOPY "C:\Users" "D:\Users\" /E /COPYALL /sl /XJ
+::ROBOCOPY "C:\Users" "D:\Users\" /E /COPYALL /sl /XJ
+:: ROBOCOPY C:\Users D:\Users\ /E /COPYALL /sl /XJ
+ROBOCOPY C:\Users D:\Users\ /E /COPYALL /sl /XJ /R:1 /W:1
 :: /E       : Copy Subfolders, including Empty Subfolders.
 :: /COPYALL : Copy ALL file info (equivalent to /COPY:DATSOU)
 :: /sl      : Copy file symbolic links instead of the target [see notes below].
-:: /XJ : eXclude Junction points from source. (included by default).
+:: /XJ      : eXclude Junction points from source. (included by default).
+:: /R:n     : Number of Retries on failed copies - default is 1 million.
+:: /W:n     : Wait time between retries - default is 30 seconds.
 if %errorlevel% neq 0 (
 	echo.
-	echo ERROR: will exit
+	echo ERROR: copying files
+	echo error [1920] will always rise error flag
+	echo.
+	echo NOTE: Now copy errors are "ignored" by /R:1 /W:1
+
 	pause
-	call exit /b %errorlevel%
+	::call exit /b %errorlevel%
 )
 
 :: Delete "C:\Users" files

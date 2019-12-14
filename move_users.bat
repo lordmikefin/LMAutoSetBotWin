@@ -173,8 +173,8 @@ FOR /D  %%G IN (D:\Users\*) DO (
 	mklink /J "%%G\Recent" "%%G\AppData\Roaming\Microsoft\Windows\SendTo"
 	mklink /J "%%G\SendTo" "%%G\AppData\Roaming\Microsoft\Windows\SendTo"
 	mklink /J "%%G\Templates" "%%G\AppData\Roaming\Microsoft\Windows\Templates"
-	::if %errorlevel% neq 0 exit /b %errorlevel%
 )
+	::if %errorlevel% neq 0 exit /b %errorlevel%
 
 
 :END

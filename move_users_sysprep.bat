@@ -10,7 +10,7 @@
 ::   https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/LICENSE
 :: 
 :: Latest version of this script file:
-::   https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/move_users.bat
+::   https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/move_users_sysprep.bat
 
 :: move_users.bat
 :: This script will move windows Users folder to drive D.
@@ -27,10 +27,12 @@
 :: NOTE: <JUNCTION> can not be copied. They cause error.
 
 
+:: NOTE: Changed script/file name from move_users.bat to move_users_sysprep.bat
 
-SET CURRENT_SCRIPT_VER=0.0.2
-SET CURRENT_SCRIPT_DATE=2019-12-13
-SET CURRENT_SCRIPT=move_programs.bat
+
+SET CURRENT_SCRIPT_VER=0.0.4
+SET CURRENT_SCRIPT_DATE=2019-12-14
+SET CURRENT_SCRIPT=move_users_sysprep.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 
 

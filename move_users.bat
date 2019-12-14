@@ -22,7 +22,7 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.2
+SET CURRENT_SCRIPT_VER=0.0.3
 SET CURRENT_SCRIPT_DATE=2019-12-14
 SET CURRENT_SCRIPT=move_users.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
@@ -108,7 +108,7 @@ if %errorlevel% neq 0 (
 )
 
 :: Delete "C:\Users" files
-::del /F /S /Q "C:\Users"
+del /F /S /Q "C:\Users"
 if %errorlevel% neq 0 (
 	echo.
 	echo ERROR: will exit
@@ -117,7 +117,7 @@ if %errorlevel% neq 0 (
 )
 
 :: Delete "C:\Users" folders
-::rmdir /S /Q "C:\Users"
+rmdir /S /Q "C:\Users"
 if %errorlevel% neq 0 (
 	echo.
 	echo ERROR: will exit
@@ -126,7 +126,7 @@ if %errorlevel% neq 0 (
 )
 
 :: Link   "C:\Users"
-::mklink /J "c:\Users" "D:\Users\"
+mklink /J "C:\Users" "D:\Users\"
 if %errorlevel% neq 0 (
 	echo.
 	echo ERROR: will exit
@@ -135,9 +135,6 @@ if %errorlevel% neq 0 (
 )
 
 
-:: Users folder
-::<SYMLINKD>     All Users [C:\ProgramData]
-::<JUNCTION>     Default User [C:\Users\Default]
 
 :: Each user folder (example 'temp' user)
 :: <JUNCTION>     Application Data [D:\Users\temp\AppData\Roaming]
@@ -152,17 +149,16 @@ if %errorlevel% neq 0 (
 :: <JUNCTION>     Templates [D:\Users\temp\AppData\Roaming\Microsoft\Windows\Templates]
 
 
-:: Recreate junction folders
-::mklink /J "C:\ProgramData\Templates" "C:\ProgramData\Microsoft\Windows\Templates"
-::if %errorlevel% neq 0 exit /b %errorlevel%
 
 :: Recreate junction folders for each User
 ::   https://ss64.com/nt/for_d.html
 ::FOR /D [/r] %%parameter IN (folder_set) DO command
 ::FOR /D  %%G IN (D:\Users\*) DO echo Found %%G
 FOR /D  %%G IN (D:\Users\*) DO (
-	:: echo Found %%G
-	::mklink /J "%%G\XXX" "%%G\XXX"
+	echo Found %%G
+	echo Creating junction folders
+	echo.
+	
 	mklink /J "%%G\Application Data" "%%G\AppData\Roaming"
 	mklink /J "%%G\Cookies" "%%G\AppData\Local\Microsoft\Windows\INetCookies"
 	mklink /J "%%G\Local Settings" "%%G\AppData\Local"
@@ -174,7 +170,20 @@ FOR /D  %%G IN (D:\Users\*) DO (
 	mklink /J "%%G\SendTo" "%%G\AppData\Roaming\Microsoft\Windows\SendTo"
 	mklink /J "%%G\Templates" "%%G\AppData\Roaming\Microsoft\Windows\Templates"
 )
-	::if %errorlevel% neq 0 exit /b %errorlevel%
+::if %errorlevel% neq 0 exit /b %errorlevel%
+
+
+:: Users folder
+::<SYMLINKD>     All Users [C:\ProgramData]
+::<JUNCTION>     Default User [C:\Users\Default]
+
+:: Recreate junction folders
+mklink /J "C:\Users\All Users" "C:\ProgramData"
+if %errorlevel% neq 0 exit /b %errorlevel%
+
+mklink /J "C:\Users\Default User" "C:\Users\Default"
+if %errorlevel% neq 0 exit /b %errorlevel%
+
 
 
 :END

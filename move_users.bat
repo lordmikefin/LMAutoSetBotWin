@@ -156,6 +156,10 @@ if %errorlevel% neq 0 (
 ::mklink /J "C:\ProgramData\Templates" "C:\ProgramData\Microsoft\Windows\Templates"
 ::if %errorlevel% neq 0 exit /b %errorlevel%
 
+:: Recreate junction folders for each User
+::   https://ss64.com/nt/for_d.html
+::FOR /D [/r] %%parameter IN (folder_set) DO command
+::FOR /D  %%G IN (D:\Users\*) DO echo Found %%G
 
 :END
 echo.

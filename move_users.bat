@@ -104,8 +104,8 @@ if %errorlevel% neq 0 (
 	echo NOTE: Now copy errors are "ignored" by /R:1 /W:1
 
 	pause
-	::call exit /b %errorlevel%
 )
+	::call exit /b %errorlevel%
 
 :: Delete "C:\Users" files
 del /F /S /Q "C:\Users"

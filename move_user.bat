@@ -25,7 +25,7 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.4
+SET CURRENT_SCRIPT_VER=0.0.6
 SET CURRENT_SCRIPT_DATE=2019-12-31
 SET CURRENT_SCRIPT=move_user.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
@@ -56,6 +56,18 @@ echo WARNING: This script might broke Windows!
 ::SET /P AREYOUSURE=Are you sure (Y/[N])?
 SET /P AREYOUSURE=Do you wanna continue (Y/[N])?
 IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
+
+
+::set arg1=%1
+SET USER=test
+IF %1.==. (
+	echo No argument given moving user 'test'
+	echo.
+	pause
+) ELSE (
+	SET USER=%1
+)
+
 
 :: TODO: verify destinati0n drive
 :: TODO: verify destination folder should not exist
@@ -92,7 +104,7 @@ IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 ::xcopy /E /H "C:\Users\test" "D:\Users\test\" /EXCLUDE:move_users_exclude.txt
 ::ROBOCOPY "C:\Users" "D:\Users\" /E /COPYALL /sl /XJ
 :: ROBOCOPY C:\Users D:\Users\ /E /COPYALL /sl /XJ
-ROBOCOPY C:\Users\test D:\Users\test\ /E /COPYALL /sl /XJ /R:1 /W:1 /LOG:robocopy.log
+ROBOCOPY C:\Users\%USER% D:\Users\%USER%\ /E /COPYALL /sl /XJ /R:1 /W:1 /LOG:robocopy.log
 :: /E       : Copy Subfolders, including Empty Subfolders.
 :: /COPYALL : Copy ALL file info (equivalent to /COPY:DATSOU)
 :: /sl      : Copy file symbolic links instead of the target [see notes below].
@@ -112,7 +124,7 @@ if %errorlevel% neq 0 (
 	::call exit /b %errorlevel%
 
 :: Delete "C:\Users" files
-del /F /S /Q "C:\Users\test"
+del /F /S /Q "C:\Users\%USER%"
 if %errorlevel% neq 0 (
 	echo.
 	echo ERROR: will exit
@@ -121,7 +133,7 @@ if %errorlevel% neq 0 (
 )
 
 :: Delete "C:\Users" folders
-rmdir /S /Q "C:\Users\test"
+rmdir /S /Q "C:\Users\%USER%"
 if %errorlevel% neq 0 (
 	echo.
 	echo ERROR: will exit
@@ -130,7 +142,7 @@ if %errorlevel% neq 0 (
 )
 
 :: Link   "C:\Users"
-mklink /J "C:\Users\test" "D:\Users\test\"
+mklink /J "C:\Users\%USER%" "D:\Users\%USER%\"
 if %errorlevel% neq 0 (
 	echo.
 	echo ERROR: will exit
@@ -140,33 +152,33 @@ if %errorlevel% neq 0 (
 
 
 :: Recreate junction folders
-mklink /J "D:\Users\test\AppData\Local\Application Data" "D:\Users\test\AppData\Local"
-mklink /J "D:\Users\test\AppData\Local\History" "D:\Users\test\AppData\Local\Microsoft\Windows\History"
-mklink /J "D:\Users\test\AppData\Local\Temporary Internet Files" "D:\Users\test\AppData\Local\Microsoft\Windows\INetCache"
+mklink /J "D:\Users\%USER%\AppData\Local\Application Data" "D:\Users\%USER%\AppData\Local"
+mklink /J "D:\Users\%USER%\AppData\Local\History" "D:\Users\%USER%\AppData\Local\Microsoft\Windows\History"
+mklink /J "D:\Users\%USER%\AppData\Local\Temporary Internet Files" "D:\Users\%USER%\AppData\Local\Microsoft\Windows\INetCache"
 
 
 :: Recreate junction folders
-mklink /J "D:\Users\test\AppData\Local\Microsoft\Windows\Temporary Internet Files" "D:\Users\test\AppData\Local\Microsoft\Windows\INetCache"
-mklink /J "D:\Users\test\AppData\Local\Microsoft\Windows\INetCache\Content.IE5" "D:\Users\test\AppData\Local\Microsoft\Windows\INetCache\IE"
+mklink /J "D:\Users\%USER%\AppData\Local\Microsoft\Windows\Temporary Internet Files" "D:\Users\%USER%\AppData\Local\Microsoft\Windows\INetCache"
+mklink /J "D:\Users\%USER%\AppData\Local\Microsoft\Windows\INetCache\Content.IE5" "D:\Users\%USER%\AppData\Local\Microsoft\Windows\INetCache\IE"
 
 
 :: Recreate junction folders
-mklink /J "D:\Users\test\My Music" "D:\Users\test\Music"
-mklink /J "D:\Users\test\My Pictures" "D:\Users\test\Pictures"
-mklink /J "D:\Users\test\My Videos" "D:\Users\test\Videos"
+mklink /J "D:\Users\%USER%\My Music" "D:\Users\%USER%\Music"
+mklink /J "D:\Users\%USER%\My Pictures" "D:\Users\%USER%\Pictures"
+mklink /J "D:\Users\%USER%\My Videos" "D:\Users\%USER%\Videos"
 
 
 :: Recreate junction folders
-mklink /J "D:\Users\test\Application Data" "D:\Users\test\AppData\Roaming"
-mklink /J "D:\Users\test\Cookies" "D:\Users\test\AppData\Local\Microsoft\Windows\INetCookies"
-mklink /J "D:\Users\test\Local Settings" "D:\Users\test\AppData\Local"
-mklink /J "D:\Users\test\My Documents" "D:\Users\test\Documents"
-mklink /J "D:\Users\test\NetHood" "D:\Users\test\AppData\Roaming\Microsoft\Windows\Network Shortcuts"
-mklink /J "D:\Users\test\PrintHood" "D:\Users\test\AppData\Roaming\Microsoft\Windows\Printer Shortcuts"
-mklink /J "D:\Users\test\Recent" "D:\Users\test\AppData\Roaming\Microsoft\Windows\Recent"
-mklink /J "D:\Users\test\SendTo" "D:\Users\test\AppData\Roaming\Microsoft\Windows\SendTo"
-mklink /J "D:\Users\test\Start Menu" "D:\Users\test\AppData\Roaming\Microsoft\Windows\Start Menu"
-mklink /J "D:\Users\test\Templates" "D:\Users\test\AppData\Roaming\Microsoft\Windows\Templates"
+mklink /J "D:\Users\%USER%\Application Data" "D:\Users\%USER%\AppData\Roaming"
+mklink /J "D:\Users\%USER%\Cookies" "D:\Users\%USER%\AppData\Local\Microsoft\Windows\INetCookies"
+mklink /J "D:\Users\%USER%\Local Settings" "D:\Users\%USER%\AppData\Local"
+mklink /J "D:\Users\%USER%\My Documents" "D:\Users\%USER%\Documents"
+mklink /J "D:\Users\%USER%\NetHood" "D:\Users\%USER%\AppData\Roaming\Microsoft\Windows\Network Shortcuts"
+mklink /J "D:\Users\%USER%\PrintHood" "D:\Users\%USER%\AppData\Roaming\Microsoft\Windows\Printer Shortcuts"
+mklink /J "D:\Users\%USER%\Recent" "D:\Users\%USER%\AppData\Roaming\Microsoft\Windows\Recent"
+mklink /J "D:\Users\%USER%\SendTo" "D:\Users\%USER%\AppData\Roaming\Microsoft\Windows\SendTo"
+mklink /J "D:\Users\%USER%\Start Menu" "D:\Users\%USER%\AppData\Roaming\Microsoft\Windows\Start Menu"
+mklink /J "D:\Users\%USER%\Templates" "D:\Users\%USER%\AppData\Roaming\Microsoft\Windows\Templates"
 
 
 

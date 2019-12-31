@@ -25,7 +25,7 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.6
+SET CURRENT_SCRIPT_VER=0.0.7
 SET CURRENT_SCRIPT_DATE=2019-12-31
 SET CURRENT_SCRIPT=move_user.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
@@ -164,9 +164,9 @@ mklink /J "D:\Users\%USER%\AppData\Local\Microsoft\Windows\INetCache\Content.IE5
 
 
 :: Recreate junction folders
-mklink /J "D:\Users\%USER%\My Music" "D:\Users\%USER%\Music"
-mklink /J "D:\Users\%USER%\My Pictures" "D:\Users\%USER%\Pictures"
-mklink /J "D:\Users\%USER%\My Videos" "D:\Users\%USER%\Videos"
+mklink /J "D:\Users\%USER%\Documents\My Music" "D:\Users\%USER%\Music"
+mklink /J "D:\Users\%USER%\Documents\My Pictures" "D:\Users\%USER%\Pictures"
+mklink /J "D:\Users\%USER%\Documents\My Videos" "D:\Users\%USER%\Videos"
 
 
 :: Recreate junction folders

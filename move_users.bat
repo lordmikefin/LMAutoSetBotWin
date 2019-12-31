@@ -22,7 +22,7 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.5
+SET CURRENT_SCRIPT_VER=0.0.6
 SET CURRENT_SCRIPT_DATE=2019-12-31
 SET CURRENT_SCRIPT=move_users.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
@@ -89,13 +89,14 @@ IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 ::xcopy /E /H "C:\Users" "D:\Users\" /EXCLUDE:move_users_exclude.txt
 ::ROBOCOPY "C:\Users" "D:\Users\" /E /COPYALL /sl /XJ
 :: ROBOCOPY C:\Users D:\Users\ /E /COPYALL /sl /XJ
-ROBOCOPY C:\Users D:\Users\ /E /COPYALL /sl /XJ /R:1 /W:1
+ROBOCOPY C:\Users D:\Users\ /E /COPYALL /sl /XJ /R:1 /W:1 /LOG:robocopy.log
 :: /E       : Copy Subfolders, including Empty Subfolders.
 :: /COPYALL : Copy ALL file info (equivalent to /COPY:DATSOU)
 :: /sl      : Copy file symbolic links instead of the target [see notes below].
 :: /XJ      : eXclude Junction points from source. (included by default).
 :: /R:n     : Number of Retries on failed copies - default is 1 million.
 :: /W:n     : Wait time between retries - default is 30 seconds.
+:: /LOG:file : Output status to LOG file (overwrite existing log).
 if %errorlevel% neq 0 (
 	echo.
 	echo ERROR: copying files
@@ -163,6 +164,14 @@ FOR /D  %%G IN (D:\Users\*) DO (
 	IF /I NOT "%%G"=="D:\Users\All Users" (
 		IF /I NOT "%%G"=="D:\Users\Default User" (
 			IF /I NOT "%%G"=="D:\Users\Public" (
+				mklink /J "%%G\AppData\Local\Application Data" "%%G\AppData\Local"
+				mklink /J "%%G\AppData\Local\History" "%%G\AppData\Local\Microsoft\Windows\History"
+				mklink /J "%%G\AppData\Local\Temporary Internet Files" "%%G\AppData\Local\Microsoft\Windows\INetCache"
+				mklink /J "%%G\AppData\Local\Microsoft\Windows\Temporary Internet Files" "%%G\AppData\Local\Microsoft\Windows\INetCache"
+				mklink /J "%%G\AppData\Local\Microsoft\Windows\INetCache\Content.IE5" "%%G\AppData\Local\Microsoft\Windows\INetCache\IE"
+				mklink /J "%%G\Documents\My Music" "%%G\Music"
+				mklink /J "%%G\Documents\My Pictures" "%%G\Pictures"
+				mklink /J "%%G\Documents\My Videos" "%%G\Videos"
 				mklink /J "%%G\Application Data" "%%G\AppData\Roaming"
 				mklink /J "%%G\Cookies" "%%G\AppData\Local\Microsoft\Windows\INetCookies"
 				mklink /J "%%G\Local Settings" "%%G\AppData\Local"
@@ -181,6 +190,14 @@ FOR /D  %%G IN (D:\Users\*) DO (
 
 :: 'Default' is not found by for loop
 :: Recreate junction folders into Default
+mklink /J "D:\Users\Default\AppData\Local\Application Data" "D:\Users\Default\AppData\Local"
+mklink /J "D:\Users\Default\AppData\Local\History" "D:\Users\Default\AppData\Local\Microsoft\Windows\History"
+mklink /J "D:\Users\Default\AppData\Local\Temporary Internet Files" "D:\Users\Default\AppData\Local\Microsoft\Windows\INetCache"
+mklink /J "D:\Users\Default\AppData\Local\Microsoft\Windows\Temporary Internet Files" "D:\Users\Default\AppData\Local\Microsoft\Windows\INetCache"
+::mklink /J "D:\Users\%USER%\AppData\Local\Microsoft\Windows\INetCache\Content.IE5" "D:\Users\%USER%\AppData\Local\Microsoft\Windows\INetCache\IE"
+mklink /J "D:\Users\Default\Documents\My Music" "D:\Users\Default\Music"
+mklink /J "D:\Users\Default\Documents\My Pictures" "D:\Users\Default\Pictures"
+mklink /J "D:\Users\Default\Documents\My Videos" "D:\Users\Default\Videos"
 mklink /J "D:\Users\Default\Application Data" "D:\Users\Default\AppData\Roaming"
 mklink /J "D:\Users\Default\Cookies" "D:\Users\Default\AppData\Local\Microsoft\Windows\INetCookies"
 mklink /J "D:\Users\Default\Local Settings" "D:\Users\Default\AppData\Local"

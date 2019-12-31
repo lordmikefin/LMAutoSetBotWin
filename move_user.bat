@@ -52,10 +52,6 @@ echo   https://www.digitalcitizen.life/4-ways-boot-safe-mode-windows-10
 ::pause
 echo.
 echo WARNING: This script might broke Windows!
-:PROMPT
-::SET /P AREYOUSURE=Are you sure (Y/[N])?
-SET /P AREYOUSURE=Do you wanna continue (Y/[N])?
-IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 
 
 ::set arg1=%1
@@ -67,6 +63,11 @@ IF %1.==. (
 ) ELSE (
 	SET USER=%1
 )
+
+:PROMPT
+::SET /P AREYOUSURE=Are you sure (Y/[N])?
+SET /P AREYOUSURE=Do you wanna continue (Y/[N])?
+IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 
 
 :: TODO: verify destinati0n drive

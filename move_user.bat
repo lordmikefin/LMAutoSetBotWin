@@ -25,7 +25,7 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.1
+SET CURRENT_SCRIPT_VER=0.0.2
 SET CURRENT_SCRIPT_DATE=2019-12-31
 SET CURRENT_SCRIPT=move_user.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
@@ -92,13 +92,14 @@ IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 ::xcopy /E /H "C:\Users" "D:\Users\" /EXCLUDE:move_users_exclude.txt
 ::ROBOCOPY "C:\Users" "D:\Users\" /E /COPYALL /sl /XJ
 :: ROBOCOPY C:\Users D:\Users\ /E /COPYALL /sl /XJ
-ROBOCOPY C:\Users\test D:\Users\test\ /E /COPYALL /sl /XJ /R:1 /W:1
+ROBOCOPY C:\Users\test D:\Users\test\ /E /COPYALL /sl /XJ /R:1 /W:1 /LOG:robocopy.log
 :: /E       : Copy Subfolders, including Empty Subfolders.
 :: /COPYALL : Copy ALL file info (equivalent to /COPY:DATSOU)
 :: /sl      : Copy file symbolic links instead of the target [see notes below].
 :: /XJ      : eXclude Junction points from source. (included by default).
 :: /R:n     : Number of Retries on failed copies - default is 1 million.
 :: /W:n     : Wait time between retries - default is 30 seconds.
+:: /LOG:file : Output status to LOG file (overwrite existing log).
 if %errorlevel% neq 0 (
 	echo.
 	echo ERROR: copying files

@@ -22,8 +22,8 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.4
-SET CURRENT_SCRIPT_DATE=2019-12-14
+SET CURRENT_SCRIPT_VER=0.0.5
+SET CURRENT_SCRIPT_DATE=2019-12-31
 SET CURRENT_SCRIPT=move_users.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 
@@ -170,8 +170,8 @@ FOR /D  %%G IN (D:\Users\*) DO (
 				mklink /J "%%G\NetHood" "%%G\AppData\Roaming\Microsoft\Windows\Network Shortcuts"
 				mklink /J "%%G\PrintHood" "%%G\AppData\Roaming\Microsoft\Windows\Printer Shortcuts"
 				mklink /J "%%G\Recent" "%%G\AppData\Roaming\Microsoft\Windows\Recent"
-				mklink /J "%%G\Recent" "%%G\AppData\Roaming\Microsoft\Windows\SendTo"
 				mklink /J "%%G\SendTo" "%%G\AppData\Roaming\Microsoft\Windows\SendTo"
+				mklink /J "%%G\Start Menu" "%%G\AppData\Roaming\Microsoft\Windows\Start Menu"
 				mklink /J "%%G\Templates" "%%G\AppData\Roaming\Microsoft\Windows\Templates"
 			)
 		)
@@ -188,8 +188,8 @@ mklink /J "D:\Users\Default\My Documents" "D:\Users\Default\Documents"
 mklink /J "D:\Users\Default\NetHood" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\Network Shortcuts"
 mklink /J "D:\Users\Default\PrintHood" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\Printer Shortcuts"
 mklink /J "D:\Users\Default\Recent" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\Recent"
-mklink /J "D:\Users\Default\Recent" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo"
 mklink /J "D:\Users\Default\SendTo" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo"
+mklink /J "D:\Users\Default\Start Menu" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu"
 mklink /J "D:\Users\Default\Templates" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\Templates"
 
 

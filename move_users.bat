@@ -210,6 +210,12 @@ mklink /J "D:\Users\Default\Start Menu" "D:\Users\Default\AppData\Roaming\Micros
 mklink /J "D:\Users\Default\Templates" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\Templates"
 
 
+:: 'Public' is not found by for loop
+:: Recreate junction folders into Public
+mklink /J "D:\Users\Public\Documents\My Music" "D:\Users\Public\Music"
+mklink /J "D:\Users\Public\Documents\My Pictures" "D:\Users\Public\Pictures"
+mklink /J "D:\Users\Public\Documents\My Videos" "D:\Users\Public\Videos"
+
 
 :: Users folder
 ::<SYMLINKD>     All Users [C:\ProgramData]

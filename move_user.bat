@@ -25,7 +25,7 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.2
+SET CURRENT_SCRIPT_VER=0.0.4
 SET CURRENT_SCRIPT_DATE=2019-12-31
 SET CURRENT_SCRIPT=move_user.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
@@ -89,7 +89,7 @@ IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 :: NOTE: Each user has multiple <JUNCTION> folders.
 :: NOTE: 'sysprep' can be used to move Users. But it seems to break old users :(
 :: Copy   "C:\Users"
-::xcopy /E /H "C:\Users" "D:\Users\" /EXCLUDE:move_users_exclude.txt
+::xcopy /E /H "C:\Users\test" "D:\Users\test\" /EXCLUDE:move_users_exclude.txt
 ::ROBOCOPY "C:\Users" "D:\Users\" /E /COPYALL /sl /XJ
 :: ROBOCOPY C:\Users D:\Users\ /E /COPYALL /sl /XJ
 ROBOCOPY C:\Users\test D:\Users\test\ /E /COPYALL /sl /XJ /R:1 /W:1 /LOG:robocopy.log
@@ -138,6 +138,22 @@ if %errorlevel% neq 0 (
 	call exit /b %errorlevel%
 )
 
+
+:: Recreate junction folders
+mklink /J "D:\Users\test\AppData\Local\Application Data" "D:\Users\test\AppData\Local"
+mklink /J "D:\Users\test\AppData\Local\History" "D:\Users\test\AppData\Local\Microsoft\Windows\History"
+mklink /J "D:\Users\test\AppData\Local\Temporary Internet Files" "D:\Users\test\AppData\Local\Microsoft\Windows\INetCache"
+
+
+:: Recreate junction folders
+mklink /J "D:\Users\test\AppData\Local\Microsoft\Windows\Temporary Internet Files" "D:\Users\test\AppData\Local\Microsoft\Windows\INetCache"
+mklink /J "D:\Users\test\AppData\Local\Microsoft\Windows\INetCache\Content.IE5" "D:\Users\test\AppData\Local\Microsoft\Windows\INetCache\IE"
+
+
+:: Recreate junction folders
+mklink /J "D:\Users\test\My Music" "D:\Users\test\Music"
+mklink /J "D:\Users\test\My Pictures" "D:\Users\test\Pictures"
+mklink /J "D:\Users\test\My Videos" "D:\Users\test\Videos"
 
 
 :: Recreate junction folders

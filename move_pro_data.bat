@@ -68,7 +68,7 @@ IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 :: NOTE: exclude <JUNCTION> folder and recreate.
 :: Copy   "C:\ProgramData"
 ::xcopy /E /H "C:\ProgramData" "D:\ProgramData\" /EXCLUDE:exclude_pro_data.txt
-ROBOCOPY "C:\ProgramData" "D:\ProgramData\" /E /COPYALL /sl /XJ /R:1 /W:1 /LOG:robocopy.log
+ROBOCOPY C:\ProgramData D:\ProgramData\ /E /COPYALL /sl /XJ /R:1 /W:1 /LOG:robocopy.log
 :: /E       : Copy Subfolders, including Empty Subfolders.
 :: /COPYALL : Copy ALL file info (equivalent to /COPY:DATSOU)
 :: /sl      : Copy file symbolic links instead of the target [see notes below].

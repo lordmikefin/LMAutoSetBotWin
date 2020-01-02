@@ -22,7 +22,7 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.2
+SET CURRENT_SCRIPT_VER=0.0.3
 SET CURRENT_SCRIPT_DATE=2020-01-02
 SET CURRENT_SCRIPT=move_pro_data.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
@@ -51,7 +51,7 @@ echo.
 echo WARNING: This script might broke Windows!
 echo.
 echo Junktion folders are not created correctly!
-echo "start menu" will break, becaus of this   !
+echo "Templates" will break, becaus of this   !
 echo.
 :PROMPT
 ::SET /P AREYOUSURE=Are you sure (Y/[N])?
@@ -64,10 +64,18 @@ IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 
 
 
-
+:: NOTE(2020-01-02): xcopy exclude does not work as I expected.
 :: NOTE: exclude <JUNCTION> folder and recreate.
 :: Copy   "C:\ProgramData"
-xcopy /E /H "C:\ProgramData" "D:\ProgramData\" /EXCLUDE:exclude_pro_data.txt
+::xcopy /E /H "C:\ProgramData" "D:\ProgramData\" /EXCLUDE:exclude_pro_data.txt
+ROBOCOPY "C:\ProgramData" "D:\ProgramData\" /E /COPYALL /sl /XJ /R:1 /W:1 /LOG:robocopy.log
+:: /E       : Copy Subfolders, including Empty Subfolders.
+:: /COPYALL : Copy ALL file info (equivalent to /COPY:DATSOU)
+:: /sl      : Copy file symbolic links instead of the target [see notes below].
+:: /XJ      : eXclude Junction points from source. (included by default).
+:: /R:n     : Number of Retries on failed copies - default is 1 million.
+:: /W:n     : Wait time between retries - default is 30 seconds.
+:: /LOG:file : Output status to LOG file (overwrite existing log).
 if %errorlevel% neq 0 (
 	echo.
 	echo ERROR: will exit

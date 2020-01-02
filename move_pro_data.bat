@@ -87,11 +87,20 @@ ROBOCOPY C:\ProgramData %DST_DRV%:\ProgramData\ /E /COPYALL /sl /XJ /R:1 /W:1 /L
 :: /R:n     : Number of Retries on failed copies - default is 1 million.
 :: /W:n     : Wait time between retries - default is 30 seconds.
 :: /LOG:file : Output status to LOG file (overwrite existing log).
+::if %errorlevel% neq 0 (
+::	echo.
+::	echo ERROR: will exit
+::	pause
+::	call exit /b %errorlevel%
+::)
 if %errorlevel% neq 0 (
 	echo.
-	echo ERROR: will exit
+	echo ERROR: copying files
+	echo error [1920] will always rise error flag
+	echo.
+	echo NOTE: Now copy errors are "ignored" by /R:1 /W:1
+
 	pause
-	call exit /b %errorlevel%
 )
 
 ::<JUNCTION>     Application Data [C:\ProgramData]

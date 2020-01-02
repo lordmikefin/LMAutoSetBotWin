@@ -22,8 +22,8 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.5
-SET CURRENT_SCRIPT_DATE=2019-12-14
+SET CURRENT_SCRIPT_VER=0.0.6
+SET CURRENT_SCRIPT_DATE=2019-01-02
 SET CURRENT_SCRIPT=move_programs.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 
@@ -135,91 +135,7 @@ if %errorlevel% neq 0 (
 	call exit /b %errorlevel%
 )
 
-:: NOTE: exclude <JUNCTION> folder and recreate.
-:: Copy   "C:\ProgramData"
-xcopy /E /H "C:\ProgramData" "D:\ProgramData\" /EXCLUDE:exclude_pro_data.txt
-if %errorlevel% neq 0 (
-	echo.
-	echo ERROR: will exit
-	pause
-	call exit /b %errorlevel%
-)
 
-::<JUNCTION>     Application Data [C:\ProgramData]
-::<JUNCTION>     Desktop [C:\Users\Public\Desktop]
-::<JUNCTION>     Documents [C:\Users\Public\Documents]
-::<JUNCTION>     Start Menu [C:\ProgramData\Microsoft\Windows\Start Menu]
-::<JUNCTION>     Templates [C:\ProgramData\Microsoft\Windows\Templates]
-
-echo.
-echo TODO: recreate excluded junction folders
-pause
-::call exit /b 4
-
-
-:: Delete files "C:\ProgramData"
-del /F /S /Q "C:\ProgramData"
-if %errorlevel% neq 0 (
-	echo.
-	echo ERROR: will exit
-	pause
-	call exit /b %errorlevel%
-)
-
-:: Delete folders "C:\ProgramData"
-rmdir /S /Q "C:\ProgramData"
-if %errorlevel% neq 0 (
-	echo.
-	echo ERROR: will exit
-	pause
-	call exit /b %errorlevel%
-)
-
-:: Link   "C:\ProgramData"
-mklink /J "C:\ProgramData" "D:\ProgramData\"
-if %errorlevel% neq 0 (
-	echo.
-	echo ERROR: will exit
-	pause
-	call exit /b %errorlevel%
-)
-
-:: Recreate junction folders
-::<JUNCTION>     Application Data [C:\ProgramData]
-::<JUNCTION>     Desktop [C:\Users\Public\Desktop]
-::<JUNCTION>     Documents [C:\Users\Public\Documents]
-::<JUNCTION>     Start Menu [C:\ProgramData\Microsoft\Windows\Start Menu]
-::<JUNCTION>     Templates [C:\ProgramData\Microsoft\Windows\Templates]
-
-mklink /J "C:\ProgramData\Application Data" "C:\ProgramData"
-if %errorlevel% neq 0 exit /b %errorlevel%
-
-mklink /J "C:\ProgramData\Desktop" "C:\Users\Public\Desktop"
-if %errorlevel% neq 0 exit /b %errorlevel%
-
-mklink /J "C:\ProgramData\Documents" "C:\Users\Public\Documents"
-if %errorlevel% neq 0 exit /b %errorlevel%
-
-mklink /J "C:\ProgramData\Start Menu" "C:\ProgramData\Microsoft\Windows\Start Menu"
-if %errorlevel% neq 0 exit /b %errorlevel%
-
-mklink /J "C:\ProgramData\Templates" "C:\ProgramData\Microsoft\Windows\Templates"
-if %errorlevel% neq 0 exit /b %errorlevel%
-
-
-
-
-:: NOTE: Users has multiple <JUNCTION> folders (too many). Skip this one.
-:: NOTE: 'sysprep' can be used to move Users.
-:: Copy   "C:\Users"
-::xcopy /E /H "C:\Users" "D:\Users\"
-
-:: Delete "C:\Users"
-::del /F /S /Q "C:\Users"
-::rmdir /S /Q "C:\Users"
-
-:: Link   "C:\Users"
-::mklink /J "Users" "D:\Users\"
 
 
 :END

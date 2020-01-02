@@ -22,7 +22,7 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.1
+SET CURRENT_SCRIPT_VER=0.0.2
 SET CURRENT_SCRIPT_DATE=2020-01-02
 SET CURRENT_SCRIPT=move_pro_data.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
@@ -49,6 +49,10 @@ echo   https://www.digitalcitizen.life/4-ways-boot-safe-mode-windows-10
 ::pause
 echo.
 echo WARNING: This script might broke Windows!
+echo.
+echo Junktion folders are not created correctly!
+echo "start menu" will break, becaus of this   !
+echo.
 :PROMPT
 ::SET /P AREYOUSURE=Are you sure (Y/[N])?
 SET /P AREYOUSURE=Do you wanna continue (Y/[N])?

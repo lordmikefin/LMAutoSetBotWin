@@ -53,7 +53,7 @@ echo WARNING: This script might broke Windows!
 ::set arg1=%1
 SET DST_DRV=D
 IF %1.==. (
-	echo No argument given moving users into drive D:
+	echo No argument given moving programs into drive D:
 	echo.
 	pause
 ) ELSE (

@@ -57,7 +57,7 @@ echo.
 ::set arg1=%1
 SET DST_DRV=D
 IF %1.==. (
-	echo No argument given moving users into drive D:
+	echo No argument given moving program data into drive D:
 	echo.
 	pause
 ) ELSE (

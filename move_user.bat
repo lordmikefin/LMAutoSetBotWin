@@ -25,8 +25,8 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.7
-SET CURRENT_SCRIPT_DATE=2019-12-31
+SET CURRENT_SCRIPT_VER=0.0.8
+SET CURRENT_SCRIPT_DATE=2020-01-02
 SET CURRENT_SCRIPT=move_user.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 
@@ -105,7 +105,7 @@ IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 ::xcopy /E /H "C:\Users\test" "D:\Users\test\" /EXCLUDE:move_users_exclude.txt
 ::ROBOCOPY "C:\Users" "D:\Users\" /E /COPYALL /sl /XJ
 :: ROBOCOPY C:\Users D:\Users\ /E /COPYALL /sl /XJ
-ROBOCOPY C:\Users\%USER% D:\Users\%USER%\ /E /COPYALL /sl /XJ /R:1 /W:1 /LOG:robocopy.log
+ROBOCOPY C:\Users\%USER% D:\Users\%USER%\ /E /COPYALL /sl /XJ /R:1 /W:1 /LOG:robocopy_user.log
 :: /E       : Copy Subfolders, including Empty Subfolders.
 :: /COPYALL : Copy ALL file info (equivalent to /COPY:DATSOU)
 :: /sl      : Copy file symbolic links instead of the target [see notes below].

@@ -22,7 +22,7 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.3
+SET CURRENT_SCRIPT_VER=0.0.4
 SET CURRENT_SCRIPT_DATE=2020-01-02
 SET CURRENT_SCRIPT=move_pro_data.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
@@ -53,6 +53,17 @@ echo.
 echo Junktion folders are not created correctly!
 echo "Templates" will break, becaus of this   !
 echo.
+
+::set arg1=%1
+SET DST_DRV=D
+IF %1.==. (
+	echo No argument given moving users into drive D:
+	echo.
+	pause
+) ELSE (
+	SET DST_DRV=%1
+)
+
 :PROMPT
 ::SET /P AREYOUSURE=Are you sure (Y/[N])?
 SET /P AREYOUSURE=Do you wanna continue (Y/[N])?
@@ -68,7 +79,7 @@ IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 :: NOTE: exclude <JUNCTION> folder and recreate.
 :: Copy   "C:\ProgramData"
 ::xcopy /E /H "C:\ProgramData" "D:\ProgramData\" /EXCLUDE:exclude_pro_data.txt
-ROBOCOPY C:\ProgramData D:\ProgramData\ /E /COPYALL /sl /XJ /R:1 /W:1 /LOG:robocopy.log
+ROBOCOPY C:\ProgramData %DST_DRV%:\ProgramData\ /E /COPYALL /sl /XJ /R:1 /W:1 /LOG:robocopy_pro_data.log
 :: /E       : Copy Subfolders, including Empty Subfolders.
 :: /COPYALL : Copy ALL file info (equivalent to /COPY:DATSOU)
 :: /sl      : Copy file symbolic links instead of the target [see notes below].
@@ -110,7 +121,7 @@ if %errorlevel% neq 0 (
 )
 
 :: Link   "C:\ProgramData"
-mklink /J "C:\ProgramData" "D:\ProgramData\"
+mklink /J "C:\ProgramData" "%DST_DRV%:\ProgramData\"
 if %errorlevel% neq 0 (
 	echo.
 	echo ERROR: will exit

@@ -22,8 +22,8 @@
 
 
 
-SET CURRENT_SCRIPT_VER=0.0.6
-SET CURRENT_SCRIPT_DATE=2019-01-02
+SET CURRENT_SCRIPT_VER=0.0.7
+SET CURRENT_SCRIPT_DATE=2020-01-02
 SET CURRENT_SCRIPT=move_programs.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 
@@ -49,6 +49,17 @@ echo   https://www.digitalcitizen.life/4-ways-boot-safe-mode-windows-10
 ::pause
 echo.
 echo WARNING: This script might broke Windows!
+
+::set arg1=%1
+SET DST_DRV=D
+IF %1.==. (
+	echo No argument given moving users into drive D:
+	echo.
+	pause
+) ELSE (
+	SET DST_DRV=%1
+)
+
 :PROMPT
 ::SET /P AREYOUSURE=Are you sure (Y/[N])?
 SET /P AREYOUSURE=Do you wanna continue (Y/[N])?
@@ -59,18 +70,26 @@ IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 :: TODO: Parameterise the destination
 
 
-:: C:
-:: cd \
-
 
 :: Copy   "C:\Program Files"
-xcopy /E /H "C:\Program Files" "D:\Program Files\"
+xcopy /E /H "C:\Program Files" "%DST_DRV%:\Program Files\"
 if %errorlevel% neq 0 (
 	echo.
 	echo ERROR: will exit
 	pause
 	call exit /b %errorlevel%
 )
+
+:: Copy   "C:\Program Files (x86)"
+xcopy /E /H "C:\Program Files (x86)" "%DST_DRV%:\Program Files (x86)\"
+if %errorlevel% neq 0 (
+	echo.
+	echo ERROR: will exit
+	pause
+	call exit /b %errorlevel%
+)
+
+
 
 :: Delete files "C:\Program Files"
 del /F /S /Q "C:\Program Files"
@@ -90,7 +109,7 @@ if %errorlevel% neq 0 (
 )
 
 :: Link   "C:\Program Files"
-mklink /J "C:\Program Files" "D:\Program Files\"
+mklink /J "C:\Program Files" "%DST_DRV%:\Program Files\"
 if %errorlevel% neq 0 (
 	echo.
 	echo ERROR: will exit
@@ -99,14 +118,6 @@ if %errorlevel% neq 0 (
 )
 
 
-:: Copy   "C:\Program Files (x86)"
-xcopy /E /H "C:\Program Files (x86)" "D:\Program Files (x86)\"
-if %errorlevel% neq 0 (
-	echo.
-	echo ERROR: will exit
-	pause
-	call exit /b %errorlevel%
-)
 
 :: Delete files "C:\Program Files (x86)"
 del /F /S /Q "C:\Program Files (x86)"
@@ -127,7 +138,7 @@ if %errorlevel% neq 0 (
 )
 
 :: Link   "C:\Program Files (x86)"
-mklink /J "C:\Program Files (x86)" "D:\Program Files (x86)\"
+mklink /J "C:\Program Files (x86)" "%DST_DRV%:\Program Files (x86)\"
 if %errorlevel% neq 0 (
 	echo.
 	echo ERROR: will exit

@@ -49,6 +49,17 @@ echo   https://www.digitalcitizen.life/4-ways-boot-safe-mode-windows-10
 ::pause
 echo.
 echo WARNING: This script might broke Windows!
+
+::set arg1=%1
+SET DST_DRV=D
+IF %1.==. (
+	echo No argument given moving users into drive D:
+	echo.
+	pause
+) ELSE (
+	SET DST_DRV=%1
+)
+
 :PROMPT
 ::SET /P AREYOUSURE=Are you sure (Y/[N])?
 SET /P AREYOUSURE=Do you wanna continue (Y/[N])?
@@ -89,7 +100,7 @@ IF /I "%AREYOUSURE%" NEQ "Y" GOTO END
 ::xcopy /E /H "C:\Users" "D:\Users\" /EXCLUDE:move_users_exclude.txt
 ::ROBOCOPY "C:\Users" "D:\Users\" /E /COPYALL /sl /XJ
 :: ROBOCOPY C:\Users D:\Users\ /E /COPYALL /sl /XJ
-ROBOCOPY C:\Users D:\Users\ /E /COPYALL /sl /XJ /R:1 /W:1 /LOG:robocopy.log
+ROBOCOPY C:\Users %DST_DRV%:\Users\ /E /COPYALL /sl /XJ /R:1 /W:1 /LOG:robocopy_users.log
 :: /E       : Copy Subfolders, including Empty Subfolders.
 :: /COPYALL : Copy ALL file info (equivalent to /COPY:DATSOU)
 :: /sl      : Copy file symbolic links instead of the target [see notes below].
@@ -127,7 +138,7 @@ if %errorlevel% neq 0 (
 )
 
 :: Link   "C:\Users"
-mklink /J "C:\Users" "D:\Users\"
+mklink /J "C:\Users" "%DST_DRV%:\Users\"
 if %errorlevel% neq 0 (
 	echo.
 	echo ERROR: will exit
@@ -156,14 +167,14 @@ if %errorlevel% neq 0 (
 :: Exclude 'All Users' and 'Default User'
 ::FOR /D [/r] %%parameter IN (folder_set) DO command
 ::FOR /D  %%G IN (D:\Users\*) DO echo Found %%G
-FOR /D  %%G IN (D:\Users\*) DO (
+FOR /D  %%G IN (%DST_DRV%:\Users\*) DO (
 	echo Found %%G
 	echo Creating junction folders
 	echo.
 	
-	IF /I NOT "%%G"=="D:\Users\All Users" (
-		IF /I NOT "%%G"=="D:\Users\Default User" (
-			IF /I NOT "%%G"=="D:\Users\Public" (
+	IF /I NOT "%%G"=="%DST_DRV%:\Users\All Users" (
+		IF /I NOT "%%G"=="%DST_DRV%:\Users\Default User" (
+			IF /I NOT "%%G"=="%DST_DRV%:\Users\Public" (
 				mklink /J "%%G\AppData\Local\Application Data" "%%G\AppData\Local"
 				mklink /J "%%G\AppData\Local\History" "%%G\AppData\Local\Microsoft\Windows\History"
 				mklink /J "%%G\AppData\Local\Temporary Internet Files" "%%G\AppData\Local\Microsoft\Windows\INetCache"
@@ -190,31 +201,31 @@ FOR /D  %%G IN (D:\Users\*) DO (
 
 :: 'Default' is not found by for loop
 :: Recreate junction folders into Default
-mklink /J "D:\Users\Default\AppData\Local\Application Data" "D:\Users\Default\AppData\Local"
-mklink /J "D:\Users\Default\AppData\Local\History" "D:\Users\Default\AppData\Local\Microsoft\Windows\History"
-mklink /J "D:\Users\Default\AppData\Local\Temporary Internet Files" "D:\Users\Default\AppData\Local\Microsoft\Windows\INetCache"
-mklink /J "D:\Users\Default\AppData\Local\Microsoft\Windows\Temporary Internet Files" "D:\Users\Default\AppData\Local\Microsoft\Windows\INetCache"
+mklink /J "%DST_DRV%:\Users\Default\AppData\Local\Application Data" "%DST_DRV%:\Users\Default\AppData\Local"
+mklink /J "%DST_DRV%:\Users\Default\AppData\Local\History" "%DST_DRV%:\Users\Default\AppData\Local\Microsoft\Windows\History"
+mklink /J "%DST_DRV%:\Users\Default\AppData\Local\Temporary Internet Files" "%DST_DRV%:\Users\Default\AppData\Local\Microsoft\Windows\INetCache"
+mklink /J "%DST_DRV%:\Users\Default\AppData\Local\Microsoft\Windows\Temporary Internet Files" "%DST_DRV%:\Users\Default\AppData\Local\Microsoft\Windows\INetCache"
 ::mklink /J "D:\Users\%USER%\AppData\Local\Microsoft\Windows\INetCache\Content.IE5" "D:\Users\%USER%\AppData\Local\Microsoft\Windows\INetCache\IE"
-mklink /J "D:\Users\Default\Documents\My Music" "D:\Users\Default\Music"
-mklink /J "D:\Users\Default\Documents\My Pictures" "D:\Users\Default\Pictures"
-mklink /J "D:\Users\Default\Documents\My Videos" "D:\Users\Default\Videos"
-mklink /J "D:\Users\Default\Application Data" "D:\Users\Default\AppData\Roaming"
-mklink /J "D:\Users\Default\Cookies" "D:\Users\Default\AppData\Local\Microsoft\Windows\INetCookies"
-mklink /J "D:\Users\Default\Local Settings" "D:\Users\Default\AppData\Local"
-mklink /J "D:\Users\Default\My Documents" "D:\Users\Default\Documents"
-mklink /J "D:\Users\Default\NetHood" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\Network Shortcuts"
-mklink /J "D:\Users\Default\PrintHood" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\Printer Shortcuts"
-mklink /J "D:\Users\Default\Recent" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\Recent"
-mklink /J "D:\Users\Default\SendTo" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo"
-mklink /J "D:\Users\Default\Start Menu" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu"
-mklink /J "D:\Users\Default\Templates" "D:\Users\Default\AppData\Roaming\Microsoft\Windows\Templates"
+mklink /J "%DST_DRV%:\Users\Default\Documents\My Music" "%DST_DRV%:\Users\Default\Music"
+mklink /J "%DST_DRV%:\Users\Default\Documents\My Pictures" "%DST_DRV%:\Users\Default\Pictures"
+mklink /J "%DST_DRV%:\Users\Default\Documents\My Videos" "%DST_DRV%:\Users\Default\Videos"
+mklink /J "%DST_DRV%:\Users\Default\Application Data" "%DST_DRV%:\Users\Default\AppData\Roaming"
+mklink /J "%DST_DRV%:\Users\Default\Cookies" "%DST_DRV%:\Users\Default\AppData\Local\Microsoft\Windows\INetCookies"
+mklink /J "%DST_DRV%:\Users\Default\Local Settings" "%DST_DRV%:\Users\Default\AppData\Local"
+mklink /J "%DST_DRV%:\Users\Default\My Documents" "%DST_DRV%:\Users\Default\Documents"
+mklink /J "%DST_DRV%:\Users\Default\NetHood" "%DST_DRV%:\Users\Default\AppData\Roaming\Microsoft\Windows\Network Shortcuts"
+mklink /J "%DST_DRV%:\Users\Default\PrintHood" "%DST_DRV%:\Users\Default\AppData\Roaming\Microsoft\Windows\Printer Shortcuts"
+mklink /J "%DST_DRV%:\Users\Default\Recent" "%DST_DRV%:\Users\Default\AppData\Roaming\Microsoft\Windows\Recent"
+mklink /J "%DST_DRV%:\Users\Default\SendTo" "%DST_DRV%:\Users\Default\AppData\Roaming\Microsoft\Windows\SendTo"
+mklink /J "%DST_DRV%:\Users\Default\Start Menu" "%DST_DRV%:\Users\Default\AppData\Roaming\Microsoft\Windows\Start Menu"
+mklink /J "%DST_DRV%:\Users\Default\Templates" "%DST_DRV%:\Users\Default\AppData\Roaming\Microsoft\Windows\Templates"
 
 
 :: 'Public' is not found by for loop
 :: Recreate junction folders into Public
-mklink /J "D:\Users\Public\Documents\My Music" "D:\Users\Public\Music"
-mklink /J "D:\Users\Public\Documents\My Pictures" "D:\Users\Public\Pictures"
-mklink /J "D:\Users\Public\Documents\My Videos" "D:\Users\Public\Videos"
+mklink /J "%DST_DRV%:\Users\Public\Documents\My Music" "%DST_DRV%:\Users\Public\Music"
+mklink /J "%DST_DRV%:\Users\Public\Documents\My Pictures" "%DST_DRV%:\Users\Public\Pictures"
+mklink /J "%DST_DRV%:\Users\Public\Documents\My Videos" "%DST_DRV%:\Users\Public\Videos"
 
 
 :: Users folder

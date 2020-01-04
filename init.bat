@@ -34,16 +34,16 @@ SET PATH_TOY_BOX=C:\LM_ToyBox\
 SET PATH_INSTALLERS=%PATH_TOY_BOX%temp
 :: TODO: parameterize the destination installation path
 ::SET PATH_APPS=%PATH_TOY_BOX%apps
-SET PATH_APPS=C:\Program Files\apps
+SET PATH_APPS=C:\Program Files
 SET PATH_APP_GIT=%PATH_APPS%\Git
 SET PATH_APP_PY37=%PATH_APPS%\Python37
 ::echo PATH_APP_PY37: %PATH_APP_PY37%
 
-mkdir %PATH_TOY_BOX%
-mkdir %PATH_INSTALLERS%
-mkdir %PATH_APPS%
-mkdir %PATH_APP_GIT%
-mkdir %PATH_APP_PY37%
+mkdir "%PATH_TOY_BOX%"
+mkdir "%PATH_INSTALLERS%"
+mkdir "%PATH_APPS%"
+mkdir "%PATH_APP_GIT%"
+mkdir "%PATH_APP_PY37%"
 ::dir %PATH_INSTALLERS%
 
 

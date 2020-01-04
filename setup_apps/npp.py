@@ -32,7 +32,7 @@ _file_name = ''
 def is_installed_npp():
 	# TODO: This will open help windows. Is there better way to test ?
 	#command = str(PATH_APP_NPP) + '\\notepad++ --help'
-	command = str(PATH_APP_NPP) + '\\notepad++ -quickPrint'
+	command = '"' + str(PATH_APP_NPP) + '\\notepad++" -quickPrint'
 	print(str(command))
 	res = int(os.system(command))
 	if res > 0:

@@ -122,7 +122,7 @@ PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -Argument
 ::   https://github.com/msysgit/msysgit/wiki/Silent-or-Unattended-Installation
 
 :: Install Git
-call %PATH_APP_GIT%\bin\git.exe --version
+call "%PATH_APP_GIT%\bin\git.exe" --version
 ::if %errorlevel% neq 0 exit /b %errorlevel%
 :: Install only if not found.
 if %errorlevel% neq 0 (
@@ -142,7 +142,7 @@ if %errorlevel% neq 0 (
 :: TODO: Should we remove old installation and install again? Or something *sigh*
 
 :: Install Python
-call %PATH_APP_PY37%\python.exe --version
+call "%PATH_APP_PY37%\python.exe" --version
 if %errorlevel% neq 0 (
 	:: Got error. Git is not yet installed.
 	echo.

@@ -147,7 +147,7 @@ if %errorlevel% neq 0 (
 	:: Got error. Git is not yet installed.
 	echo.
 	echo Install Python
-	SET COM=%PATH_INSTALLERS%\%FILE_PY37% /quiet InstallAllUsers=1 TargetDir="%PATH_APP_PY37%\" PrependPath=1
+	SET COM=%PATH_INSTALLERS%\%FILE_PY37% /quiet InstallAllUsers=1 TargetDir="%PATH_APP_PY37%" PrependPath=1
 	echo " $ call %COM%"
 	:: TODO: 'quiet' mode does not install Python if installer ask to select 'install', 'repair', etc.
 	call %COM%

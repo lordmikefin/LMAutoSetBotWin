@@ -1,6 +1,7 @@
 [Setup]
 Lang=default
-Dir=C:\LM_ToyBox\apps\Git
+;NOTE: install dir is passed as paramter in init.bat
+;Dir=C:\LM_ToyBox\apps\Git
 Group=Git
 NoIcons=0
 SetupType=default

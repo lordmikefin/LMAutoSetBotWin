@@ -18,8 +18,8 @@
 ::  - Git
 ::  - Python
 
-SET CURRENT_SCRIPT_VER=0.0.4
-SET CURRENT_SCRIPT_DATE=2019-11-18
+SET CURRENT_SCRIPT_VER=0.0.5
+SET CURRENT_SCRIPT_DATE=2020-01-04
 SET CURRENT_SCRIPT=init.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 
@@ -32,7 +32,9 @@ echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 ::   C:\LM_ToyBox\apps\Python\Python37
 SET PATH_TOY_BOX=C:\LM_ToyBox\
 SET PATH_INSTALLERS=%PATH_TOY_BOX%temp
-SET PATH_APPS=%PATH_TOY_BOX%apps
+:: TODO: parameterize the destination installation path
+::SET PATH_APPS=%PATH_TOY_BOX%apps
+SET PATH_APPS=C:\Program Files\apps
 SET PATH_APP_GIT=%PATH_APPS%\Git
 SET PATH_APP_PY37=%PATH_APPS%\Python37
 ::echo PATH_APP_PY37: %PATH_APP_PY37%
@@ -116,6 +118,9 @@ pause
 PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -ArgumentList '-Command Set-ExecutionPolicy Restricted'}"
 
 
+:: NOTE: Read more about silent / unattended git installation
+::   https://github.com/msysgit/msysgit/wiki/Silent-or-Unattended-Installation
+
 :: Install Git
 call %PATH_APP_GIT%\bin\git.exe --version
 ::if %errorlevel% neq 0 exit /b %errorlevel%
@@ -124,9 +129,9 @@ if %errorlevel% neq 0 (
 	:: Got error. Git is not yet installed.
 	echo.
 	echo Install Git
-	:: TODO: This path is hard coded in git.inf file. Can we pass this as parameter?
-	echo " $ call %PATH_INSTALLERS%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="%PATH_TOY_BOX%git.log""
-	call %PATH_INSTALLERS%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="%PATH_TOY_BOX%git.log"
+	SET COM=%PATH_INSTALLERS%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="%PATH_TOY_BOX%git.log" /DIR="%PATH_APP_GIT%"
+	echo " $ call %COM%"
+	call %COM%
 ) else (
 	echo.
 	echo Git is already installed.
@@ -171,10 +176,10 @@ PATH=%PATH_APP_PY37%\;%PATH_APP_PY37%\Scripts\;%PATH%
 
 
 :: Create Python virtual environment 'venv-LMAutoSetBotWin'
-CALL setup_python_venv.bat
+::CALL setup_python_venv.bat
 
 :: Launch python script. Will install applications.
-CALL setup_apps.bat
+::CALL setup_apps.bat
 
 echo.
 echo End of script '%CURRENT_SCRIPT%'

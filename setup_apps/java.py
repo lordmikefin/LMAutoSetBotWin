@@ -91,7 +91,10 @@ def install_jre():
     '''
     # TODO: Install silently
     # TODO: Can I change java installation path?
-    command = str(str(_installer_file_fullname))
+    # TODO: how to install Java silently (unattended)
+    # https://www.java.com/en/download/help/silent_install.xml
+    #   /s, if used, indicates a silent installation.
+    command = str(str(_installer_file_fullname) + ' /s')
     print('Start OracleJRE installer.')
     print(command)
     print('')

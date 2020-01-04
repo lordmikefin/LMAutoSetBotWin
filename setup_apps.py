@@ -95,4 +95,5 @@ if __name__ == '__main__':
 	setup_apps.connect_samba_share()
 	setup_apps.npp.run()
 	setup_apps.java.run()
+	setup_apps.eclipse.run()
 

@@ -140,8 +140,8 @@ def update_env_var_path():
     #PATH=%PATH_APP_PY37%\;%PATH_APP_PY37%\Scripts\;%PATH%
     
     _path = str(os.environ.get('PATH'))
-    print('')
-    print('PATH : ' + _path)
+    #print('')
+    #print('PATH : ' + _path)
     '''
     command = str('PATH=' + str(_javapath) + ';%PATH%')
     print(command)
@@ -149,7 +149,7 @@ def update_env_var_path():
     print('result : ' + str(res))
     '''
     os.environ['PATH'] = str(_javapath) + ';' + _path
-    print('PATH : ' + str(os.environ.get('PATH')))
+    #print('PATH : ' + str(os.environ.get('PATH')))
 
 def run():
 	print('')

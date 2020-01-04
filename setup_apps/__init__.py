@@ -20,7 +20,7 @@
 """
 
 __license__ = "MIT License"
-__version__ = "0.0.9"
+__version__ = "0.0.10"
 __revision__ = "setup_apps (module)  v" + __version__ + " (2020-01-04)"
 
 
@@ -107,6 +107,6 @@ def connect_samba_share():
 # TODO: Activat 'npp' with function call !
 from . import npp
 from . import java
-#from . import eclipse
+from . import eclipse
 #from . import pydev
 

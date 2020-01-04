@@ -53,7 +53,7 @@ Try {
 	$url = "${Env:URL_GIT}"
 	$file = "${Env:PATH_INSTALLERS}\${Env:FILE_GIT}"
 	$file_item = Get-Item ${file} -ErrorAction Stop
-	$file_size = ${file}.length
+	$file_size = ${file_item}.length
 	Write-Host "Download Git into temp folder"
 	Write-Host "url: ${url}"
 	Write-Host "file: ${file}"
@@ -78,7 +78,7 @@ Write-Host ""
 Try {
 	$url = "${Env:URL_PY37}"
 	$file = "${Env:PATH_INSTALLERS}\${Env:FILE_PY37}"
-	$file_item = Get-Item $file
+	$file_item = Get-Item ${file} -ErrorAction Stop
 	$file_size = ${file_item}.length
 	Write-Host "Download Python into temp folder"
 	Write-Host "url: ${url}"

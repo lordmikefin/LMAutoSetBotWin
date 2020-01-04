@@ -123,13 +123,13 @@ PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -Argument
 
 :: Install Git
 call "%PATH_APP_GIT%\bin\git.exe" --version
+SET COM=%PATH_INSTALLERS%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="%PATH_TOY_BOX%git.log" /DIR="%PATH_APP_GIT%"
 ::if %errorlevel% neq 0 exit /b %errorlevel%
 :: Install only if not found.
 if %errorlevel% neq 0 (
 	:: Got error. Git is not yet installed.
 	echo.
 	echo Install Git
-	SET COM=%PATH_INSTALLERS%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="%PATH_TOY_BOX%git.log" /DIR="%PATH_APP_GIT%"
 	echo " $ call %COM%"
 	call %COM%
 ) else (
@@ -143,11 +143,11 @@ if %errorlevel% neq 0 (
 
 :: Install Python
 call "%PATH_APP_PY37%\python.exe" --version
+SET COM=%PATH_INSTALLERS%\%FILE_PY37% /quiet InstallAllUsers=1 TargetDir="%PATH_APP_PY37%" PrependPath=1
 if %errorlevel% neq 0 (
 	:: Got error. Git is not yet installed.
 	echo.
 	echo Install Python
-	SET COM=%PATH_INSTALLERS%\%FILE_PY37% /quiet InstallAllUsers=1 TargetDir="%PATH_APP_PY37%" PrependPath=1
 	echo " $ call %COM%"
 	:: TODO: 'quiet' mode does not install Python if installer ask to select 'install', 'repair', etc.
 	call %COM%

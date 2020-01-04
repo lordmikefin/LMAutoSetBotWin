@@ -18,7 +18,7 @@
 ::  - Git
 ::  - Python
 
-SET CURRENT_SCRIPT_VER=0.0.6
+SET CURRENT_SCRIPT_VER=0.0.7
 SET CURRENT_SCRIPT_DATE=2020-01-04
 SET CURRENT_SCRIPT=init.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
@@ -177,7 +177,7 @@ PATH=%PATH_APP_PY37%\;%PATH_APP_PY37%\Scripts\;%PATH%
 
 
 :: Create Python virtual environment 'venv-LMAutoSetBotWin'
-::CALL setup_python_venv.bat
+CALL setup_python_venv.bat
 
 :: Launch python script. Will install applications.
 ::CALL setup_apps.bat

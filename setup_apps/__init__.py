@@ -20,7 +20,7 @@
 """
 
 __license__ = "MIT License"
-__version__ = "0.0.10"
+__version__ = "0.0.11"
 __revision__ = "setup_apps (module)  v" + __version__ + " (2020-01-04)"
 
 
@@ -80,6 +80,7 @@ PATH_APP_PY37 = PATH_APPS + '\\Python37'
 PATH_APP_NPP = PATH_APPS + '\\Notepad++'
 PATH_APP_ECLIPSE = PATH_APPS + '\\eclipse'
 PATH_APP_PYDEV = PATH_APPS + '\\eclipse\\pydev'
+PATH_APP_PUTTY = PATH_APPS + '\\putty'
 
 
 def connect_samba_share():
@@ -109,4 +110,5 @@ from . import npp
 from . import java
 from . import eclipse
 from . import pydev
+from . import putty
 

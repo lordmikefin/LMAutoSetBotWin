@@ -97,4 +97,5 @@ if __name__ == '__main__':
 	setup_apps.java.run()
 	setup_apps.eclipse.run()
 	setup_apps.pydev.run()
+	setup_apps.putty.run()
 

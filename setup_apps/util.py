@@ -86,3 +86,4 @@ def shortcut(exe_file: str, dst_link_file: str, ico: str=''):
     print(command)
     res = int(os.system(command))
     # TODO: How to handle possible errors?
+

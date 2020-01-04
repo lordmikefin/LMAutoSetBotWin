@@ -138,4 +138,3 @@ def run():
 	# TODO: Disable 'security warning' and UAC
 	#install_npp()
 
-

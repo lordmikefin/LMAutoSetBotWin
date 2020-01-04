@@ -29,6 +29,21 @@ import os
 _putty_ver = ''
 _installer_file_fullname = ''
 _file_name = ''
+_plink = ''
+
+
+def set_env_var():
+	# TODO: make util from this
+	#   https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/setx
+	command = 'setx GIT_SSH ' + '"' + str(_plink) + '"'
+	print(str(command))
+	res = int(os.system(command))
+	if res > 0:
+		print('GIT_SSH is not set.')
+		return False
+
+	print('GIT_SSH is set.')
+	return True
 
 
 def is_installed():
@@ -36,7 +51,8 @@ def is_installed():
 	#   https://the.earth.li/~sgtatham/putty/0.73/htmldoc/Chapter3.html#using-cmdline
 	#command = str(PATH_APP_PUTTY) + '\\putty'
 	# NOTE: putty does not print version, but plink does
-	command = '"' + str(PATH_APP_PUTTY) + '\\plink' + '"' + ' -V '
+	#command = '"' + str(PATH_APP_PUTTY) + '\\plink' + '"' + ' -V '
+	command = '"' + str(_plink) + '"' + ' -V '
 	print(str(command))
 	res = int(os.system(command))
 	if res > 0:
@@ -110,6 +126,9 @@ def define_file():
 	global _putty_ver
 	global _installer_file_fullname
 	global _file_name
+	global _plink
+
+	_plink = str(PATH_APP_PUTTY) + '\\plink'
 
 	_putty_ver = '0.73'
 	installer_file = 'putty-64bit-' + _putty_ver + '-installer.msi'
@@ -139,4 +158,6 @@ def run():
 
 	if not is_installed():
 		install()
+
+	set_env_var()
 

@@ -34,7 +34,9 @@ _file_name = ''
 def is_installed():
 	# TODO: how to test putty exists
 	#   https://the.earth.li/~sgtatham/putty/0.73/htmldoc/Chapter3.html#using-cmdline
-	command = str(PATH_APP_PUTTY) + '\\putty'
+	#command = str(PATH_APP_PUTTY) + '\\putty'
+	# NOTE: putty does not print version, but plink does
+	command = '"' + str(PATH_APP_PUTTY) + '\\plink' + '"' + ' -V '
 	print(str(command))
 	res = int(os.system(command))
 	if res > 0:
@@ -48,7 +50,7 @@ def is_installed():
 def is_download():
 	# \\192.168.122.1\sambashare\windows\putty-0.73.tar.gz
 	# By now \\192.168.122.1\sambashare\windows\ should be bind to W: drive
-	print(str(_installer_file_fullname))
+	#print(str(_installer_file_fullname))
 
 	# https://stackabuse.com/python-check-if-a-file-or-directory-exists/
 	return os.path.isfile(_installer_file_fullname)
@@ -125,12 +127,13 @@ def run():
 
 	# TODO: Install Putty
 
+	print('')
 	print('Test comment from "putty.py"')
 
 	print('Value of variable "PATH_APP_PUTTY": ' + str(PATH_APP_PUTTY))
 	print('Value of variable "PATH_INSTALLERS": ' + str(PATH_INSTALLERS))
 
-	define_file_npp()
+	define_file()
 	if not is_download():
 		download()
 

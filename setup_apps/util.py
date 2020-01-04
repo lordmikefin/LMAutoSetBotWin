@@ -22,6 +22,7 @@
 import os
 import sys
 import urllib.request
+import requests
 
 PWS='powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile'
 
@@ -34,10 +35,16 @@ def download(url: str, dst: str):
 
     Bash:
     https://sourceforge.net/p/forge/documentation/Downloading%20files%20via%20the%20command%20line/
+
+    TODO: Test more ways.
+    https://dzone.com/articles/simple-examples-of-downloading-files-using-python
     '''
-    file_name, headers = urllib.request.urlretrieve(url, filename=dst)
-    print('file_name : ' + str(file_name))
-    print('headers   : ' + str(headers))
+    data = requests.get(url)
+    open(dst, 'wb').write(data.content)
+
+    #file_name, headers = urllib.request.urlretrieve(url, filename=dst)
+    #print('file_name : ' + str(file_name))
+    #print('headers   : ' + str(headers))
 
     #command = ''
     #res = int(os.system(command))

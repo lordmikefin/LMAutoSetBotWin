@@ -17,8 +17,8 @@
 #  - Git
 #  - Python
 
-$Current_script_ver="0.0.2"
-$Current_script_date="2019-10-06"
+$Current_script_ver="0.0.3"
+$Current_script_date="2020-01-04"
 $Current_script="init.ps1"
 #echo Current_script_ver: ${Current_script_ver} (${Current_script_date})
 Write-Host "Current_script_ver: ${Current_script_ver} (${Current_script_date})"
@@ -44,43 +44,59 @@ $client = new-object System.Net.WebClient
 
 
 
-# TODO: How to suppress the 'Get-Item' error?
+# TODO: Improve how to 'Get-Item' error is supressed
 
 
 # Download Git into temp folder
 Write-Host ""
-$url = "${Env:URL_GIT}"
-$file = "${Env:PATH_INSTALLERS}\${Env:FILE_GIT}"
-$file_size = (Get-Item $file).length
-Write-Host "Download Git into temp folder"
-Write-Host "url: ${url}"
-Write-Host "file: ${file}"
-Write-Host "file size: ${file_size}"
-#file size: 47701816
-if ( ${file_size} -eq 47701816) {
-	Write-Host "File already exist."
-} else {
+Try {
+	$url = "${Env:URL_GIT}"
+	$file = "${Env:PATH_INSTALLERS}\${Env:FILE_GIT}"
+	$file_item = Get-Item ${file} -ErrorAction Stop
+	$file_size = ${file}.length
+	Write-Host "Download Git into temp folder"
+	Write-Host "url: ${url}"
+	Write-Host "file: ${file}"
+	Write-Host "file size: ${file_size}"
+	#file size: 47701816
+	if ( ${file_size} -eq 47701816) {
+		Write-Host "File already exist."
+	} else {
+		$client.DownloadFile("${url}","${file}")
+	}
+}
+Catch {
+	Write-Host "Download Git into temp folder"
+	Write-Host "url: ${url}"
+	Write-Host "file: ${file}"
 	$client.DownloadFile("${url}","${file}")
 }
 
 
 # Download Python into temp folder
 Write-Host ""
-$url = "${Env:URL_PY37}"
-$file = "${Env:PATH_INSTALLERS}\${Env:FILE_PY37}"
-$file_item = Get-Item $file
-$file_size = ${file_item}.length
-Write-Host "Download Git into temp folder"
-Write-Host "url: ${url}"
-Write-Host "file: ${file}"
-Write-Host "file size: ${file_size}"
-#file size: 26680368
-if ( ${file_size} -eq 26680368 ) {
-	Write-Host "File already exist."
-} else {
+Try {
+	$url = "${Env:URL_PY37}"
+	$file = "${Env:PATH_INSTALLERS}\${Env:FILE_PY37}"
+	$file_item = Get-Item $file
+	$file_size = ${file_item}.length
+	Write-Host "Download Python into temp folder"
+	Write-Host "url: ${url}"
+	Write-Host "file: ${file}"
+	Write-Host "file size: ${file_size}"
+	#file size: 26680368
+	if ( ${file_size} -eq 26680368 ) {
+		Write-Host "File already exist."
+	} else {
+		$client.DownloadFile("${url}","${file}")
+	}
+}
+Catch {
+	Write-Host "Download Python into temp folder"
+	Write-Host "url: ${url}"
+	Write-Host "file: ${file}"
 	$client.DownloadFile("${url}","${file}")
 }
-
 
 Write-Host ""
 Write-Host "End of script '${Current_script}'"

@@ -18,7 +18,7 @@
 ::  - Git
 ::  - Python
 
-SET CURRENT_SCRIPT_VER=0.0.5
+SET CURRENT_SCRIPT_VER=0.0.6
 SET CURRENT_SCRIPT_DATE=2020-01-04
 SET CURRENT_SCRIPT=init.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
@@ -147,9 +147,10 @@ if %errorlevel% neq 0 (
 	:: Got error. Git is not yet installed.
 	echo.
 	echo Install Python
-	echo " $ call %PATH_INSTALLERS%\%FILE_PY37% /quiet InstallAllUsers=1 TargetDir=%PATH_APP_PY37%\ PrependPath=1"
+	SET COM=%PATH_INSTALLERS%\%FILE_PY37% /quiet InstallAllUsers=1 TargetDir="%PATH_APP_PY37%\" PrependPath=1
+	echo " $ call %COM%"
 	:: TODO: 'quiet' mode does not install Python if installer ask to select 'install', 'repair', etc.
-	call %PATH_INSTALLERS%\%FILE_PY37% /quiet InstallAllUsers=1 TargetDir=%PATH_APP_PY37%\ PrependPath=1
+	call %COM%
 ) else (
 	echo.
 	echo Git is already installed.

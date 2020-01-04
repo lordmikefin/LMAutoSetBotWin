@@ -92,4 +92,6 @@ if __name__ == '__main__':
 	# TODO: Activat 'setup_apps' module with function call !
 	import setup_apps
 
+	setup_apps.connect_samba_share()
+	setup_apps.npp.run()
 

@@ -117,25 +117,25 @@ def install_npp():
 		print('notepad++ installation done.')
 		return True
 
+def run():
+	# TODO: Download Notepad++ installer
 
-# TODO: Download Notepad++ installer
+	# TODO: Install Notepad++
 
-# TODO: Install Notepad++
+	print('Test comment from "npp.py"')
 
-print('Test comment from "npp.py"')
-
-print('Value of variable "PATH_APP_NPP": ' + str(PATH_APP_NPP))
-print('Value of variable "PATH_INSTALLERS": ' + str(PATH_INSTALLERS))
+	print('Value of variable "PATH_APP_NPP": ' + str(PATH_APP_NPP))
+	print('Value of variable "PATH_INSTALLERS": ' + str(PATH_INSTALLERS))
 
 
-define_file_npp()
-if not is_download_npp():
-	download_npp()
+	define_file_npp()
+	if not is_download_npp():
+		download_npp()
 
-if not is_installed_npp():
-	install_npp()
+	if not is_installed_npp():
+		install_npp()
 
-# TODO: Disable 'security warning' and UAC
-#install_npp()
+	# TODO: Disable 'security warning' and UAC
+	#install_npp()
 
 

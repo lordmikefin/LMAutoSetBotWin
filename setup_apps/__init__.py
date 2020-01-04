@@ -20,8 +20,8 @@
 """
 
 __license__ = "MIT License"
-__version__ = "0.0.5"
-__revision__ = "setup_apps (module)  v" + __version__ + " (2019-12-02)"
+__version__ = "0.0.6"
+__revision__ = "setup_apps (module)  v" + __version__ + " (2020-01-04)"
 
 
 '''
@@ -54,7 +54,9 @@ import os
 # TODO: Are these needed?
 INIT_PATH_TOY_BOX = 'C:\\LM_ToyBox\\'
 INIT_PATH_INSTALLERS = INIT_PATH_TOY_BOX + 'temp'
-INIT_PATH_APPS = INIT_PATH_TOY_BOX + 'apps'
+# TODO: parameterize the destination installation path
+#INIT_PATH_APPS = INIT_PATH_TOY_BOX + 'apps'
+INIT_PATH_APPS = 'C:\Program Files'
 INIT_PATH_APP_GIT = INIT_PATH_APPS + '\\Git'
 INIT_PATH_APP_PY37 = INIT_PATH_APPS + '\\Python37'
 
@@ -68,8 +70,10 @@ PATH_TOY_BOX = PATH_ROOT + 'LM_ToyBox\\'
 #PATH_INSTALLERS = PATH_TOY_BOX + 'download'
 DRIVE_INSTALLER = 'W:'
 PATH_INSTALLERS = DRIVE_INSTALLER + '\\'
+# TODO: parameterize the destination installation path
 #PATH_APPS = PATH_TOY_BOX + 'apps'
-PATH_APPS = PATH_ROOT + 'apps'
+#PATH_APPS = PATH_ROOT + 'apps'
+PATH_APPS = INIT_PATH_APPS
 
 PATH_APP_GIT = PATH_APPS + '\\Git'
 PATH_APP_PY37 = PATH_APPS + '\\Python37'
@@ -96,13 +100,13 @@ def connect_samba_share():
 		return True
 
 
-connect_samba_share()
+#connect_samba_share()
 
 
 # TODO: Import at top of this script.
 # TODO: Activat 'npp' with function call !
 from . import npp
-from . import java
-from . import eclipse
-from . import pydev
+#from . import java
+#from . import eclipse
+#from . import pydev
 

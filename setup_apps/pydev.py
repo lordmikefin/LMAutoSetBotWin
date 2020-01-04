@@ -121,32 +121,35 @@ def define_file():
     _jar_file = _eclipse_path + '\\plugins\\org.python.pydev_7.4.0.201910251334\\pydev.jar'
     print(str(_installer_file_fullname))
 
-print('')
-print('Test comment from "pydev.py"')
 
-print('Value of variable "PATH_APP_PYDEV": ' + str(PATH_APP_PYDEV))
-print('Value of variable "PATH_INSTALLERS": ' + str(PATH_INSTALLERS))
+def run():
+	print('')
+	print('Test comment from "pydev.py"')
 
-define_file()
-if not is_download():
-    download()
+	print('Value of variable "PATH_APP_PYDEV": ' + str(PATH_APP_PYDEV))
+	print('Value of variable "PATH_INSTALLERS": ' + str(PATH_INSTALLERS))
 
-if not is_download():
-    # TODO: How we should handle error?
-    print('')
-    print('Installer is still missing!?')
-    print('I will now exit with error :(')
-    util.pause()
-    sys.exit(1)
+	define_file()
+	if not is_download():
+		download()
 
-if not is_installed():
-    if install():
-        pass
+	if not is_download():
+		# TODO: How we should handle error?
+		print('')
+		print('Installer is still missing!?')
+		print('I will now exit with error :(')
+		util.pause()
+		sys.exit(1)
 
-if not is_installed():
-    # TODO: How we should handle error?
-    print('')
-    print('pydev was not installed!?')
-    print('I will now exit with error :(')
-    util.pause()
-    sys.exit(1)
+	if not is_installed():
+		if install():
+		    pass
+
+	if not is_installed():
+		# TODO: How we should handle error?
+		print('')
+		print('pydev was not installed!?')
+		print('I will now exit with error :(')
+		util.pause()
+		sys.exit(1)
+

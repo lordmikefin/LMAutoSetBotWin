@@ -27,7 +27,7 @@
 #__docformat__ = 'reStructuredText'
 
 __license__ = "MIT License"
-__version__ = "0.0.5"
+__version__ = "0.0.6"
 __revision__ = "setup_apps.py  v" + __version__ + " (2019-09-30)"
 
 import sys
@@ -96,4 +96,5 @@ if __name__ == '__main__':
 	setup_apps.npp.run()
 	setup_apps.java.run()
 	setup_apps.eclipse.run()
+	setup_apps.pydev.run()
 

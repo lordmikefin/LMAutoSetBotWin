@@ -148,19 +148,19 @@ def update_env_var_path():
     os.environ['PATH'] = str(_javapath) + ';' + _path
     print('PATH : ' + str(os.environ.get('PATH')))
 
+def run():
+	print('')
+	print('Test comment from "java.py"')
 
-print('')
-print('Test comment from "java.py"')
+	# TODO: Can default installation be changed?  (C:\Program Files\Java\jre1.8.0_221)
+	#print('Value of variable "PATH_APP_NPP": ' + str(PATH_APP_NPP))
+	print('Value of variable "PATH_INSTALLERS": ' + str(PATH_INSTALLERS))
 
-# TODO: Can default installation be changed?  (C:\Program Files\Java\jre1.8.0_221)
-#print('Value of variable "PATH_APP_NPP": ' + str(PATH_APP_NPP))
-print('Value of variable "PATH_INSTALLERS": ' + str(PATH_INSTALLERS))
+	define_file_jre()
+	if not is_download_jre():
+		download_jre()
 
-define_file_jre()
-if not is_download_jre():
-	download_jre()
-
-if not is_installed_jre():
-    if install_jre():
-        update_env_var_path()
+	if not is_installed_jre():
+		if install_jre():
+		    update_env_var_path()
 

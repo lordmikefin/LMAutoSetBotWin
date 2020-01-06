@@ -64,7 +64,8 @@ def is_installed():
 	#   https://unix.stackexchange.com/questions/418616/python-how-to-print-value-that-comes-from-os-system
 
 	#res = int(os.system(command))
-	res = util.run_command(command)
+	com_res = util.run_command(command)
+	res = com_res.errorlevel
 	if res > 0:
 		print('python NOT installed.')
 		return False

@@ -27,7 +27,7 @@ import subprocess
 import traceback
 
 from distutils.version import StrictVersion
-
+from .namedtuples import CommandRet
 
 PWS='powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile'
 
@@ -122,22 +122,29 @@ def compare_version(ver_a: str, ver_b: str) -> int:
 	return 0
 
 
-def run_command(command: str) -> int:
+def run_command(command: str) -> CommandRet:
+	# TODO: read more about 'subprocess'
+	#   https://docs.python.org/3/library/subprocess.html
+	#   https://docs.python.org/3/library/subprocess.html#subprocess.check_output
+	test = ''
     try:
         #test = subprocess.check_output(command, shell=True)
         test = subprocess.check_output(command, shell=False)
         #print('Stored output: ' + str(test))
+		print('Stored output type: ' type(test))
         print('Stored output: ' + str(test, 'utf-8'))
     except subprocess.CalledProcessError as err:
         print('Command failed')
         print("Error: {0}".format(err))
         # TODO: get error code from 'subprocess'
-        return 1
+        #return 1
+		return CommandRet(errorlevel=1)
     except FileNotFoundError as err:
         print('Command failed')
         print("Error: {0}".format(err))
         # TODO: get error code from 'subprocess'
-        return 1
+        #return 1
+		return CommandRet(errorlevel=1)
     except:
         print('Command failed')
         print("Unexpected error:", sys.exc_info()[0])
@@ -145,8 +152,10 @@ def run_command(command: str) -> int:
         #exc_type, exc_value, exc_traceback = sys.exc_info()
         traceback.print_exc()
         # TODO: get error code from 'subprocess'
-        return 1 # what is default error code ?
+        #return 1 # what is default error code ?
+		return CommandRet(errorlevel=1)
 
     # TODO: get error code from 'subprocess'
-    return 0
+    #return 0
+	return CommandRet(errorlevel=0, stdout=test)
 

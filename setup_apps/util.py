@@ -23,6 +23,7 @@ import os
 import sys
 import urllib.request
 import requests
+from distutils.version import StrictVersion
 
 PWS='powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile'
 
@@ -93,4 +94,25 @@ def shortcut(exe_file: str, dst_link_file: str, ico: str=''):
     print(command)
     res = int(os.system(command))
     # TODO: How to handle possible errors?
+
+
+def compare_version(ver_a: str, ver_b: str) -> int:
+	'''
+	Compare version numbers
+
+
+	Return -1 if version A is older than version B
+	Return 0 if version A and B are equivalent
+	Return 1 if version A is newer than version B
+
+	https://stackoverflow.com/questions/11887762/how-do-i-compare-version-numbers-in-python/21065570
+	https://stackoverflow.com/questions/1714027/version-number-comparison-in-python
+	'''
+	if StrictVersion(ver_a) < StrictVersion(ver_b):
+		return -1 # A is older
+
+	if StrictVersion(ver_a) > StrictVersion(ver_b):
+		return 1 # A is newer
+
+	return 0
 

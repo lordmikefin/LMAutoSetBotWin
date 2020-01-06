@@ -24,6 +24,8 @@ from . import util
 
 
 import os
+import re
+import subprocess
 
 
 _git_ver = ''
@@ -49,17 +51,44 @@ def set_env_var():
 
 
 def is_installed():
-	# TODO: how to test git exists
+	# TODO: Improve this function. Contains too many thigs.
 	# TODO: how to update if version is different
+	# util.compare_version(ver_a: str, ver_b: str)
+
 	command = '"' + str(PATH_APP_GIT) + '\\bin\\git" --version'
 	print(str(command))
+	# NOTE: os.system() just runs the process, it doesn't capture the output
+	#   https://unix.stackexchange.com/questions/418616/python-how-to-print-value-that-comes-from-os-system
 	res = int(os.system(command))
 	if res > 0:
 		print('git NOT installed.')
 		return False
 
 	print('git already installed.')
+	# TODO: read more about 'subprocess'
+	#   https://docs.python.org/3/library/subprocess.html
+	version_current = subprocess.check_output(command, shell=True);
+	print(version_current)
+	print(type(version_current))
+	print(str(version_current, 'utf-8'))
+	parsed_ver = parse_version(str(version_current, 'utf-8'))
+	print(parsed_ver)
+	test = util.compare_version(_git_ver, parsed_ver)
+	print(test)
+	if test == 1: # A is newer
+		print('Current version is older.')
+		print('Upgrading git to version' + _git_ver + '.')
+		return False
 	return True
+
+
+def parse_version(git_ver: str) -> str:
+	# https://docs.python.org/3/library/re.html
+	res = re.search(r'[0-9]+\.[0-9]+\.[0-9]+', git_ver)
+	print(res)
+	print(res[0])
+	#return git_ver
+	return res[0]
 
 
 def is_download():

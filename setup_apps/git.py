@@ -32,6 +32,25 @@ _git_ver = ''
 _installer_file_fullname = ''
 _file_name = ''
 
+_git_cmd = '"' + str(PATH_APP_GIT) + '\\bin\\git"'
+
+# TODO: parameterize user and email.
+_user = 'Lord Mike'
+_user_mail = 'lordmike@iki.fi'
+
+
+def define_the_user():
+	# TODO: parameterize user and email.
+	command = _git_cmd + ' config --global user.name "' + _user + '"'
+	res = int(os.system(command))
+	if res > 0:
+		print('Failed to set user for git!')
+
+	command = _git_cmd + ' config --global user.email ' + __user_mail
+	res = int(os.system(command))
+	if res > 0:
+		print('Failed to set user email for git!')
+
 
 def set_env_var():
 	# TODO: make util from this
@@ -55,7 +74,7 @@ def is_installed():
 	# TODO: how to update if version is different
 	# util.compare_version(ver_a: str, ver_b: str)
 
-	command = '"' + str(PATH_APP_GIT) + '\\bin\\git" --version'
+	command = _git_cmd + ' --version'
 	print(str(command))
 	# NOTE: os.system() just runs the process, it doesn't capture the output
 	#   https://unix.stackexchange.com/questions/418616/python-how-to-print-value-that-comes-from-os-system
@@ -152,6 +171,7 @@ def define_file():
 	global _git_ver
 	global _installer_file_fullname
 	global _file_name
+	global _git_cmd
 
 	# https://github.com/git-for-windows/git/releases/download/v2.23.0.windows.1/Git-2.23.0-64-bit.exe
 	# https://github.com/git-for-windows/git/releases/download/v2.24.1.windows.2/Git-2.24.1.2-64-bit.exe
@@ -164,6 +184,8 @@ def define_file():
 	#installer_path = "W:/"
 	installer_path = PATH_INSTALLERS
 	_installer_file_fullname = str(installer_path) + str(installer_file)
+
+	_git_cmd = '"' + str(PATH_APP_GIT) + '\\bin\\git"'
 
 	print(str(_installer_file_fullname))
 
@@ -187,4 +209,7 @@ def run():
 		install()
 
 	#set_env_var()
+
+	if is_installed():
+		define_the_user()
 

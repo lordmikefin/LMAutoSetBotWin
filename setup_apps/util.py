@@ -23,9 +23,14 @@ import os
 import sys
 import urllib.request
 import requests
+import subprocess
+import traceback
+
 from distutils.version import StrictVersion
 
+
 PWS='powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile'
+
 
 def download(url: str, dst: str):
     '''
@@ -115,4 +120,32 @@ def compare_version(ver_a: str, ver_b: str) -> int:
 		return 1 # A is newer
 
 	return 0
+
+
+def run_command(command: str) -> int:
+    try:
+        #test = subprocess.check_output(command, shell=True)
+        test = subprocess.check_output(command, shell=False)
+        print('Stored output: ' + str(test))
+    except subprocess.CalledProcessError as err:
+        print('Command failed')
+        print("Error: {0}".format(err))
+        # TODO: get error code from 'subprocess'
+        return 1
+    except FileNotFoundError as err:
+        print('Command failed')
+        print("Error: {0}".format(err))
+        # TODO: get error code from 'subprocess'
+        return 1
+    except:
+        print('Command failed')
+        print("Unexpected error:", sys.exc_info()[0])
+        print("Unexpected error:", sys.exc_info())
+        #exc_type, exc_value, exc_traceback = sys.exc_info()
+        traceback.print_exc()
+        # TODO: get error code from 'subprocess'
+        return 1 # what is default error code ?
+
+    # TODO: get error code from 'subprocess'
+    return 0
 

@@ -62,7 +62,9 @@ def is_installed():
 	print(str(command))
 	# NOTE: os.system() just runs the process, it doesn't capture the output
 	#   https://unix.stackexchange.com/questions/418616/python-how-to-print-value-that-comes-from-os-system
-	res = int(os.system(command))
+
+	#res = int(os.system(command))
+	res = util.run_command(command)
 	if res > 0:
 		print('python NOT installed.')
 		return False

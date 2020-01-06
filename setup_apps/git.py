@@ -108,8 +108,9 @@ def is_installed():
 	res_err = com_res.errorlevel
 	print(version_current)
 	print(type(version_current))
-	print(str(version_current, 'utf-8'))
-	parsed_ver = parse_version(str(version_current, 'utf-8'))
+	#print(str(version_current, 'utf-8'))
+	#parsed_ver = parse_version(str(version_current, 'utf-8'))
+	parsed_ver = parse_version(str(version_current))
 	print(parsed_ver)
 	test = util.compare_version(_git_ver, parsed_ver)
 	print(test)

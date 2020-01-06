@@ -131,7 +131,7 @@ def run_command(command: str) -> CommandRet:
         #test = subprocess.check_output(command, shell=True)
         test = subprocess.check_output(command, shell=False)
         #print('Stored output: ' + str(test))
-        print('Stored output type: ' type(test))
+        print('Stored output type: ' + str(type(test)))
         print('Stored output: ' + str(test, 'utf-8'))
     except subprocess.CalledProcessError as err:
         print('Command failed')

@@ -20,7 +20,7 @@
 """
 
 __license__ = "MIT License"
-__version__ = "0.0.19"
+__version__ = "0.0.20"
 __revision__ = "setup_apps (module)  v" + __version__ + " (2020-01-06)"
 
 
@@ -76,7 +76,9 @@ PATH_INSTALLERS = DRIVE_INSTALLER + '\\'
 PATH_APPS = INIT_PATH_APPS
 
 PATH_APP_GIT = PATH_APPS + '\\Git'
+# TODO: how to dynamically define the python folder version?
 PATH_APP_PY37 = PATH_APPS + '\\Python37'
+PATH_APP_PY38 = PATH_APPS + '\\Python38'
 PATH_APP_NPP = PATH_APPS + '\\Notepad++'
 PATH_APP_ECLIPSE = PATH_APPS + '\\eclipse'
 PATH_APP_PYDEV = PATH_APPS + '\\eclipse\\pydev'
@@ -112,4 +114,5 @@ from . import eclipse
 from . import pydev
 from . import putty
 from . import git
+from . import python
 

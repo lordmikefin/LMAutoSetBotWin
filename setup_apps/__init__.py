@@ -20,8 +20,8 @@
 """
 
 __license__ = "MIT License"
-__version__ = "0.0.13"
-__revision__ = "setup_apps (module)  v" + __version__ + " (2020-01-05)"
+__version__ = "0.0.14"
+__revision__ = "setup_apps (module)  v" + __version__ + " (2020-01-06)"
 
 
 '''
@@ -111,4 +111,5 @@ from . import java
 from . import eclipse
 from . import pydev
 from . import putty
+from . import git
 

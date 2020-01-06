@@ -157,5 +157,5 @@ def run_command(command: str) -> CommandRet:
 
     # TODO: get error code from 'subprocess'
     #return 0
-    return CommandRet(errorlevel=0, stdout=test)
+    return CommandRet(errorlevel=0, stdout=str(test, 'utf-8'))
 

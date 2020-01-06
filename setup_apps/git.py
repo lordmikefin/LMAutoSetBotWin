@@ -102,7 +102,10 @@ def is_installed():
 	print('git already installed.')
 	# TODO: read more about 'subprocess'
 	#   https://docs.python.org/3/library/subprocess.html
-	version_current = subprocess.check_output(command, shell=True);
+	#version_current = subprocess.check_output(command, shell=True);
+	com_res = util.run_command(command)
+	version_current = com_res.stdout
+	res_err = com_res.errorlevel
 	print(version_current)
 	print(type(version_current))
 	print(str(version_current, 'utf-8'))

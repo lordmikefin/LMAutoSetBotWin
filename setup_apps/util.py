@@ -126,7 +126,8 @@ def run_command(command: str) -> int:
     try:
         #test = subprocess.check_output(command, shell=True)
         test = subprocess.check_output(command, shell=False)
-        print('Stored output: ' + str(test))
+        #print('Stored output: ' + str(test))
+        print('Stored output: ' + str(test, 'utf-8'))
     except subprocess.CalledProcessError as err:
         print('Command failed')
         print("Error: {0}".format(err))

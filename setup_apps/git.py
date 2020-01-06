@@ -51,14 +51,14 @@ def set_env_var():
 def is_installed():
 	# TODO: how to test git exists
 	# TODO: how to update if version is different
-	command = str(PATH_APP_GIT) + '\\bin\\git --version'
+	command = '"' + str(PATH_APP_GIT) + '\\bin\\git" --version'
 	print(str(command))
 	res = int(os.system(command))
 	if res > 0:
-		print('Putty NOT installed.')
+		print('git NOT installed.')
 		return False
 
-	print('Putty already installed.')
+	print('git already installed.')
 	return True
 
 

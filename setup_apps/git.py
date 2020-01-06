@@ -120,7 +120,12 @@ def install():
 
 	# https://stackoverflow.com/questions/14894993/running-windows-shell-commands-with-python
 
-	# TODO: Silent (unattended) install
+	# READ MORE: Silent (unattended) install
+	#   https://github.com/msysgit/msysgit/wiki/Silent-or-Unattended-Installation
+	#   http://www.jrsoftware.org/ishelp/index.php?topic=setupcmdline
+
+	# TODO: Generate the inf file.
+	# TODO: Is there way to set all inf-file selections with command line?
 
 	command = _installer_file_fullname + ' /SILENT '
 	command = command + ' /LOADINF="git.inf" '

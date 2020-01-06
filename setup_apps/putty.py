@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
-	npp.py
-	~~~~~~
+	putty.py
+	~~~~~~~~
 
 	Install Putty and assosiated soft
 

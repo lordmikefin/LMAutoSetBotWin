@@ -42,11 +42,27 @@ _user_mail = 'lordmike@iki.fi'
 def define_the_user():
 	# TODO: parameterize user and email.
 	command = _git_cmd + ' config --global user.name "' + _user + '"'
+	print(str(command))
+	''' NOTE: This will raise error: 'C:\Program' is not recognized as an internal or external command, operable program or batch file.
 	res = int(os.system(command))
 	if res > 0:
 		print('Failed to set user for git!')
+	'''
 
-	command = _git_cmd + ' config --global user.email ' + __user_mail
+	try:
+		test = subprocess.check_output(command, shell=True)
+		#print(str(test))
+		#print('TEST')
+	except subprocess.CalledProcessError as err:
+		print('Failed to set user for git!')
+		print("Error: {0}".format(err))
+	except:
+		print('Failed to set user for git!')
+		print("Unexpected error:", sys.exc_info()[0])
+		print("Unexpected error:", sys.exc_info())
+
+	command = _git_cmd + ' config --global user.email ' + _user_mail
+	print(str(command))
 	res = int(os.system(command))
 	if res > 0:
 		print('Failed to set user email for git!')

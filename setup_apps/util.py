@@ -1,22 +1,22 @@
 # -*- coding: UTF-8 -*-
 """
-	util.py
-	~~~~~~~
+    util.py
+    ~~~~~~~
 
-	Usefull tools.
+    Usefull tools.
 
-	License of this script file:
-	   MIT License
+    License of this script file:
+       MIT License
 
-	License is available online:
-	  https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/LICENSE
+    License is available online:
+      https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/LICENSE
 
-	Latest version of this script file:
-	  https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/setup_apps/util.py
+    Latest version of this script file:
+      https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/setup_apps/util.py
 
 
-	:copyright: (c) 2019, Mikko Niemelä a.k.a. Lord Mike (lordmike@iki.fi)
-	:license: MIT License
+    :copyright: (c) 2019, Mikko Niemelä a.k.a. Lord Mike (lordmike@iki.fi)
+    :license: MIT License
 """
 
 import os
@@ -102,49 +102,49 @@ def shortcut(exe_file: str, dst_link_file: str, ico: str=''):
 
 
 def compare_version(ver_a: str, ver_b: str) -> int:
-	'''
-	Compare version numbers
+    '''
+    Compare version numbers
 
 
-	Return -1 if version A is older than version B
-	Return 0 if version A and B are equivalent
-	Return 1 if version A is newer than version B
+    Return -1 if version A is older than version B
+    Return 0 if version A and B are equivalent
+    Return 1 if version A is newer than version B
 
-	https://stackoverflow.com/questions/11887762/how-do-i-compare-version-numbers-in-python/21065570
-	https://stackoverflow.com/questions/1714027/version-number-comparison-in-python
-	'''
-	if StrictVersion(ver_a) < StrictVersion(ver_b):
-		return -1 # A is older
+    https://stackoverflow.com/questions/11887762/how-do-i-compare-version-numbers-in-python/21065570
+    https://stackoverflow.com/questions/1714027/version-number-comparison-in-python
+    '''
+    if StrictVersion(ver_a) < StrictVersion(ver_b):
+        return -1 # A is older
 
-	if StrictVersion(ver_a) > StrictVersion(ver_b):
-		return 1 # A is newer
+    if StrictVersion(ver_a) > StrictVersion(ver_b):
+        return 1 # A is newer
 
-	return 0
+    return 0
 
 
 def run_command(command: str) -> CommandRet:
-	# TODO: read more about 'subprocess'
-	#   https://docs.python.org/3/library/subprocess.html
-	#   https://docs.python.org/3/library/subprocess.html#subprocess.check_output
-	test = ''
+    # TODO: read more about 'subprocess'
+    #   https://docs.python.org/3/library/subprocess.html
+    #   https://docs.python.org/3/library/subprocess.html#subprocess.check_output
+    test = ''
     try:
         #test = subprocess.check_output(command, shell=True)
         test = subprocess.check_output(command, shell=False)
         #print('Stored output: ' + str(test))
-		print('Stored output type: ' type(test))
+        print('Stored output type: ' type(test))
         print('Stored output: ' + str(test, 'utf-8'))
     except subprocess.CalledProcessError as err:
         print('Command failed')
         print("Error: {0}".format(err))
         # TODO: get error code from 'subprocess'
         #return 1
-		return CommandRet(errorlevel=1)
+        return CommandRet(errorlevel=1)
     except FileNotFoundError as err:
         print('Command failed')
         print("Error: {0}".format(err))
         # TODO: get error code from 'subprocess'
         #return 1
-		return CommandRet(errorlevel=1)
+        return CommandRet(errorlevel=1)
     except:
         print('Command failed')
         print("Unexpected error:", sys.exc_info()[0])
@@ -153,9 +153,9 @@ def run_command(command: str) -> CommandRet:
         traceback.print_exc()
         # TODO: get error code from 'subprocess'
         #return 1 # what is default error code ?
-		return CommandRet(errorlevel=1)
+        return CommandRet(errorlevel=1)
 
     # TODO: get error code from 'subprocess'
     #return 0
-	return CommandRet(errorlevel=0, stdout=test)
+    return CommandRet(errorlevel=0, stdout=test)
 

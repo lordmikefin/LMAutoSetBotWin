@@ -99,5 +99,5 @@ if __name__ == '__main__':
 	setup_apps.pydev.run()
 	setup_apps.putty.run()
 	setup_apps.git.run()
-	#setup_apps.python.run()
+	setup_apps.python.run()
 

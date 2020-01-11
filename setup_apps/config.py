@@ -52,4 +52,5 @@ def read_write():
     print('read from file: ' + str(XML_TEST))
     tree = ET.parse(XML_TEST)
     print('write to file: ' + str(XML_CONFIG))
-    tree.write(XML_CONFIG)
+    #tree.write(XML_CONFIG)
+    tree.write(XML_CONFIG, encoding="UTF-8", xml_declaration=True)

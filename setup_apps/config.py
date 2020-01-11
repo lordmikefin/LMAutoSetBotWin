@@ -21,7 +21,12 @@
 
 import xml.etree.ElementTree as ET
 
+XML_CONFIG = 'xml_config.xml'
+XML_TEST = 'test.xml'
+
 # https://stackabuse.com/reading-and-writing-xml-files-in-python/
+
+# https://docs.python.org/3.7/library/xml.etree.elementtree.html
 
 def create_test_xml():
     # create the file structure
@@ -39,6 +44,12 @@ def create_test_xml():
     print('create a new XML file with the results')
     mydata = str(ET.tostring(xml_config),'utf-8')
     print('mydata type: ' + str(type(mydata)))
-    myfile = open("xml_config.xml", "w")
+    myfile = open(XML_CONFIG, "w")
     myfile.write(mydata)
     myfile.close()
+
+def read_write():
+    print('read from file: ' + str(XML_TEST))
+    tree = ET.parse(XML_TEST)
+    print('write to file: ' + str(XML_CONFIG))
+    tree.write(XML_CONFIG)

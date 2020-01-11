@@ -20,7 +20,7 @@
 """
 
 __license__ = "MIT License"
-__version__ = "0.0.23"
+__version__ = "0.0.24"
 __revision__ = "setup_apps (module)  v" + __version__ + " (2020-01-06)"
 
 
@@ -105,6 +105,7 @@ def connect_samba_share():
 
 #connect_samba_share()
 
+from . import config
 
 # TODO: Import at top of this script.
 # TODO: Activat 'npp' with function call !

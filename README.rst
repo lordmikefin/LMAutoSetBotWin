@@ -44,3 +44,20 @@ NOTE: UAC will be disabled. You should enable UAC at end.
  cd C:\LM_ToyBox\temp\LMAutoSetBotWin-master\
  UAC-Enable.bat
  :: Reboot !
+
+Clone the project using SSH.
+
+.. code-block:: bash
+
+ git clone git@github.com:lordmikefin/LMAutoSetBotWin.git
+ 
+ cd LMAutoSetBotWin/
+ 
+ git submodule init
+ git submodule update
+ 
+ cd setup_apps
+ 
+ git checkout master
+ git remote -v
+ git remote set-url origin git@github.com:lordmikefin/setup_apps.git

@@ -15,6 +15,10 @@ Download this project master.zip_
 
 .. _master.zip: https://github.com/lordmikefin/LMAutoSetBotWin/archive/master.zip
 
+Also download needed submodule project sa-master.zip_
+
+.. _sa-master.zip: https://github.com/lordmikefin/setup_apps/archive/master.zip
+
 Extract and run file "init.bat".
 
 Here is command line instructions to run the Bot :)
@@ -34,7 +38,13 @@ NOTE: UAC will be disabled. You should enable UAC at end.
  PowerShell -Command "& {$client = new-object System.Net.WebClient; $client.DownloadFile('https://github.com/lordmikefin/LMAutoSetBotWin/archive/master.zip','.\LMAutoSetBotWin-master.zip')}"
  PowerShell -Command "Expand-Archive '.\LMAutoSetBotWin-master.zip' '.\'"
  
+ PowerShell -Command "& {$client = new-object System.Net.WebClient; $client.DownloadFile('https://github.com/lordmikefin/setup_apps/archive/master.zip','.\setup_apps-master.zip')}"
+ PowerShell -Command "Expand-Archive '.\setup_apps-master.zip' '.\LMAutoSetBotWin-master\'"
+ copy ".\LMAutoSetBotWin-master\setup_apps-master\*" ".\LMAutoSetBotWin-master\setup_apps\"
+ 
  cd C:\LM_ToyBox\temp\LMAutoSetBotWin-master\
+ rmdir setup_apps
+ 
  UAC-Disable.bat
  :: Reboot !
  

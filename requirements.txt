@@ -1,5 +1,0 @@
-#Babel==2.7.0
-requests==2.22.0
-lxml==4.4.2
-
-# TODO: move this requirements into setup_apps module

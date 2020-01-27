@@ -9,6 +9,13 @@ TODO: Auto reconnect USB device
 When permission mode is changed MTP (Media sync)/PTP (Camera sync),
 then USB device is disconnected from quest OS :(
 https://karlcode.owtelse.com/blog/2017/01/09/disabling-usb-ports-on-linux/
+
+Attaching a USB device to KVM that reconnects frequently
+ - kvm - virsh
+https://www.koendiels.be/attaching-a-usb-device-to-kvm-that-reconnects-frequently
+
+https://www.spice-space.org/usbredir.html
+ - spice - qemu
 --
 
 

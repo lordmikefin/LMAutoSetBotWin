@@ -1,4 +1,17 @@
 
+(2020-xx-xx)
+--
+
+
+(2020-xx-xx)
+TODO: Auto reconnect USB device
+
+When permission mode is changed MTP (Media sync)/PTP (Camera sync),
+then USB device is disconnected from quest OS :(
+https://karlcode.owtelse.com/blog/2017/01/09/disabling-usb-ports-on-linux/
+--
+
+
 (2020-01-27)
 
 TODO: Remove unwanted default windows apps (M$ Store)

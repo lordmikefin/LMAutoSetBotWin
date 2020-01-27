@@ -1,7 +1,18 @@
 
+(2020-01-27)
+
+TODO: Remove unwanted default windows apps (M$ Store)
+TODO: How to (re)install M$ store apps without account
+https://www.google.com/search?q=microsoft+photos+offline+installer
+https://www.winhelponline.com/blog/reinstall-photos-app-windows-10/
+https://docs.microsoft.com/en-us/microsoft-store/distribute-offline-apps
+--
+
+
 (2019-10-06)
 
 TODO: Disable all power settings. Some of them will crash the KVM ?!
+--
 
 
 (2019-08-26)
@@ -9,4 +20,5 @@ TODO: Disable all power settings. Some of them will crash the KVM ?!
 TODO: Create initialization Batch file to download and install 'git' and 'python'.
 
 Look sample code from project 'kvm-gpu-guide' /guest/winodws/init.bat
+--
 

@@ -3,7 +3,7 @@
 --
 
 
-(2020-xx-xx)
+(2020-01-27)
 TODO: Auto reconnect USB device
 
 When permission mode is changed MTP (Media sync)/PTP (Camera sync),

@@ -27,15 +27,15 @@ The new install quide
  PowerShell -Command "& {$client = new-object System.Net.WebClient; $client.DownloadFile('https://github.com/lordmikefin/LMAutoSetBotWin/releases/download/v0.0.1/LMAutoSetBotWin.zip','.\LMAutoSetBotWin.zip')}"
  PowerShell -Command "Expand-Archive '.\LMAutoSetBotWin.zip' '.\'"
  
- cd C:\LM_ToyBox\temp\LMAutoSetBotWin-master\
+ cd C:\LM_ToyBox\temp\LMAutoSetBotWin\
  
  UAC-Disable.bat
  :: Reboot !
  
- cd C:\LM_ToyBox\temp\LMAutoSetBotWin-master\
+ cd C:\LM_ToyBox\temp\LMAutoSetBotWin\
  init.bat
  
- cd C:\LM_ToyBox\temp\LMAutoSetBotWin-master\
+ cd C:\LM_ToyBox\temp\LMAutoSetBotWin\
  UAC-Enable.bat
  :: Reboot !
 

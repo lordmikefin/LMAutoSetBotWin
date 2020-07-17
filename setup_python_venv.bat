@@ -189,7 +189,6 @@ echo (venv) $ pip3 install -U -r requirements.txt
 echo.
 call pip3 install -U -r setup_apps\requirements.txt
 echo.
-echo.
 if %errorlevel% neq 0 (
 	echo.
 	echo Exit from virtual environment 'venv-LMAutoSetBotWin'.
@@ -197,6 +196,33 @@ if %errorlevel% neq 0 (
 	echo.
 	::deactivate
 	::call %USERPROFILE%\Envs\venv-LMAutoSetBotWin\Scripts\deactivate.bat
+	call deactivate
+	
+	pause
+	exit /b %errorlevel%
+)
+
+:: app_source_handler
+call pip3 install -U -r app_source_handler\requirements.txt
+echo.
+if %errorlevel% neq 0 (
+	echo.
+	echo Exit from virtual environment 'venv-LMAutoSetBotWin'.
+	echo  $ deactivate
+	echo.
+	call deactivate
+	
+	pause
+	exit /b %errorlevel%
+)
+:: LMToyBoxPython
+call pip3 install -U -r LMToyBoxPython\requirements.txt
+echo.
+if %errorlevel% neq 0 (
+	echo.
+	echo Exit from virtual environment 'venv-LMAutoSetBotWin'.
+	echo  $ deactivate
+	echo.
 	call deactivate
 	
 	pause

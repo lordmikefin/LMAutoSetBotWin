@@ -193,6 +193,11 @@ if __name__ == '__main__':
         setup_apps.config.parse()
         setup_apps.config.init()
         setup_apps.config.download()
+        # TODO: got OSError: [WinError 740] The requested operation requires elevation
+        # TODO: How to auto elevate console to admin?
+        # TODO: check if we are a admin and notify the user
+        # https://stackoverflow.com/questions/15039137/windowserror-error-740-the-requested-operation-requires-elevation-even-after
+        # https://stackoverflow.com/questions/130763/request-uac-elevation-from-within-a-python-script
         setup_apps.config.install()
         setup_apps.config.configure()
     except:

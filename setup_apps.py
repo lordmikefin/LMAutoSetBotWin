@@ -174,25 +174,32 @@ if __name__ == '__main__':
     activate_virtual_environment()
     print_python_enviroment_info()
 
-
-    setup_apps.connect_samba_share()
-    # TODO: xml config file should be generated separately
-    # TODO: parameterise location of xml config file
-    setup_apps.config.create_sample()
-    setup_apps.config.print_sample()
-    '''
-    setup_apps.npp.run()
-    setup_apps.java.run()
-    setup_apps.eclipse.run()
-    setup_apps.pydev.run()
-    setup_apps.putty.run()
-    setup_apps.git.run()
-    setup_apps.python.run()
-    '''
-    setup_apps.config.parse()
-    setup_apps.config.init()
-    setup_apps.config.download()
-    setup_apps.config.install()
-    setup_apps.config.configure()
+    try:
+        setup_apps.connect_samba_share()
+        # TODO: xml config file should be generated separately
+        # TODO: parameterise location of xml config file
+        setup_apps.config.create_sample()
+        setup_apps.config.print_sample()
+        '''
+        setup_apps.npp.run()
+        setup_apps.java.run()
+        setup_apps.eclipse.run()
+        setup_apps.pydev.run()
+        setup_apps.putty.run()
+        setup_apps.git.run()
+        setup_apps.python.run()
+        '''
+        setup_apps.config.parse()
+        setup_apps.config.init()
+        setup_apps.config.download()
+        setup_apps.config.install()
+        setup_apps.config.configure()
+    except:
+        logger.error("Unexpected error: " + str(sys.exc_info()[0]))
+        # print stck trace
+        # https://docs.python.org/3/library/traceback.html
+        #traceback.print_exc()
+        formatted_lines = traceback.format_exc()
+        logger.error(formatted_lines)
 
     logger.info('Stop time: ' + str(datetime.now()))

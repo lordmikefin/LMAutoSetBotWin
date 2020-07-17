@@ -32,6 +32,8 @@ __revision__ = "setup_apps.py  v" + __version__ + " (2020-07-17)"
 
 import sys
 import os
+import logging
+from datetime import datetime
 
 
 def print_python_enviroment_info():
@@ -117,7 +119,7 @@ def conf_LMToyBoxPython_handler_logger(log_file_name: str=''):
         logger_conf.addHandler(create_hand_file(log_file_name))
 
 def create_logger(log_file_name: str=''):
-    logger = logging.getLogger('setup_app.py caller')
+    logger = logging.getLogger('setup_apps.py caller')
     logger.addHandler(create_hand_stdout())
     logger.addHandler(create_hand_stderr())
     if log_file_name:

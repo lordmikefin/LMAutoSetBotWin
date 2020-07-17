@@ -35,7 +35,7 @@ import os
 import logging
 from datetime import datetime
 import traceback
-
+import ctypes
 
 def print_python_enviroment_info():
     """ Print OS and system information into the console. """
@@ -128,15 +128,21 @@ def create_logger(log_file_name: str=''):
     logger.propagate = False
     return logger
 
+def is_admin():
+    # https://stackoverflow.com/questions/130763/request-uac-elevation-from-within-a-python-script
+    try:
+        return ctypes.windll.shell32.IsUserAnAdmin()
+    except:
+        return False
 
 
 # https://stackoverflow.com/questions/7791574/how-can-i-print-a-python-files-docstring-when-executing-it
 
-if __name__ == '__main__':
-    # TODO: Import at top of this script.
-    # TODO: Activat 'setup_apps' module with function call !
-    import setup_apps
+# TODO: Import at top of this script.
+# TODO: Activat 'setup_apps' module with function call !
+import setup_apps
 
+def main_process():
     # TODO: parameterise the log file name
     log_file_name = 'test.log'
     conf_root_logger()
@@ -209,3 +215,14 @@ if __name__ == '__main__':
         logger.error(formatted_lines)
 
     logger.info('Stop time: ' + str(datetime.now()))
+    setup_apps.util.pause()
+
+if __name__ == '__main__':
+    # https://stackoverflow.com/questions/130763/request-uac-elevation-from-within-a-python-script
+    if is_admin():
+        # Code of your program here
+        main_process()
+    else:
+        # Re-run the program with admin rights
+        ctypes.windll.shell32.ShellExecuteW(None, "runas", sys.executable, " ".join(sys.argv), None, 1)
+        setup_apps.util.pause()

@@ -1,22 +1,22 @@
 # -*- coding: UTF-8 -*-
 """
-	setup_apps.py
-	~~~~~~~~~~~~~
+    setup_apps.py
+    ~~~~~~~~~~~~~
 
-	This script will install all apps.
+    This script will install all apps.
 
-	License of this script file:
-	   MIT License
+    License of this script file:
+       MIT License
 
-	License is available online:
-	  https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/LICENSE
+    License is available online:
+      https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/LICENSE
 
-	Latest version of this script file:
-	  https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/setup_apps.py
+    Latest version of this script file:
+      https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/setup_apps.py
 
 
-	:copyright: (c) 2019, Mikko Niemelä a.k.a. Lord Mike (lordmike@iki.fi)
-	:license: MIT License
+    :copyright: (c) 2019, Mikko Niemelä a.k.a. Lord Mike (lordmike@iki.fi)
+    :license: MIT License
 
 """
 
@@ -27,77 +27,166 @@
 #__docformat__ = 'reStructuredText'
 
 __license__ = "MIT License"
-__version__ = "0.0.8"
-__revision__ = "setup_apps.py  v" + __version__ + " (2019-09-30)"
+__version__ = "0.0.9"
+__revision__ = "setup_apps.py  v" + __version__ + " (2020-07-17)"
 
 import sys
 import os
 
 
 def print_python_enviroment_info():
-	""" Print OS and system information into the console. """
-	#print('PATH : ' + str(os.environ.get('PATH')))
-	print('VIRTUAL_ENV    : ' + str(os.environ.get('VIRTUAL_ENV')))
-	print('Python version : ' + str(sys.version))
-	print('sys.prefix     : ' + str(sys.prefix))
-	print('')
+    """ Print OS and system information into the console. """
+    #print('PATH : ' + str(os.environ.get('PATH')))
+    print('VIRTUAL_ENV    : ' + str(os.environ.get('VIRTUAL_ENV')))
+    print('Python version : ' + str(sys.version))
+    print('sys.prefix     : ' + str(sys.prefix))
+    print('')
 
 
 def activate_virtual_environment():
-	""" Load Python virtual environment. """
-	# http://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html
-	#os.system('lsvirtualenv')
+    """ Load Python virtual environment. """
+    # http://virtualenvwrapper.readthedocs.io/en/latest/command_ref.html
+    #os.system('lsvirtualenv')
 
-	#https://docs.python.org/3/tutorial/venv.html
-	#py_home = '/var/www/venv-lm-scripts/env'
-	#activate_this = py_home + '/bin/activate_this.py'
-	#py_home = 'C:/Users/lordmike/Envs/venv-LMAutoSetBotWin'
-	py_home = os.environ.get('USERPROFILE') + '/Envs/venv-LMAutoSetBotWin'
-	activate_this = py_home + '/Scripts/activate_this.py'
+    #https://docs.python.org/3/tutorial/venv.html
+    #py_home = '/var/www/venv-lm-scripts/env'
+    #activate_this = py_home + '/bin/activate_this.py'
+    #py_home = 'C:/Users/lordmike/Envs/venv-LMAutoSetBotWin'
+    py_home = os.environ.get('USERPROFILE') + '/Envs/venv-LMAutoSetBotWin'
+    activate_this = py_home + '/Scripts/activate_this.py'
 
-	with open(activate_this) as file_:
-		exec(file_.read(), dict(__file__=activate_this))
+    with open(activate_this) as file_:
+        exec(file_.read(), dict(__file__=activate_this))
+
+
+
+def conf_root_logger():
+    # Default log level.
+    logging.basicConfig(level=logging.DEBUG)
+
+def create_formatter(log_log_point: bool=True):
+    #formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s')
+    #formatter = logging.Formatter('%(name)-10s - %(levelname)-4s: %(message)s')
+    f_str = '[%(name)-10s] %(levelname)-4s: %(message)s'
+    if log_log_point:
+        f_str += ' [%(pathname)s:%(lineno)d]'
+    formatter = logging.Formatter(f_str)
+    return formatter
+
+def create_hand_file(log_file_name: str):
+    hand = logging.FileHandler(log_file_name)
+    hand.setLevel(logging.DEBUG)
+    hand.setFormatter(create_formatter(log_log_point=False))
+    return hand
+
+def create_hand_stdout():
+    hand_stdout = logging.StreamHandler(stream=sys.stdout)
+    hand_stdout.setLevel(logging.DEBUG)
+    hand_stdout.setFormatter(create_formatter())
+    return hand_stdout
+
+def create_hand_stderr():
+    hand_stderr = logging.StreamHandler(stream=sys.stderr)
+    hand_stderr.setLevel(logging.ERROR)
+    #hand_stderr.setFormatter(create_formatter())
+    f_str = '[%(name)-10s] %(levelname)-4s: %(message)s [%(pathname)s:%(lineno)d]'
+    formatter = logging.Formatter(f_str)
+    hand_stderr.setFormatter(formatter)
+    return hand_stderr
+
+def conf_setup_apps_logger(log_file_name: str=''):
+    #logger_conf = setup_apps.logger
+    logger_conf = logging.getLogger('setup_apps')
+    logger_conf.addHandler(create_hand_stdout())
+    logger_conf.addHandler(create_hand_stderr())
+    if log_file_name:
+        logger_conf.addHandler(create_hand_file(log_file_name))
+
+def conf_app_source_handler_logger(log_file_name: str=''):
+    logger_conf = logging.getLogger('app_source_handler')
+    logger_conf.addHandler(create_hand_stdout())
+    logger_conf.addHandler(create_hand_stderr())
+    if log_file_name:
+        logger_conf.addHandler(create_hand_file(log_file_name))
+
+def conf_LMToyBoxPython_handler_logger(log_file_name: str=''):
+    logger_conf = logging.getLogger('LMToyBoxPython')
+    logger_conf.addHandler(create_hand_stdout())
+    logger_conf.addHandler(create_hand_stderr())
+    if log_file_name:
+        logger_conf.addHandler(create_hand_file(log_file_name))
+
+def create_logger(log_file_name: str=''):
+    logger = logging.getLogger('setup_app.py caller')
+    logger.addHandler(create_hand_stdout())
+    logger.addHandler(create_hand_stderr())
+    if log_file_name:
+        logger.addHandler(create_hand_file(log_file_name))
+    logger.propagate = False
+    return logger
+
 
 
 # https://stackoverflow.com/questions/7791574/how-can-i-print-a-python-files-docstring-when-executing-it
 
 if __name__ == '__main__':
-	#print('main')
-	#print(__doc__)
-	#print(__docformat__)
-	#import doctest
-	#print(str(doctest.testmod()))
+    # TODO: Import at top of this script.
+    # TODO: Activat 'setup_apps' module with function call !
+    import setup_apps
 
-	print(__license__)
-	print(__revision__)
-	print(__version__)
-	print('')
+    # TODO: parameterise the log file name
+    log_file_name = 'test.log'
+    conf_root_logger()
+    conf_setup_apps_logger(log_file_name)
+    conf_app_source_handler_logger(log_file_name)
+    conf_LMToyBoxPython_handler_logger(log_file_name)
+    #LMToyBoxPython.logging_test()
+    setup_apps.util.stop_urllib3_logger()
 
-	from argparse import ArgumentParser
-	parser = ArgumentParser(description=__doc__)
-	# TODO: Add your arguments here
-	'''
-	parser.add_argument("-f", "--file", dest="myFilenameVariable",
-						required=True,
-						help="write report to FILE", metavar="FILE")
-	'''
-	args = parser.parse_args()
-	#print(args.myFilenameVariable)
+    logger = create_logger(log_file_name)
+    logger.info('Start time: ' + str(datetime.now()))
 
-	print_python_enviroment_info()
-	activate_virtual_environment()
-	print_python_enviroment_info()
+    #print('main')
+    #print(__doc__)
+    #print(__docformat__)
+    #import doctest
+    #print(str(doctest.testmod()))
 
-	# TODO: Import at top of this script.
-	# TODO: Activat 'setup_apps' module with function call !
-	import setup_apps
+    print(__license__)
+    print(__revision__)
+    print(__version__)
+    print('')
 
-	setup_apps.connect_samba_share()
-	setup_apps.npp.run()
-	setup_apps.java.run()
-	setup_apps.eclipse.run()
-	setup_apps.pydev.run()
-	setup_apps.putty.run()
-	setup_apps.git.run()
-	setup_apps.python.run()
+    from argparse import ArgumentParser
+    parser = ArgumentParser(description=__doc__)
+    # TODO: Add your arguments here
+    '''
+    parser.add_argument("-f", "--file", dest="myFilenameVariable",
+                        required=True,
+                        help="write report to FILE", metavar="FILE")
+    '''
+    args = parser.parse_args()
+    #print(args.myFilenameVariable)
 
+    print_python_enviroment_info()
+    activate_virtual_environment()
+    print_python_enviroment_info()
+
+
+    setup_apps.connect_samba_share()
+    '''
+    setup_apps.npp.run()
+    setup_apps.java.run()
+    setup_apps.eclipse.run()
+    setup_apps.pydev.run()
+    setup_apps.putty.run()
+    setup_apps.git.run()
+    setup_apps.python.run()
+    '''
+    setup_apps.config.parse()
+    setup_apps.config.init()
+    setup_apps.config.download()
+    setup_apps.config.install()
+    setup_apps.config.configure()
+
+    logger.info('Stop time: ' + str(datetime.now()))

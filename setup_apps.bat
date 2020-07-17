@@ -18,8 +18,8 @@
 :: The python script will download and install.
 ::  - Notepad++
 
-SET CURRENT_SCRIPT_VER=0.0.2
-SET CURRENT_SCRIPT_DATE=2019-09-30
+SET CURRENT_SCRIPT_VER=0.0.3
+SET CURRENT_SCRIPT_DATE=2020-07-17
 SET CURRENT_SCRIPT=setup_apps.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 
@@ -63,6 +63,10 @@ echo %VIRTUAL_ENV%
 echo. 
 
 
+echo. 
+echo Current virtual variable PATH:
+echo %PATH%
+echo. 
 
 
 :: Run the python script
@@ -85,6 +89,11 @@ if %errorlevel% neq 0 (
 	exit /b %errorlevel%
 )
 
+
+echo. 
+echo Current virtual variable PATH:
+echo %PATH%
+echo. 
 
 
 :: Deactivate python venv

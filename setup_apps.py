@@ -174,6 +174,10 @@ if __name__ == '__main__':
 
 
     setup_apps.connect_samba_share()
+    # TODO: xml config file should be generated separately
+    # TODO: parameterise location of xml config file
+    setup_apps.config.create_sample()
+    setup_apps.config.print_sample()
     '''
     setup_apps.npp.run()
     setup_apps.java.run()

@@ -34,6 +34,7 @@ import sys
 import os
 import logging
 from datetime import datetime
+import traceback
 
 
 def print_python_enviroment_info():

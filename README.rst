@@ -24,7 +24,7 @@ The new install quide
  mkdir C:\LM_ToyBox\temp
  cd C:\LM_ToyBox\temp
  
- PowerShell -Command "& {$client = new-object System.Net.WebClient; $client.DownloadFile('https://github.com/lordmikefin/LMAutoSetBotWin/releases/download/v0.0.2/LMAutoSetBotWin.zip','.\LMAutoSetBotWin.zip')}"
+ PowerShell -Command "& {$client = new-object System.Net.WebClient; $client.DownloadFile('https://github.com/lordmikefin/LMAutoSetBotWin/releases/download/v0.0.3/LMAutoSetBotWin.zip','.\LMAutoSetBotWin.zip')}"
  PowerShell -Command "Expand-Archive '.\LMAutoSetBotWin.zip' '.\'"
  
  cd C:\LM_ToyBox\temp\LMAutoSetBotWin\

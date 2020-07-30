@@ -98,8 +98,19 @@ Clone the project using SSH.
  git submodule init
  git submodule update
  
+ # Set ssh urls for submodules
  cd setup_apps
  
  git checkout master
  git remote -v
  git remote set-url origin git@github.com:lordmikefin/setup_apps.git
+ 
+ cd ../LMToyBoxPython
+ git checkout master
+ git remote -v
+ git remote set-url origin git@github.com:lordmikefin/LMToyBoxPython.git
+ 
+ cd ../app_source_handler
+ git checkout master
+ git remote -v
+ git remote set-url origin git@github.com:lordmikefin/app_source_handler.git

@@ -107,7 +107,7 @@ PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -Wait -Ar
 echo.
 echo Now I will run my script 'init.ps1'.
 pause
-PowerShell -File init.ps1
+PowerShell -File batch\init.ps1
 
 :: Set ExecutionPolicy back to Restricted
 echo.

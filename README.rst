@@ -29,14 +29,14 @@ The new install quide
  
  cd C:\LM_ToyBox\temp\LMAutoSetBotWin\
  
- UAC-Disable.bat
+ batch\UAC-Disable.bat
  :: Reboot !
  
  cd C:\LM_ToyBox\temp\LMAutoSetBotWin\
  init.bat
  
  cd C:\LM_ToyBox\temp\LMAutoSetBotWin\
- UAC-Enable.bat
+ batch\UAC-Enable.bat
  :: Reboot !
 
 

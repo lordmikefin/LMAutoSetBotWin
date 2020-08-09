@@ -58,8 +58,8 @@ CALL batch\Win-Update-Disable.bat
 :: Download Git into temp folder
 ::   https://git-scm.com/download/win
 ::   
-SET FILE_GIT=Git-2.23.0-64-bit.exe
-SET URL_GIT=https://github.com/git-for-windows/git/releases/download/v2.23.0.windows.1/%FILE_GIT%
+::SET FILE_GIT=Git-2.23.0-64-bit.exe
+::SET URL_GIT=https://github.com/git-for-windows/git/releases/download/v2.23.0.windows.1/%FILE_GIT%
 ::echo URL_GIT: %URL_GIT%
 
 :: Download Python into temp folder
@@ -118,24 +118,27 @@ pause
 PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -ArgumentList '-Command Set-ExecutionPolicy Restricted'}"
 
 
-:: NOTE: Read more about silent / unattended git installation
-::   https://github.com/msysgit/msysgit/wiki/Silent-or-Unattended-Installation
+:: NOTE: Why I was installing Git? Were I going to use 'bash'?
+::       I think Git is not needed anymore.
 
-:: Install Git
-call "%PATH_APP_GIT%\bin\git.exe" --version
-SET COM=%PATH_INSTALLERS%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="%PATH_TOY_BOX%git.log" /DIR="%PATH_APP_GIT%"
-::if %errorlevel% neq 0 exit /b %errorlevel%
-:: Install only if not found.
-if %errorlevel% neq 0 (
-	:: Got error. Git is not yet installed.
-	echo.
-	echo Install Git
-	echo " $ call %COM%"
-	call %COM%
-) else (
-	echo.
-	echo Git is already installed.
-)
+:::: NOTE: Read more about silent / unattended git installation
+::::   https://github.com/msysgit/msysgit/wiki/Silent-or-Unattended-Installation
+::
+:::: Install Git
+::call "%PATH_APP_GIT%\bin\git.exe" --version
+::SET COM=%PATH_INSTALLERS%\%FILE_GIT% /SILENT /LOADINF="git.inf" /LOG="%PATH_TOY_BOX%git.log" /DIR="%PATH_APP_GIT%"
+::::if %errorlevel% neq 0 exit /b %errorlevel%
+:::: Install only if not found.
+::if %errorlevel% neq 0 (
+::	:: Got error. Git is not yet installed.
+::	echo.
+::	echo Install Git
+::	echo " $ call %COM%"
+::	call %COM%
+::) else (
+::	echo.
+::	echo Git is already installed.
+::)
 
 
 :: NOTE: Installer will just "repair" old installation if it is installed to other location!

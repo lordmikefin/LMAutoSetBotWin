@@ -51,7 +51,7 @@ mkdir "%PATH_APP_PY37%"
 :: disable windows update service
 echo.
 echo When you need the Update service call  Win-Update-Enable.bat
-CALL Win-Update-Disable.bat
+CALL batch\Win-Update-Disable.bat
 
 
 

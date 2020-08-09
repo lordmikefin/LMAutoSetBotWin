@@ -114,3 +114,13 @@ Clone the project using SSH.
  git checkout master
  git remote -v
  git remote set-url origin git@github.com:lordmikefin/app_source_handler.git
+
+
+Github action script
+--------------------
+
+zip package file is now auto created with Github action workflow script.
+
+I have small project github-action-release_ where I have tested how to use Github actions.
+
+.. _github-action-release: https://github.com/lordmikefin/github-action-release

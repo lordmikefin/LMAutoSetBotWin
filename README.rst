@@ -12,7 +12,7 @@ Quick installation quide.
 This will get needed stuff under folder C:\\LM_ToyBox\\
 
 
-Install quide
+Install guide
 -------------
 
 .. code-block:: batch
@@ -25,8 +25,8 @@ Install quide
  mkdir C:\LM_ToyBox\temp
  cd C:\LM_ToyBox\temp
  
- PowerShell -Command "& {$client = new-object System.Net.WebClient; $client.DownloadFile('https://github.com/lordmikefin/LMAutoSetBotWin/releases/download/v0.0.7/LMAutoSetBotWin-v0.0.7.zip','.\LMAutoSetBotWin-v0.0.7.zip')}"
- PowerShell -Command "Expand-Archive '.\LMAutoSetBotWin-v0.0.7.zip' '.\LMAutoSetBotWin\'"
+ PowerShell -Command "& {$client = new-object System.Net.WebClient; $client.DownloadFile('https://github.com/lordmikefin/LMAutoSetBotWin/releases/download/v0.0.8/LMAutoSetBotWin-v0.0.8.zip','.\LMAutoSetBotWin-v0.0.8.zip')}"
+ PowerShell -Command "Expand-Archive '.\LMAutoSetBotWin-v0.0.8.zip' '.\LMAutoSetBotWin\'"
  
  cd C:\LM_ToyBox\temp\LMAutoSetBotWin\
  

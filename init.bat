@@ -18,8 +18,8 @@
 ::  - Git
 ::  - Python
 
-SET CURRENT_SCRIPT_VER=0.0.7
-SET CURRENT_SCRIPT_DATE=2020-01-04
+SET CURRENT_SCRIPT_VER=0.0.8
+SET CURRENT_SCRIPT_DATE=2020-08-10
 SET CURRENT_SCRIPT=init.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 
@@ -178,6 +178,8 @@ PATH=%PATH_APP_GIT%\cmd\;%PATH%
 :: C:\LM_ToyBox\apps\Python37\Scripts\
 PATH=%PATH_APP_PY37%\;%PATH_APP_PY37%\Scripts\;%PATH%
 
+
+cd python
 
 :: Create Python virtual environment 'venv-LMAutoSetBotWin'
 CALL setup_python_venv.bat

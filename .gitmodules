@@ -1,3 +1,12 @@
 [submodule "submodule/LMToysBash"]
 	path = submodule/LMToysBash
 	url = https://github.com/lordmikefin/LMToysBash.git
+[submodule "python/LMToyBoxPython"]
+	path = python/LMToyBoxPython
+	url = https://github.com/lordmikefin/LMToyBoxPython.git
+[submodule "python/app_source_handler"]
+	path = python/app_source_handler
+	url = https://github.com/lordmikefin/app_source_handler.git
+[submodule "python/setup_apps"]
+	path = python/setup_apps
+	url = https://github.com/lordmikefin/setup_apps.git

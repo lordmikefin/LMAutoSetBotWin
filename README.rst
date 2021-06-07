@@ -55,7 +55,7 @@ Clone the project using SSH
  git submodule update
  
  # Set ssh urls for submodules
- cd setup_apps
+ cd python/setup_apps
  
  git checkout master
  git remote -v

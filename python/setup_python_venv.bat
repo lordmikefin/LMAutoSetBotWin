@@ -186,6 +186,8 @@ echo.
 echo. 
 echo Install all needed Python modules into venv.
 echo (venv) $ pip3 install -U -r setup_apps\requirements.txt
+echo (venv) $ pip3 install -U -r app_source_handler\requirements.txt
+echo (venv) $ pip3 install -U -r LMToyBoxPython\requirements.txt
 echo.
 call pip3 install -U -r setup_apps\requirements.txt
 echo.

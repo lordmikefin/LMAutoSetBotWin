@@ -42,6 +42,17 @@ Install guide
 
 
 
+Clone
+-----
+
+Prepare for cloning
+-------------------
+
+Download and install Git
+
+https://git-scm.com/download/win
+
+
 Clone the project using SSH
 ---------------------------
 

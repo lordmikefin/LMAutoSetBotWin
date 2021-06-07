@@ -185,7 +185,7 @@ echo.
 
 echo. 
 echo Install all needed Python modules into venv.
-echo (venv) $ pip3 install -U -r requirements.txt
+echo (venv) $ pip3 install -U -r setup_apps\requirements.txt
 echo.
 call pip3 install -U -r setup_apps\requirements.txt
 echo.

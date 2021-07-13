@@ -10,7 +10,7 @@
 ::   https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/LICENSE
 :: 
 :: Latest version of this script file:
-::  https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/setup_python_venv.bat
+::  https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/python/setup_python_venv.bat
 
 :: This script will setup Python virtual environment for my scripts :)
 

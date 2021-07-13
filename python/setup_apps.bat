@@ -10,7 +10,7 @@
 ::   https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/LICENSE
 :: 
 :: Latest version of this script file:
-::   https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/setup_apps.bat
+::   https://github.com/lordmikefin/LMAutoSetBotWin/blob/master/python/setup_apps.bat
 
 :: setup_apps.bat
 :: This script will start python script.

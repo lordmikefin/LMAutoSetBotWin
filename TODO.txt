@@ -4,6 +4,16 @@
 
 
 (2024-07-09)
+TODO: Automate installing of Cryptomator, KeePass and Resilio Sync
+
+I have usage samples in github projects:
+ - https://github.com/lordmikefin/cryptomator-guide
+ - https://github.com/lordmikefin/resilio-sync-guide
+ - https://github.com/lordmikefin/keepass-guide
+--
+
+
+(2024-07-09)
 TODO: fix GitHub Action "Create Release + create asset"
       https://github.com/lordmikefin/LMAutoSetBotWin/actions/workflows/create-release.yml
 

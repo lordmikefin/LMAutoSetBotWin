@@ -3,6 +3,27 @@
 --
 
 
+(2024-07-09)
+TODO: fix GitHub Action "Create Release + create asset"
+      https://github.com/lordmikefin/LMAutoSetBotWin/actions/workflows/create-release.yml
+
+NOTE: It will not run. It will fail on error:
+"
+Create Release
+Docker build failed with exit code 1
+"
+"
+Build textbook/git-checkout-submodule-action@master
+
+Build container for action use: '/home/runner/work/_actions/textbook/git-checkout-submodule-action/master/Dockerfile'.
+Error: Docker build failed with exit code 1
+"
+
+I have test version:
+  https://github.com/lordmikefin/github-action-release/blob/master/.github/workflows/create-release.yml
+--
+
+
 (2020-01-27)
 TODO: Auto reconnect USB device
 

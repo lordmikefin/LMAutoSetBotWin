@@ -1,20 +1,8 @@
 
-# This is my 1st test with Github Actions
+# This is my Github Actions to create release on 'tag-push'
 
 # Source of this sample yml
-# https://github.com/marketplace/actions/create-a-release
-
-# https://github.com/marketplace/actions/upload-a-release-asset
-
-
-# Github context
-# https://docs.github.com/en/actions/reference/context-and-expression-syntax-for-github-actions#github-context
-
-# Step output can be used as variable
-# https://stackoverflow.com/questions/57819539/github-actions-how-to-share-a-calculated-value-between-job-steps
-
-# Checkout Submodule
-# https://github.com/marketplace/actions/checkout-submodules
+# https://github.com/lordmikefin/github-action-release/blob/master/.github/workflows/create-release.yml
 
 on:
   push:
@@ -31,33 +19,34 @@ jobs:
     steps:
       - name: Set tag var
         id: vars
-        run: echo ::set-output name=parsed_tag::$(echo ${GITHUB_REF} | cut -d'/' -f3)
+        run: echo parsed_tag=$(echo ${GITHUB_REF} | cut -d'/' -f3) >> $GITHUB_OUTPUT
       - name: Test the tag var
         run: echo ${{ steps.vars.outputs.parsed_tag }}
       - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Checkout submodules
-        uses: textbook/git-checkout-submodule-action@master
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
       - name: Build project # This would actually build your project, using zip for an example artifact
-        run: |
-          zip -r LMAutoSetBotWin *
+          zip -r LMAutoSetBotWin-${{ steps.vars.outputs.parsed_tag }}.zip *
       - name: Create Release
         id: create_release
-        uses: actions/create-release@v1
+        uses: ncipollo/release-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
+          tag: ${{ steps.vars.outputs.parsed_tag }}
+          name: Release ${{ steps.vars.outputs.parsed_tag }}
           draft: false
           prerelease: false
       - name: Upload Release Asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
+        id: upload-release-asset
+        uses: nanoufo/action-upload-artifacts-and-release-assets@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
-          asset_path: ./LMAutoSetBotWin.zip
-          asset_name: LMAutoSetBotWin-${{ steps.vars.outputs.parsed_tag }}.zip
-          asset_content_type: application/zip
+          retention-days: 1
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          release-upload-url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+          path: |
+            LMAutoSetBotWin-${{ steps.vars.outputs.parsed_tag }}.zip
+          upload-release-files: true

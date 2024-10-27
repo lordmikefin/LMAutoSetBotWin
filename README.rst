@@ -25,8 +25,8 @@ Install guide
  mkdir C:\LM_ToyBox\temp
  cd C:\LM_ToyBox\temp
  
- PowerShell -Command "& {$client = new-object System.Net.WebClient; $client.DownloadFile('https://github.com/lordmikefin/LMAutoSetBotWin/releases/download/v0.0.16/LMAutoSetBotWin-v0.0.16.zip','.\LMAutoSetBotWin-v0.0.16.zip')}"
- PowerShell -Command "Expand-Archive '.\LMAutoSetBotWin-v0.0.16.zip' '.\LMAutoSetBotWin\'"
+ PowerShell -Command "& {$client = new-object System.Net.WebClient; $client.DownloadFile('https://github.com/lordmikefin/LMAutoSetBotWin/releases/download/v0.0.17/LMAutoSetBotWin-v0.0.17.zip','.\LMAutoSetBotWin-v0.0.17.zip')}"
+ PowerShell -Command "Expand-Archive '.\LMAutoSetBotWin-v0.0.17.zip' '.\LMAutoSetBotWin\'"
  
  cd C:\LM_ToyBox\temp\LMAutoSetBotWin\
  

@@ -134,7 +134,7 @@ echo.
 echo Now I will run my script 'init.ps1'.
 pause
 ::PowerShell -File batch\init.ps1
-PowerShell -executionpolicy bypass -File init.ps1
+PowerShell -executionpolicy bypass -File batch\init.ps1
 
 
 

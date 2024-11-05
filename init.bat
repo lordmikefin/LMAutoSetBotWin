@@ -24,6 +24,27 @@ SET CURRENT_SCRIPT=init.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 
 
+:: Test "administrative privileges"
+::   https://stackoverflow.com/questions/11525056/how-to-create-a-batch-file-to-run-cmd-as-administrator
+
+fsutil dirty query %systemdrive% >nul
+
+if %errorlevel% neq 0 (
+	:: Got error. User has no "administrative privileges"
+	echo.
+	echo I recommend running this script as administrator.
+	echo Or just disable UAC.
+	echo Otherwise UAC is asking confirmation for each app !
+	echo.
+	pause
+) else (
+	echo.
+	echo Has 'administrative privileges'
+	echo.
+)
+::exit /B
+
+
 
 :: Create directory for Installer and install path.
 ::   C:\LM_ToyBox\temp

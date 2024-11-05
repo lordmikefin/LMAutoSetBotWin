@@ -18,8 +18,8 @@
 ::  - Git
 ::  - Python
 
-SET CURRENT_SCRIPT_VER=0.0.8
-SET CURRENT_SCRIPT_DATE=2020-08-10
+SET CURRENT_SCRIPT_VER=0.0.9
+SET CURRENT_SCRIPT_DATE=2024-11-05
 SET CURRENT_SCRIPT=init.bat
 echo CURRENT_SCRIPT_VER: %CURRENT_SCRIPT_VER% (%CURRENT_SCRIPT_DATE%)
 
@@ -97,25 +97,33 @@ SET URL_PY37=https://www.python.org/ftp/python/3.7.4/%FILE_PY37%
 ::PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -ArgumentList '-Command pause'}"
 ::PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -ArgumentList '-Command Write-Host Hello; pause'}"
 ::PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -ArgumentList '-Command Set-ExecutionPolicy RemoteSigned; pause'}"
-echo.
-echo Next I will change PowerShell ExecutionPolicy into RemoteSigned.
-echo With this permission I can execute my unsigened scrpit.
-echo Windows will as you to give permission for me to make changes to this device.
-pause
-PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -Wait -ArgumentList '-Command Set-ExecutionPolicy RemoteSigned'}"
+::echo.
+::echo Next I will change PowerShell ExecutionPolicy into RemoteSigned.
+::echo With this permission I can execute my unsigened scrpit.
+::echo Windows will as you to give permission for me to make changes to this device.
+::pause
+::PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -Wait -ArgumentList '-Command Set-ExecutionPolicy RemoteSigned'}"
+
+
+:: NOTE: No need to change ExecutionPolicy. Just bypass it :)
+
+:: https://stackoverflow.com/questions/2035193/how-to-run-a-powershell-script
 
 echo.
 echo Now I will run my script 'init.ps1'.
 pause
-PowerShell -File batch\init.ps1
+::PowerShell -File batch\init.ps1
+PowerShell -executionpolicy bypass -File init.ps1
+
+
 
 :: Set ExecutionPolicy back to Restricted
-echo.
-echo Next I will change PowerShell ExecutionPolicy back to Restricted.
-echo With this permission no one can execute unsigened scrpit.
-echo Windows will as you to give permission for me to make changes to this device.
-pause
-PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -ArgumentList '-Command Set-ExecutionPolicy Restricted'}"
+::echo.
+::echo Next I will change PowerShell ExecutionPolicy back to Restricted.
+::echo With this permission no one can execute unsigened scrpit.
+::echo Windows will as you to give permission for me to make changes to this device.
+::pause
+::PowerShell -Command "& {Start-Process -FilePath PowerShell -Verb RunAs -ArgumentList '-Command Set-ExecutionPolicy Restricted'}"
 
 
 :: NOTE: Why I was installing Git? Were I going to use 'bash'?

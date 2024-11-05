@@ -15,6 +15,10 @@ This will get needed stuff under folder C:\\LM_ToyBox\\
 Install guide
 -------------
 
+NOTE: Run Command Prompt As Administrator
+
+  https://www.isunshare.com/windows-10/2-ways-to-run-command-prompt-as-administrator-in-win-10.html
+
 .. code-block:: batch
 
  C:
@@ -30,14 +34,15 @@ Install guide
  
  cd C:\LM_ToyBox\temp\LMAutoSetBotWin\
  
- batch\UAC-Disable.bat
+ :: NOTE: When running as administrator, then there is no need to disable UAC
+ ::batch\UAC-Disable.bat
  :: Reboot !
  
  cd C:\LM_ToyBox\temp\LMAutoSetBotWin\
  init.bat
  
- cd C:\LM_ToyBox\temp\LMAutoSetBotWin\
- batch\UAC-Enable.bat
+ ::cd C:\LM_ToyBox\temp\LMAutoSetBotWin\
+ ::batch\UAC-Enable.bat
  :: Reboot !
 
 

@@ -29,8 +29,8 @@ NOTE: Run Command Prompt As Administrator
  mkdir C:\LM_ToyBox\temp
  cd C:\LM_ToyBox\temp
  
- PowerShell -Command "& {$client = new-object System.Net.WebClient; $client.DownloadFile('https://github.com/lordmikefin/LMAutoSetBotWin/releases/download/v0.0.18/LMAutoSetBotWin-v0.0.18.zip','.\LMAutoSetBotWin-v0.0.18.zip')}"
- PowerShell -Command "Expand-Archive '.\LMAutoSetBotWin-v0.0.18.zip' '.\LMAutoSetBotWin\'"
+ PowerShell -Command "& {$client = new-object System.Net.WebClient; $client.DownloadFile('https://github.com/lordmikefin/LMAutoSetBotWin/releases/download/v0.0.19/LMAutoSetBotWin-v0.0.19.zip','.\LMAutoSetBotWin-v0.0.19.zip')}"
+ PowerShell -Command "Expand-Archive '.\LMAutoSetBotWin-v0.0.19.zip' '.\LMAutoSetBotWin\'"
  
  cd C:\LM_ToyBox\temp\LMAutoSetBotWin\
  
